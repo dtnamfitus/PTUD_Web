@@ -5,14 +5,18 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "seed": "node ./seeders/seed.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "seed": "node ./seeders/seed.js || exit 0",
+    "test": "jest --detectOpenHandles --forceExit",
+    "build": "npm run obfuscate && npm run copy",
+    "obfuscate": "javascript-obfuscator . --output dist/ --exclude node_modules",
+    "copy": "cp package.json dist/ && cd dist"
   },
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
     "axios": "^1.7.8",
+    "bcrypt": "^5.1.1",
     "body-parser": "^1.20.3",
     "dotenv": "^16.4.5",
     "ejs": "^3.1.10",
@@ -25,6 +29,11 @@
     "@eslint/js": "^9.15.0",
     "eslint": "^9.15.0",
     "eslint-config-prettier": "^9.1.0",
-    "globals": "^15.12.0"
+    "globals": "^15.12.0",
+    "javascript-obfuscator": "^4.1.1",
+    "jest": "^29.7.0",
+    "supertest": "^7.0.0",
+    "webpack": "^5.96.1",
+    "webpack-cli": "^5.1.4"
   }
 }

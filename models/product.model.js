@@ -13,12 +13,18 @@ const productSchema = new mongoose.Schema(
         required: true,
       },
     ],
+    main_image: { type: String, required: true },
     colors: [
       {
-        colorName: { type: String, enum: Object.keys(colors), required: true },
+        color_name: { type: String, enum: Object.keys(colors), required: true },
         images: [{ type: String, required: true }],
       },
     ],
+    created_by: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
   },
   { timestamps: true }
 );
