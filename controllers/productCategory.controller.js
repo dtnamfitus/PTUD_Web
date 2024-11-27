@@ -1,12 +1,12 @@
-const getProductCategoryById = (req, res) =>{
+const getProductCategoryById = (req, res) => {
   return "detail";
-}
+};
 
-const getProductCategories = (req, res) =>{
+const getProductCategories = (req, res) => {
   return "products";
-}
+};
 
 module.exports = {
   getProductCategoryById,
-  getProductCategories
-}
+  getProductCategories,
+};

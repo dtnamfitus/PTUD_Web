@@ -77,6 +77,9 @@ const colors = {
   // Màu đồng
   copper: "#B87333",
   bronze: "#CD7F32",
+
+  // Màu rượu vang
+  wine: "#722F37",
 };
 
 module.exports = colors;

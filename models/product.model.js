@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const colors = require("./../constant/color.constant");
+const mongoosePaginate = require("mongoose-paginate-v2");
 
 const productSchema = new mongoose.Schema(
   {
@@ -16,17 +17,18 @@ const productSchema = new mongoose.Schema(
     main_image: { type: String, required: true },
     colors: [
       {
-        color_name: { type: String, enum: Object.keys(colors), required: true },
+        color_name: {
+          type: String,
+          enum: Object.values(colors),
+          required: true,
+        },
         images: [{ type: String, required: true }],
       },
     ],
-    created_by: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-      required: true,
-    },
   },
   { timestamps: true }
 );
+
+productSchema.plugin(mongoosePaginate);
 
 module.exports = mongoose.model("Product", productSchema);

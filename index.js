@@ -3,11 +3,19 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const path = require("path");
+const session = require("express-session");
 
 const route = require("./routes");
+const passport = require("./config/passport");
+
 const isTestEnv = process.env.NODE_ENV === "test";
 
 require("dotenv").config();
+
+// Model Require
+require("./models/product-category.model");
+require("./models/product.model");
+require("./models/user.model");
 
 const app = express();
 
@@ -52,6 +60,9 @@ app.use("/api/admin", route.adminAPIRoute);
 
 app.use("/client", route.clientUIRoute);
 app.use("/admin", route.adminUIRoute);
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use("/healthcheck", (req, res) => {
   res.status(200).send("Healthcheck is OK");
