@@ -35,6 +35,15 @@ if (!isTestEnv) {
     });
 }
 
+// Passport
+app.use(
+  session({
+    secret: process.env.SECRET_KEY,
+    resave: false,
+    saveUninitialized: true,
+  })
+);
+
 const port = process.env.PORT || 8080;
 
 // API Routes
