@@ -1,0 +1,18 @@
+FROM node:20-alpine
+
+WORKDIR /app
+
+ARG COMMIT_ID
+ENV COMMIT_ID=${COMMIT_ID}
+
+ARG DOCKER_USERNAME
+ENV DOCKER_USERNAME=${DOCKER_USERNAME}
+
+COPY package.json ./
+RUN npm install
+
+COPY . .
+
+EXPOSE 8080
+
+CMD ["node", "index.js"]
