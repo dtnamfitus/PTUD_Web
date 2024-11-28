@@ -15,6 +15,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+        run: echo "User: ${{ secrets.SERVER_USER }}"
+
       - name: Cache Node.js modules
         uses: actions/cache@v3
         with:
