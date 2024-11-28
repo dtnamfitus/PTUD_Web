@@ -8,6 +8,8 @@
     "seed": "node ./seeders/seed.js || exit 0",
     "test": "jest --detectOpenHandles --forceExit",
     "build": "npm run obfuscate && npm run copy",
+    "copy-static": "cpy 'public/**/*' dist/public --parents",
+    "copy-view": "cpy 'views/**/*' dist/views --parents",
     "obfuscate": "javascript-obfuscator . --output dist/ --exclude node_modules",
     "copy": "cp package.json dist/ && cd dist"
   },
@@ -33,6 +35,7 @@
   "devDependencies": {
     "@eslint/js": "^9.15.0",
     "@types/mongoose-paginate-v2": "^1.6.5",
+    "cpy-cli": "^5.0.0",
     "eslint": "^9.15.0",
     "eslint-config-prettier": "^9.1.0",
     "globals": "^15.12.0",

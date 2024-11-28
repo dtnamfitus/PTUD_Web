@@ -29,6 +29,12 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Copy static files
+        run: npm run copy-static
+
+      - name: Copy UI
+        run: npm run copy-view
+
       # - name: Test
       #   run: npm run test
 
@@ -38,13 +44,19 @@ jobs:
       - name: Set permissions for PEM key
         run: chmod 600 private-key.pem
 
-      - name: Deliver dist to server
+      - name: Compress dist folder
+        run: tar -czvf dist.tar.gz dist
+
+      - name: Deliver dist archive to server
         run: |
-          echo "Delivering dist to server"
-          scp -i private-key.pem -o StrictHostKeyChecking=no -r dist/ ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:~/dist
+          echo "Delivering compressed dist to server"
+          scp -i private-key.pem -o StrictHostKeyChecking=no dist.tar.gz ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:~/dist.tar.gz
 
       - name: Clean up PEM key
         run: rm private-key.pem
+
+      - name: Clean up dist archive
+        run: rm dist.tar.gz
 
   deploy:
     runs-on: ubuntu-latest
@@ -59,9 +71,13 @@ jobs:
       - name: Deploy on server
         run: |
           ssh -i private-key.pem -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'EOF'
-            cd ~/dist
+            echo "Extracting dist on server"
+            source ~/.bashrc
+            cd ~
+            tar -xzvf dist.tar.gz
+            cd dist
             npm install
-            node ecosystem.config.js
+            pm2 start ecosystem.config.js
           EOF
 
       - name: Clean up PEM key
