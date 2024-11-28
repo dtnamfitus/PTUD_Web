@@ -1,12 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const userService = require("./../../../services/user.service");
-const productService = require("./../../../services/product.service");
+const productController = require("./../../../controllers/product.controller");
 
 router.get("/", async (req, res) => {
   try {
-    req.query.limit = 8;
-    const products = await productService.getAllProducts(req);
+    const products = await productController.getProducts(req, res);
     const user = req.user;
     const bodyHtml = await new Promise((resolve, reject) => {
       res.render("client/home", { products: products.docs }, (err, html) => {

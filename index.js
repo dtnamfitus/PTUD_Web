@@ -68,8 +68,23 @@ app.use("/healthcheck", (req, res) => {
   res.status(200).send("Healthcheck is OK");
 });
 
-app.use("*", (req, res) => {
-  res.status(404).send("Not Found");
+app.get("/", function (req, res) {
+  res.redirect("/client/home");
+});
+
+app.use("*", async (req, res) => {
+  const user = req.user;
+  const bodyHtml = await new Promise((resolve, reject) => {
+    res.render("error/404", {}, (err, html) => {
+      if (err) return reject(err);
+      resolve(html);
+    });
+  });
+  res.render("layout/client-layout/layout", {
+    title: "Page Not Found",
+    body: bodyHtml,
+    user,
+  });
 });
 
 // Start the server only if this file is run directly

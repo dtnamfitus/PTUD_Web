@@ -1,44 +1,46 @@
 const Product = require("./../models/product.model");
+const qs = require("qs");
 
 const getAllProducts = async (req) => {
   try {
+    const parsedQuery = qs.parse(req.query);
     const {
-      page = 1,
-      limit = 10,
+      page,
+      limit,
       sortBy = "createdAt",
       sortDirection = "asc",
       priceFrom,
       priceTo,
       key,
       categories,
-    } = req.query;
+    } = parsedQuery;
 
-    const pageNumber = parseInt(page);
-    const limitNumber = parseInt(limit);
+    const pageNumber = parseInt(page, 10) || 1;
+    const limitNumber = parseInt(limit, 10) || 9;
 
     const filter = {};
 
-    if (key) {
+    if (key && key.trim()) {
       filter.$or = [
-        { name: { $regex: key, $options: "i" } },
-        { description: { $regex: key, $options: "i" } },
+        { name: { $regex: key.trim(), $options: "i" } },
+        { description: { $regex: key.trim(), $options: "i" } },
       ];
     }
 
-    if (priceFrom !== undefined || priceTo !== undefined) {
+    if ((priceFrom && !isNaN(priceFrom)) || (priceTo && !isNaN(priceTo))) {
       filter.price = {};
-      if (priceFrom !== undefined) {
+      if (priceFrom && !isNaN(priceFrom)) {
         filter.price.$gte = parseFloat(priceFrom);
       }
-      if (priceTo !== undefined) {
+      if (priceTo && !isNaN(priceTo)) {
         filter.price.$lte = parseFloat(priceTo);
       }
     }
 
-    if (categories) {
+    if (categories && categories.trim()) {
       const categoriesArray = Array.isArray(categories)
         ? categories
-        : categories.split(",");
+        : categories.split(",").map((cat) => cat.trim());
       filter.categories = { $in: categoriesArray };
     }
 

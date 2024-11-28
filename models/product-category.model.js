@@ -10,5 +10,11 @@ const productCategorySchema = new mongoose.Schema(
 );
 
 productCategorySchema.plugin(mongoosePaginate);
+productCategorySchema.pre("remove", async function (next) {
+  await mongoose
+    .model("Product")
+    .updateMany({ categories: this._id }, { $pull: { categories: this._id } });
+  next();
+});
 
 module.exports = mongoose.model("ProductCategory", productCategorySchema);

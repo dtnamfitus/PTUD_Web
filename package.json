@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "dev": "nodemon index.js",
+    "dev": "nodemon --inspect index.js",
     "seed": "node ./seeders/seed.js || exit 0",
     "test": "jest --detectOpenHandles --forceExit",
     "build": "npm run obfuscate && npm run copy",
@@ -27,7 +27,8 @@
     "morgan": "^1.10.0",
     "nodemon": "^3.1.7",
     "passport": "^0.7.0",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "qs": "^6.13.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.15.0",

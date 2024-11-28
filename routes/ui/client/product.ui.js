@@ -1,21 +1,29 @@
 const express = require("express");
 const axios = require("axios");
 const router = express.Router();
-const apiUrl = process.env.API_URL || "http://localhost:8080/api/client";
+const productService = require("../../../services/product.service");
+const productCategoryService = require("../../../services/product-category.service");
 
 router.get("/", async (req, res) => {
   try {
-    const products = productService.getAllProducts(req);
+    const [products, productCategories] = await Promise.all([
+      productService.getAllProducts(req),
+      productCategoryService.getProductCategories(),
+    ]);
+
     const bodyHtml = await new Promise((resolve, reject) => {
-      res.render("client/products/product", { products }, (err, html) => {
-        if (err) return reject(err);
-        resolve(html);
-      });
+      res.render(
+        "client/products/product",
+        { products: products, productCategories: productCategories },
+        (err, html) => {
+          if (err) return reject(err);
+          resolve(html);
+        }
+      );
     });
     res.render("layout/client-layout/layout", {
       title: "Products",
       body: bodyHtml,
-      products,
       dirname: __dirname,
     });
   } catch (error) {

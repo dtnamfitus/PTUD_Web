@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>Shop | E-Shopper</title>
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/font-awesome.min.css" rel="stylesheet">
+  <link href="css/prettyPhoto.css" rel="stylesheet">
+  <link href="css/price-range.css" rel="stylesheet">
+  <link href="css/animate.css" rel="stylesheet">
+  <link href="css/main.css" rel="stylesheet">
+  <link href="css/responsive.css" rel="stylesheet">
+  <!--[if lt IE 9]>
+    <script src="/js/html5shiv.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <![endif]-->
+  <link rel="shortcut icon" href="images/ico/favicon.ico">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
+</head>
+<!--/head-->
+
+<body>
+  <section id="advertisement">
+    <div class="container">
+      <img src="/images/shop/advertisement.jpg" alt="" />
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="left-sidebar">
+            <h2>Category</h2>
+            <div class="panel-group category-products" id="accordion">
+              <!--category-products-->
+              <% for (let i = 0; i < productCategories.length; i++) { %>
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title">
+                    <a href="#" class="category-filter" data-id="<%= productCategories[i]._id %>">
+                      <span class="badge pull-right"></span>
+                      <%= productCategories[i].name %>
+                    </a>
+                  </h4>
+                </div>
+              </div>
+              <% } %>
+            </div>
+            <!--/category-products-->
+
+            <div class=" price-range">
+              <!--price-range-->
+              <h2>Price Range</h2>
+              <div class="well">
+                <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="600" data-slider-step="5" data-slider-value="[250,450]" id="sl2"><br />
+                <b>$ 0</b> <b class="pull-right">$ 600</b>
+              </div>
+            </div>
+            <!--/price-range-->
+
+            <div class="shipping text-center">
+              <!--shipping-->
+              <img src="/images/home/shipping.jpg" alt="" />
+            </div>
+            <!--/shipping-->
+
+          </div>
+        </div>
+
+        <div class="col-sm-9 padding-right">
+          <div class="features_items">
+            <!--features_items-->
+            <h2 class="title text-center">Features Items</h2>
+            <div class="sort-filter row mb-4">
+              <!-- Sort By -->
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="sort-by" class="form-label">Sort By:</label>
+                  <select id="sort-by" class="form-select">
+                    <option value="createdAt">Newest</option>
+                    <option value="price">Price</option>
+                    <option value="name">Name</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Sort Direction -->
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="sortDirection" class="form-label">Sort Direction:</label>
+                  <select id="sortDirection" class="form-select">
+                    <option value="asc">Ascending</option>
+                    <option value="desc">Descending</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <% for (let i = 0; i < products.docs.length; i++) { %>
+            <div class="col-sm-4">
+              <div class="product-image-wrapper">
+                <div class="single-products">
+                  <div class="productinfo text-center">
+                    <img src="<%= products.docs[i].mainImage %>" alt="" />
+                    <h2>$ <%= products.docs[i].price %></h2>
+                    <p><%= products.docs[i].name %></p>
+                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                  </div>
+                  <div class="product-overlay">
+                    <div class="overlay-content">
+                      <h2>$ <%= products.docs[i].price %></h2>
+                      <p><%= products.docs[i].name %></p>
+                      <a href="/client/product_detail/<%= products.docs[i]._id %>" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Details</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="choose">
+                  <ul class="nav nav-pills nav-justified">
+                    <li><a href=""><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
+                    <li><a href=""><i class="fa fa-plus-square"></i>Add to compare</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <% } %>
+            <ul class="pagination">
+              <% if (products.hasPrevPage) { %>
+              <li><a href="?page=<%= products.prevPage %>">&laquo;</a></li>
+              <% } else { %>
+              <li class="disabled"><a href="#">&laquo;</a></li>
+              <% } %>
+              <% for (let p = 1; p <= products.totalPages; p++) { %>
+              <li class="<%= p === products.page ? 'active' : '' %>">
+                <a href="?page=<%= p %>"><%= p %></a>
+              </li>
+              <% } %>
+              <% if (products.hasNextPage) { %>
+              <li><a href="?page=<%= products.nextPage %>">&raquo;</a></li>
+              <% } else { %>
+              <li class="disabled"><a href="#">&raquo;</a></li>
+              <% } %>
+            </ul>
+          </div>
+          <!--features_items-->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="/js/jquery.js"></script>
+  <script src="/js/price-range.js"></script>
+  <script src="/js/jquery.scrollUp.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+  <script src="/js/jquery.prettyPhoto.js"></script>
+  <script src="/js/main.js"></script>
+  <script src="/js/ajax/products.js"></script>
+  <script>
+    $(document).ready(function() {
+      // Initialize the categories array
+      let selectedCategories = [];
+
+      // Function to update the product listing based on selected categories
+      function updateProducts() {
+        // Prepare query parameters
+        let queryParams = {
+          // Include other filters as needed, e.g., sortBy, sortDirection, priceFrom, priceTo, key
+          // For example:
+          // sortBy: $('#sort-by').val(),
+          // sortDirection: $('#sortDirection').val(),
+          // priceFrom: $('#price-range-slider').slider('values', 0),
+          // priceTo: $('#price-range-slider').slider('values', 1),
+          // key: $('#search-key-product').val(),
+        };
+
+        if (selectedCategories.length > 0) {
+          queryParams.categories = selectedCategories.join(',');
+        } else {
+          // If no categories are selected, ensure categories parameter is not sent or is empty
+          queryParams.categories = '';
+        }
+
+        // Add other filter parameters as needed here
+
+        // Make the AJAX request
+        $.ajax({
+          url: '/api/product',
+          method: 'GET',
+          data: queryParams,
+          success: function(response) {
+            // Assuming response contains 'docs' (products), 'page', 'totalPages', etc.
+            renderProducts(response.docs);
+            renderPagination(response);
+          },
+          error: function(xhr, status, error) {
+            console.error('Error fetching products:', error);
+            // Optionally, display an error message to the user
+          }
+        });
+      }
+
+      // Function to render products in the DOM
+      function renderProducts(products) {
+        const productList = $('#product-list');
+        productList.empty();
+
+        if (products.length === 0) {
+          productList.append('<p class="text-center">No products found.</p>');
+          return;
+        }
+
+        products.forEach(product => {
+          const productHTML = `
+            <div class="col-sm-4">
+              <div class="product-image-wrapper">
+                <div class="single-products">
+                  <div class="productinfo text-center">
+                    <img src="${product.mainImage}" alt="${product.name}" />
+                    <h2>$ ${product.price.toFixed(2)}</h2>
+                    <p>${product.name}</p>
+                    <a href="#" class="btn btn-default add-to-cart" data-id="${product._id}">
+                      <i class="fa fa-shopping-cart"></i>Add to cart
+                    </a>
+                  </div>
+                  <div class="product-overlay">
+                    <div class="overlay-content">
+                      <h2>$ ${product.price.toFixed(2)}</h2>
+                      <p>${product.name}</p>
+                      <a href="/product-details.html?id=${product._id}" class="btn btn-default add-to-cart">
+                        <i class="fa fa-shopping-cart"></i>Details
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="choose">
+                  <ul class="nav nav-pills nav-justified">
+                    <li><a href="#" class="add-to-wishlist" data-id="${product._id}">
+                      <i class="fa fa-plus-square"></i>Add to wishlist
+                    </a></li>
+                    <li><a href="#" class="add-to-compare" data-id="${product._id}">
+                      <i class="fa fa-plus-square"></i>Add to compare
+                    </a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          `;
+          productList.append(productHTML);
+        });
+      }
+
+      // Function to render pagination
+      function renderPagination(data) {
+        const pagination = $('#pagination');
+        pagination.empty();
+
+        if (data.totalPages <= 1) return;
+
+        // Previous Page
+        if (data.hasPrevPage) {
+          pagination.append(`<li><a href="#" class="pagination-link" data-page="${data.prevPage}">&laquo;</a></li>`);
+        } else {
+          pagination.append(`<li class="disabled"><a href="#">&laquo;</a></li>`);
+        }
+
+        // Page Numbers
+        for (let p = 1; p <= data.totalPages; p++) {
+          const activeClass = p === data.page ? 'active' : '';
+          pagination.append(`<li class="${activeClass}"><a href="#" class="pagination-link" data-page="${p}">${p}</a></li>`);
+        }
+
+        // Next Page
+        if (data.hasNextPage) {
+          pagination.append(`<li><a href="#" class="pagination-link" data-page="${data.nextPage}">&raquo;</a></li>`);
+        } else {
+          pagination.append(`<li class="disabled"><a href="#">&raquo;</a></li>`);
+        }
+      }
+
+      // Function to handle category click
+      function handleCategoryClick(e) {
+        e.preventDefault();
+        const $this = $(this);
+        const categoryId = $this.data('id');
+
+        // Toggle selection
+        if ($this.hasClass('active')) {
+          // Deselect
+          $this.removeClass('active');
+          $this.css({
+            'font-weight': 'normal',
+            'background-color': 'transparent'
+          });
+          selectedCategories = selectedCategories.filter(id => id !== categoryId);
+        } else {
+          // Select
+          $this.addClass('active');
+          $this.css({
+            'font-weight': 'bold',
+            'background-color': '#f0f0f0'
+          });
+          selectedCategories.push(categoryId);
+        }
+
+        // Update products based on new selection
+        updateProducts();
+      }
+
+      // Function to handle pagination click
+      function handlePaginationClick(e) {
+        e.preventDefault();
+        const $this = $(this);
+        const page = $this.data('page');
+
+        if (!page) return;
+
+        // Prepare query parameters
+        let queryParams = {
+          // Include other filters as needed, e.g., sortBy, sortDirection, priceFrom, priceTo, key
+          // For example:
+          // sortBy: $('#sort-by').val(),
+          // sortDirection: $('#sortDirection').val(),
+          // priceFrom: $('#price-range-slider').slider('values', 0),
+          // priceTo: $('#price-range-slider').slider('values', 1),
+          // key: $('#search-key-product').val(),
+          page: page
+        };
+
+        if (selectedCategories.length > 0) {
+          queryParams.categories = selectedCategories.join(',');
+        } else {
+          queryParams.categories = '';
+        }
+
+        // Add other filter parameters as needed here
+
+        // Make the AJAX request
+        $.ajax({
+          url: '/api/product',
+          method: 'GET',
+          data: queryParams,
+          success: function(response) {
+            renderProducts(response.docs);
+            renderPagination(response);
+          },
+          error: function(xhr, status, error) {
+            console.error('Error fetching products:', error);
+            // Optionally, display an error message to the user
+          }
+        });
+      }
+
+      // Attach click event listener to category filters
+      $('.category-filter').on('click', handleCategoryClick);
+
+      // Attach click event listener to pagination links (delegated)
+      $(document).on('click', '.pagination-link', handlePaginationClick);
+
+      // Initial load: Fetch all products without any category filter
+      updateProducts();
+    });
+  </script>
+
+</body>
+
+</html>

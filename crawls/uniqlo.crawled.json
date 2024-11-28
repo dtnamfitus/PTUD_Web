@@ -1,0 +1,1801 @@
+{
+  "items": [
+    {
+      "colors": [
+        {
+          "code": "COL00",
+          "displayCode": "00",
+          "name": "WHITE",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          },
+          "filterCode": "WHITE"
+        }
+      ],
+      "genderName": "MEN",
+      "genderCategory": "MEN",
+      "images": {
+        "main": {
+          "00": {
+            "image": "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/477148/item/usgoods_00_477148_3x4.jpg",
+            "model": []
+          }
+        },
+        "chip": {
+          "00": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/477148/chip/goods_00_477148_chip.jpg"
+        },
+        "sub": [
+          {
+            "image": "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/477148/sub/usgoods_477148_sub1_3x4.jpg",
+            "model": []
+          },
+          {
+            "image": "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/477148/sub/usgoods_477148_sub7_3x4.jpg",
+            "model": []
+          },
+          {
+            "image": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/477148/sub/goods_477148_sub14_3x4.jpg",
+            "model": []
+          },
+          {
+            "image": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/477148/sub/goods_477148_sub17_3x4.jpg",
+            "model": []
+          },
+          {
+            "image": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/477148/sub/goods_477148_sub18_3x4.jpg",
+            "model": []
+          }
+        ]
+      },
+      "l1Id": "477148",
+      "name": "ARCANE LEAGUE OF LEGENDS UT Graphic T-Shirt",
+      "prices": {
+        "base": {
+          "currency": {
+            "code": "USD",
+            "symbol": "$"
+          },
+          "value": 24.9
+        },
+        "promo": null,
+        "isDualPrice": false
+      },
+      "productId": "E477148-000",
+      "priceGroup": "00",
+      "plds": [
+        {
+          "code": "PTB000",
+          "displayCode": "000",
+          "name": "-",
+          "display": {
+            "showFlag": false,
+            "chipType": 0
+          }
+        }
+      ],
+      "rating": {
+        "average": 0,
+        "count": 0
+      },
+      "representative": {
+        "color": {
+          "code": "COL00",
+          "displayCode": "00",
+          "name": "WHITE",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          },
+          "filterCode": "WHITE"
+        },
+        "flags": {
+          "priceFlags": [],
+          "productFlags": []
+        },
+        "l2Id": "08338451",
+        "pld": {
+          "code": "PTB000",
+          "displayCode": "000",
+          "name": "-",
+          "display": {
+            "showFlag": false,
+            "chipType": 0
+          }
+        },
+        "sales": true,
+        "size": {
+          "code": "SMA001",
+          "displayCode": "001",
+          "name": "XXS",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          }
+        },
+        "communicationCode": "477148-00-001-000"
+      },
+      "sizes": [
+        {
+          "code": "SMA001",
+          "displayCode": "001",
+          "name": "XXS",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          }
+        },
+        {
+          "code": "SMA002",
+          "displayCode": "002",
+          "name": "XS",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          }
+        },
+        {
+          "code": "SMA003",
+          "displayCode": "003",
+          "name": "S",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          }
+        },
+        {
+          "code": "SMA004",
+          "displayCode": "004",
+          "name": "M",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          }
+        },
+        {
+          "code": "SMA005",
+          "displayCode": "005",
+          "name": "L",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          }
+        },
+        {
+          "code": "SMA006",
+          "displayCode": "006",
+          "name": "XL",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          }
+        },
+        {
+          "code": "SMA007",
+          "displayCode": "007",
+          "name": "XXL",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          }
+        },
+        {
+          "code": "SMA008",
+          "displayCode": "008",
+          "name": "3XL",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          }
+        }
+      ],
+      "promotionText": "",
+      "storeStockOnly": false
+    },
+    {
+      "colors": [
+        {
+          "code": "COL59",
+          "displayCode": "59",
+          "name": "DARK GREEN",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          },
+          "filterCode": "GREEN"
+        }
+      ],
+      "genderName": "MEN",
+      "genderCategory": "MEN",
+      "images": {
+        "main": {
+          "59": {
+            "image": "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/477147/item/usgoods_59_477147_3x4.jpg",
+            "model": []
+          }
+        },
+        "chip": {
+          "59": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/477147/chip/goods_59_477147_chip.jpg"
+        },
+        "sub": [
+          {
+            "image": "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/477147/sub/usgoods_477147_sub1_3x4.jpg",
+            "model": []
+          },
+          {
+            "image": "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/477147/sub/usgoods_477147_sub7_3x4.jpg",
+            "model": []
+          },
+          {
+            "image": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/477147/sub/goods_477147_sub14_3x4.jpg",
+            "model": []
+          },
+          {
+            "image": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/477147/sub/goods_477147_sub15_3x4.jpg",
+            "model": []
+          },
+          {
+            "image": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/477147/sub/goods_477147_sub17_3x4.jpg",
+            "model": []
+          },
+          {
+            "image": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/477147/sub/goods_477147_sub18_3x4.jpg",
+            "model": []
+          },
+          {
+            "image": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/477147/sub/goods_477147_sub19_3x4.jpg",
+            "model": []
+          }
+        ]
+      },
+      "l1Id": "477147",
+      "name": "ARCANE LEAGUE OF LEGENDS UT Graphic T-Shirt",
+      "prices": {
+        "base": {
+          "currency": {
+            "code": "USD",
+            "symbol": "$"
+          },
+          "value": 24.9
+        },
+        "promo": null,
+        "isDualPrice": false
+      },
+      "productId": "E477147-000",
+      "priceGroup": "00",
+      "plds": [
+        {
+          "code": "PTB000",
+          "displayCode": "000",
+          "name": "-",
+          "display": {
+            "showFlag": false,
+            "chipType": 0
+          }
+        }
+      ],
+      "rating": {
+        "average": 0,
+        "count": 0
+      },
+      "representative": {
+        "color": {
+          "code": "COL59",
+          "displayCode": "59",
+          "name": "DARK GREEN",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          },
+          "filterCode": "GREEN"
+        },
+        "flags": {
+          "priceFlags": [],
+          "productFlags": []
+        },
+        "l2Id": "08338442",
+        "pld": {
+          "code": "PTB000",
+          "displayCode": "000",
+          "name": "-",
+          "display": {
+            "showFlag": false,
+            "chipType": 0
+          }
+        },
+        "sales": true,
+        "size": {
+          "code": "SMA001",
+          "displayCode": "001",
+          "name": "XXS",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          }
+        },
+        "communicationCode": "477147-59-001-000"
+      },
+      "sizes": [
+        {
+          "code": "SMA001",
+          "displayCode": "001",
+          "name": "XXS",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          }
+        },
+        {
+          "code": "SMA002",
+          "displayCode": "002",
+          "name": "XS",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          }
+        },
+        {
+          "code": "SMA003",
+          "displayCode": "003",
+          "name": "S",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          }
+        },
+        {
+          "code": "SMA004",
+          "displayCode": "004",
+          "name": "M",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          }
+        },
+        {
+          "code": "SMA005",
+          "displayCode": "005",
+          "name": "L",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          }
+        },
+        {
+          "code": "SMA006",
+          "displayCode": "006",
+          "name": "XL",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          }
+        },
+        {
+          "code": "SMA007",
+          "displayCode": "007",
+          "name": "XXL",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          }
+        },
+        {
+          "code": "SMA008",
+          "displayCode": "008",
+          "name": "3XL",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          }
+        }
+      ],
+      "promotionText": "",
+      "storeStockOnly": false
+    },
+    {
+      "colors": [
+        {
+          "code": "COL08",
+          "displayCode": "08",
+          "name": "DARK GRAY",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          },
+          "filterCode": "GRAY"
+        }
+      ],
+      "genderName": "MEN",
+      "genderCategory": "MEN",
+      "images": {
+        "main": {
+          "08": {
+            "image": "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/477146/item/usgoods_08_477146_3x4.jpg",
+            "model": []
+          }
+        },
+        "chip": {
+          "08": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/477146/chip/goods_08_477146_chip.jpg"
+        },
+        "sub": [
+          {
+            "image": "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/477146/sub/usgoods_477146_sub1_3x4.jpg",
+            "model": []
+          },
+          {
+            "image": "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/477146/sub/usgoods_477146_sub7_3x4.jpg",
+            "model": []
+          },
+          {
+            "image": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/477146/sub/goods_477146_sub14_3x4.jpg",
+            "model": []
+          },
+          {
+            "image": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/477146/sub/goods_477146_sub15_3x4.jpg",
+            "model": []
+          },
+          {
+            "image": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/477146/sub/goods_477146_sub17_3x4.jpg",
+            "model": []
+          },
+          {
+            "image": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/477146/sub/goods_477146_sub18_3x4.jpg",
+            "model": []
+          },
+          {
+            "image": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/477146/sub/goods_477146_sub19_3x4.jpg",
+            "model": []
+          }
+        ]
+      },
+      "l1Id": "477146",
+      "name": "ARCANE LEAGUE OF LEGENDS UT Graphic T-Shirt",
+      "prices": {
+        "base": {
+          "currency": {
+            "code": "USD",
+            "symbol": "$"
+          },
+          "value": 24.9
+        },
+        "promo": null,
+        "isDualPrice": false
+      },
+      "productId": "E477146-000",
+      "priceGroup": "00",
+      "plds": [
+        {
+          "code": "PTB000",
+          "displayCode": "000",
+          "name": "-",
+          "display": {
+            "showFlag": false,
+            "chipType": 0
+          }
+        }
+      ],
+      "rating": {
+        "average": 5,
+        "count": 1
+      },
+      "representative": {
+        "color": {
+          "code": "COL08",
+          "displayCode": "08",
+          "name": "DARK GRAY",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          },
+          "filterCode": "GRAY"
+        },
+        "flags": {
+          "priceFlags": [],
+          "productFlags": []
+        },
+        "l2Id": "08338433",
+        "pld": {
+          "code": "PTB000",
+          "displayCode": "000",
+          "name": "-",
+          "display": {
+            "showFlag": false,
+            "chipType": 0
+          }
+        },
+        "sales": true,
+        "size": {
+          "code": "SMA001",
+          "displayCode": "001",
+          "name": "XXS",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          }
+        },
+        "communicationCode": "477146-08-001-000"
+      },
+      "sizes": [
+        {
+          "code": "SMA001",
+          "displayCode": "001",
+          "name": "XXS",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          }
+        },
+        {
+          "code": "SMA007",
+          "displayCode": "007",
+          "name": "XXL",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          }
+        },
+        {
+          "code": "SMA008",
+          "displayCode": "008",
+          "name": "3XL",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          }
+        }
+      ],
+      "promotionText": "",
+      "storeStockOnly": false
+    },
+    {
+      "colors": [
+        {
+          "code": "COL15",
+          "displayCode": "15",
+          "name": "RED",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          },
+          "filterCode": "RED"
+        },
+        {
+          "code": "COL69",
+          "displayCode": "69",
+          "name": "NAVY",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          },
+          "filterCode": "BLUE"
+        }
+      ],
+      "genderName": "UNISEX",
+      "genderCategory": "UNISEX",
+      "images": {
+        "main": {
+          "15": {
+            "image": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/477115/item/goods_15_477115_3x4.jpg",
+            "model": []
+          },
+          "69": {
+            "image": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/477115/item/goods_69_477115_3x4.jpg",
+            "model": []
+          }
+        },
+        "chip": {
+          "15": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/477115/chip/goods_15_477115_chip.jpg",
+          "69": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/477115/chip/goods_69_477115_chip.jpg"
+        },
+        "sub": [
+          {
+            "image": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/477115/sub/goods_477115_sub1_3x4.jpg",
+            "model": []
+          },
+          {
+            "image": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/477115/sub/goods_477115_sub17_3x4.jpg",
+            "model": []
+          },
+          {
+            "image": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/477115/sub/goods_477115_sub22_3x4.jpg",
+            "model": []
+          }
+        ]
+      },
+      "l1Id": "477115",
+      "name": "Round Mini Shoulder Bag | Striped",
+      "prices": {
+        "base": {
+          "currency": {
+            "code": "USD",
+            "symbol": "$"
+          },
+          "value": 19.9
+        },
+        "promo": null,
+        "isDualPrice": false
+      },
+      "productId": "E477115-000",
+      "priceGroup": "00",
+      "plds": [
+        {
+          "code": "PTB000",
+          "displayCode": "000",
+          "name": "-",
+          "display": {
+            "showFlag": false,
+            "chipType": 0
+          }
+        }
+      ],
+      "rating": {
+        "average": 0,
+        "count": 0
+      },
+      "representative": {
+        "color": {
+          "code": "COL15",
+          "displayCode": "15",
+          "name": "RED",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          },
+          "filterCode": "RED"
+        },
+        "flags": {
+          "priceFlags": [],
+          "productFlags": [
+            {
+              "code": "salesStart",
+              "name": "New",
+              "id": 6,
+              "rank": 9,
+              "type": "product_flag",
+              "isRepresentativeL2Flag": true,
+              "effectiveTime": {
+                "start": 1732539600,
+                "end": 1733749200
+              },
+              "flagColor": "normal"
+            }
+          ]
+        },
+        "l2Id": "08363575",
+        "pld": {
+          "code": "PTB000",
+          "displayCode": "000",
+          "name": "-",
+          "display": {
+            "showFlag": false,
+            "chipType": 0
+          }
+        },
+        "sales": true,
+        "size": {
+          "code": "SIZ999",
+          "displayCode": "999",
+          "name": "One Size",
+          "display": {
+            "showFlag": false,
+            "chipType": 0
+          }
+        },
+        "communicationCode": "477115-15-999-000"
+      },
+      "sizes": [
+        {
+          "code": "SIZ999",
+          "displayCode": "999",
+          "name": "One Size",
+          "display": {
+            "showFlag": false,
+            "chipType": 0
+          }
+        }
+      ],
+      "promotionText": "",
+      "storeStockOnly": false
+    },
+    {
+      "colors": [
+        {
+          "code": "COL00",
+          "displayCode": "00",
+          "name": "WHITE",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          },
+          "filterCode": "WHITE"
+        }
+      ],
+      "genderName": "MEN",
+      "genderCategory": "MEN",
+      "images": {
+        "main": {
+          "00": {
+            "image": "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/477091/item/usgoods_00_477091_3x4.jpg",
+            "model": []
+          }
+        },
+        "chip": {
+          "00": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/477091/chip/goods_00_477091_chip.jpg"
+        },
+        "sub": [
+          {
+            "image": "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/477091/sub/usgoods_477091_sub1_3x4.jpg",
+            "model": []
+          },
+          {
+            "image": "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/477091/sub/usgoods_477091_sub7_3x4.jpg",
+            "model": []
+          },
+          {
+            "image": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/477091/sub/goods_477091_sub14_3x4.jpg",
+            "model": []
+          },
+          {
+            "image": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/477091/sub/goods_477091_sub17_3x4.jpg",
+            "model": []
+          },
+          {
+            "image": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/477091/sub/goods_477091_sub18_3x4.jpg",
+            "model": []
+          }
+        ]
+      },
+      "l1Id": "477091",
+      "name": "Unsodo Open Collar Shirt | Short Sleeve | Printed",
+      "prices": {
+        "base": {
+          "currency": {
+            "code": "USD",
+            "symbol": "$"
+          },
+          "value": 39.9
+        },
+        "promo": null,
+        "isDualPrice": false
+      },
+      "productId": "E477091-000",
+      "priceGroup": "00",
+      "plds": [
+        {
+          "code": "PTB000",
+          "displayCode": "000",
+          "name": "-",
+          "display": {
+            "showFlag": false,
+            "chipType": 0
+          }
+        }
+      ],
+      "rating": {
+        "average": 5,
+        "count": 1
+      },
+      "representative": {
+        "color": {
+          "code": "COL00",
+          "displayCode": "00",
+          "name": "WHITE",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          },
+          "filterCode": "WHITE"
+        },
+        "flags": {
+          "priceFlags": [],
+          "productFlags": []
+        },
+        "l2Id": "08324288",
+        "pld": {
+          "code": "PTB000",
+          "displayCode": "000",
+          "name": "-",
+          "display": {
+            "showFlag": false,
+            "chipType": 0
+          }
+        },
+        "sales": true,
+        "size": {
+          "code": "SMA001",
+          "displayCode": "001",
+          "name": "XXS",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          }
+        },
+        "communicationCode": "477091-00-001-000"
+      },
+      "sizes": [
+        {
+          "code": "SMA001",
+          "displayCode": "001",
+          "name": "XXS",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          }
+        },
+        {
+          "code": "SMA002",
+          "displayCode": "002",
+          "name": "XS",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          }
+        },
+        {
+          "code": "SMA003",
+          "displayCode": "003",
+          "name": "S",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          }
+        },
+        {
+          "code": "SMA004",
+          "displayCode": "004",
+          "name": "M",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          }
+        },
+        {
+          "code": "SMA005",
+          "displayCode": "005",
+          "name": "L",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          }
+        },
+        {
+          "code": "SMA006",
+          "displayCode": "006",
+          "name": "XL",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          }
+        },
+        {
+          "code": "SMA007",
+          "displayCode": "007",
+          "name": "XXL",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          }
+        }
+      ],
+      "promotionText": "",
+      "storeStockOnly": false
+    },
+    {
+      "colors": [
+        {
+          "code": "COL66",
+          "displayCode": "66",
+          "name": "BLUE",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          },
+          "filterCode": "BLUE"
+        }
+      ],
+      "genderName": "MEN",
+      "genderCategory": "MEN",
+      "images": {
+        "main": {
+          "66": {
+            "image": "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/477090/item/usgoods_66_477090_3x4.jpg",
+            "model": []
+          }
+        },
+        "chip": {
+          "66": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/477090/chip/goods_66_477090_chip.jpg"
+        },
+        "sub": [
+          {
+            "image": "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/477090/sub/usgoods_477090_sub1_3x4.jpg",
+            "model": []
+          },
+          {
+            "image": "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/477090/sub/usgoods_477090_sub7_3x4.jpg",
+            "model": []
+          },
+          {
+            "image": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/477090/sub/goods_477090_sub14_3x4.jpg",
+            "model": []
+          },
+          {
+            "image": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/477090/sub/goods_477090_sub17_3x4.jpg",
+            "model": []
+          },
+          {
+            "image": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/477090/sub/goods_477090_sub18_3x4.jpg",
+            "model": []
+          }
+        ]
+      },
+      "l1Id": "477090",
+      "name": "Unsodo Open Collar Shirt | Short Sleeve | Printed",
+      "prices": {
+        "base": {
+          "currency": {
+            "code": "USD",
+            "symbol": "$"
+          },
+          "value": 39.9
+        },
+        "promo": null,
+        "isDualPrice": false
+      },
+      "productId": "E477090-000",
+      "priceGroup": "00",
+      "plds": [
+        {
+          "code": "PTB000",
+          "displayCode": "000",
+          "name": "-",
+          "display": {
+            "showFlag": false,
+            "chipType": 0
+          }
+        }
+      ],
+      "rating": {
+        "average": 5,
+        "count": 1
+      },
+      "representative": {
+        "color": {
+          "code": "COL66",
+          "displayCode": "66",
+          "name": "BLUE",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          },
+          "filterCode": "BLUE"
+        },
+        "flags": {
+          "priceFlags": [],
+          "productFlags": []
+        },
+        "l2Id": "08324279",
+        "pld": {
+          "code": "PTB000",
+          "displayCode": "000",
+          "name": "-",
+          "display": {
+            "showFlag": false,
+            "chipType": 0
+          }
+        },
+        "sales": true,
+        "size": {
+          "code": "SMA001",
+          "displayCode": "001",
+          "name": "XXS",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          }
+        },
+        "communicationCode": "477090-66-001-000"
+      },
+      "sizes": [
+        {
+          "code": "SMA001",
+          "displayCode": "001",
+          "name": "XXS",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          }
+        },
+        {
+          "code": "SMA002",
+          "displayCode": "002",
+          "name": "XS",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          }
+        },
+        {
+          "code": "SMA003",
+          "displayCode": "003",
+          "name": "S",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          }
+        },
+        {
+          "code": "SMA004",
+          "displayCode": "004",
+          "name": "M",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          }
+        },
+        {
+          "code": "SMA005",
+          "displayCode": "005",
+          "name": "L",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          }
+        },
+        {
+          "code": "SMA006",
+          "displayCode": "006",
+          "name": "XL",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          }
+        },
+        {
+          "code": "SMA007",
+          "displayCode": "007",
+          "name": "XXL",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          }
+        }
+      ],
+      "promotionText": "",
+      "storeStockOnly": false
+    },
+    {
+      "colors": [
+        {
+          "code": "COL09",
+          "displayCode": "09",
+          "name": "BLACK",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          },
+          "filterCode": "BLACK"
+        }
+      ],
+      "genderName": "UNISEX",
+      "genderCategory": "UNISEX",
+      "images": {
+        "main": {
+          "09": {
+            "image": "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/477043/item/usgoods_09_477043_3x4.jpg",
+            "model": []
+          }
+        },
+        "chip": {
+          "09": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/477043/chip/goods_09_477043_chip.jpg"
+        },
+        "sub": [
+          {
+            "image": "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/477043/sub/usgoods_477043_sub1_3x4.jpg",
+            "model": []
+          },
+          {
+            "image": "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/477043/sub/usgoods_477043_sub7_3x4.jpg",
+            "model": []
+          },
+          {
+            "image": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/477043/sub/goods_477043_sub14_3x4.jpg",
+            "model": []
+          },
+          {
+            "image": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/477043/sub/goods_477043_sub17_3x4.jpg",
+            "model": []
+          },
+          {
+            "image": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/477043/sub/goods_477043_sub18_3x4.jpg",
+            "model": []
+          }
+        ]
+      },
+      "l1Id": "477043",
+      "name": "The SAKE Collection UT Graphic T-Shirt",
+      "prices": {
+        "base": {
+          "currency": {
+            "code": "USD",
+            "symbol": "$"
+          },
+          "value": 19.9
+        },
+        "promo": {
+          "currency": {
+            "code": "USD",
+            "symbol": "$"
+          },
+          "value": 19.9
+        },
+        "isDualPrice": false
+      },
+      "productId": "E477043-000",
+      "priceGroup": "00",
+      "plds": [
+        {
+          "code": "PTB000",
+          "displayCode": "000",
+          "name": "-",
+          "display": {
+            "showFlag": false,
+            "chipType": 0
+          }
+        }
+      ],
+      "rating": {
+        "average": 4.3,
+        "count": 3
+      },
+      "representative": {
+        "color": {
+          "code": "COL09",
+          "displayCode": "09",
+          "name": "BLACK",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          },
+          "filterCode": "BLACK"
+        },
+        "flags": {
+          "priceFlags": [
+            {
+              "code": "discount",
+              "name": "Sale",
+              "id": 12,
+              "rank": 7,
+              "type": "price_flag",
+              "isRepresentativeL2Flag": true,
+              "effectiveTime": {
+                "start": 1732626000,
+                "end": 0
+              },
+              "flagColor": "discount"
+            }
+          ],
+          "productFlags": []
+        },
+        "l2Id": "08323129",
+        "pld": {
+          "code": "PTB000",
+          "displayCode": "000",
+          "name": "-",
+          "display": {
+            "showFlag": false,
+            "chipType": 0
+          }
+        },
+        "sales": true,
+        "size": {
+          "code": "SMA001",
+          "displayCode": "001",
+          "name": "XXS",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          }
+        },
+        "communicationCode": "477043-09-001-000"
+      },
+      "sizes": [
+        {
+          "code": "SMA001",
+          "displayCode": "001",
+          "name": "XXS",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          }
+        },
+        {
+          "code": "SMA002",
+          "displayCode": "002",
+          "name": "XS",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          }
+        },
+        {
+          "code": "SMA003",
+          "displayCode": "003",
+          "name": "S",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          }
+        },
+        {
+          "code": "SMA004",
+          "displayCode": "004",
+          "name": "M",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          }
+        },
+        {
+          "code": "SMA005",
+          "displayCode": "005",
+          "name": "L",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          }
+        },
+        {
+          "code": "SMA006",
+          "displayCode": "006",
+          "name": "XL",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          }
+        },
+        {
+          "code": "SMA007",
+          "displayCode": "007",
+          "name": "XXL",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          }
+        },
+        {
+          "code": "SMA008",
+          "displayCode": "008",
+          "name": "3XL",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          }
+        }
+      ],
+      "promotionText": "",
+      "storeStockOnly": false
+    },
+    {
+      "colors": [
+        {
+          "code": "COL01",
+          "displayCode": "01",
+          "name": "OFF WHITE",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          },
+          "filterCode": "WHITE"
+        }
+      ],
+      "genderName": "UNISEX",
+      "genderCategory": "UNISEX",
+      "images": {
+        "main": {
+          "01": {
+            "image": "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/477042/item/usgoods_01_477042_3x4.jpg",
+            "model": []
+          }
+        },
+        "chip": {
+          "01": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/477042/chip/goods_01_477042_chip.jpg"
+        },
+        "sub": [
+          {
+            "image": "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/477042/sub/usgoods_477042_sub1_3x4.jpg",
+            "model": []
+          },
+          {
+            "image": "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/477042/sub/usgoods_477042_sub7_3x4.jpg",
+            "model": []
+          },
+          {
+            "image": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/477042/sub/goods_477042_sub14_3x4.jpg",
+            "model": []
+          },
+          {
+            "image": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/477042/sub/goods_477042_sub17_3x4.jpg",
+            "model": []
+          },
+          {
+            "image": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/477042/sub/goods_477042_sub18_3x4.jpg",
+            "model": []
+          }
+        ]
+      },
+      "l1Id": "477042",
+      "name": "The SAKE Collection UT Graphic T-Shirt",
+      "prices": {
+        "base": {
+          "currency": {
+            "code": "USD",
+            "symbol": "$"
+          },
+          "value": 19.9
+        },
+        "promo": {
+          "currency": {
+            "code": "USD",
+            "symbol": "$"
+          },
+          "value": 19.9
+        },
+        "isDualPrice": false
+      },
+      "productId": "E477042-000",
+      "priceGroup": "00",
+      "plds": [
+        {
+          "code": "PTB000",
+          "displayCode": "000",
+          "name": "-",
+          "display": {
+            "showFlag": false,
+            "chipType": 0
+          }
+        }
+      ],
+      "rating": {
+        "average": 0,
+        "count": 0
+      },
+      "representative": {
+        "color": {
+          "code": "COL01",
+          "displayCode": "01",
+          "name": "OFF WHITE",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          },
+          "filterCode": "WHITE"
+        },
+        "flags": {
+          "priceFlags": [
+            {
+              "code": "discount",
+              "name": "Sale",
+              "id": 12,
+              "rank": 7,
+              "type": "price_flag",
+              "isRepresentativeL2Flag": true,
+              "effectiveTime": {
+                "start": 1732626000,
+                "end": 0
+              },
+              "flagColor": "discount"
+            }
+          ],
+          "productFlags": []
+        },
+        "l2Id": "08323120",
+        "pld": {
+          "code": "PTB000",
+          "displayCode": "000",
+          "name": "-",
+          "display": {
+            "showFlag": false,
+            "chipType": 0
+          }
+        },
+        "sales": true,
+        "size": {
+          "code": "SMA001",
+          "displayCode": "001",
+          "name": "XXS",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          }
+        },
+        "communicationCode": "477042-01-001-000"
+      },
+      "sizes": [
+        {
+          "code": "SMA001",
+          "displayCode": "001",
+          "name": "XXS",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          }
+        },
+        {
+          "code": "SMA002",
+          "displayCode": "002",
+          "name": "XS",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          }
+        },
+        {
+          "code": "SMA003",
+          "displayCode": "003",
+          "name": "S",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          }
+        },
+        {
+          "code": "SMA004",
+          "displayCode": "004",
+          "name": "M",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          }
+        },
+        {
+          "code": "SMA005",
+          "displayCode": "005",
+          "name": "L",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          }
+        },
+        {
+          "code": "SMA006",
+          "displayCode": "006",
+          "name": "XL",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          }
+        },
+        {
+          "code": "SMA007",
+          "displayCode": "007",
+          "name": "XXL",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          }
+        },
+        {
+          "code": "SMA008",
+          "displayCode": "008",
+          "name": "3XL",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          }
+        }
+      ],
+      "promotionText": "",
+      "storeStockOnly": false
+    },
+    {
+      "colors": [
+        {
+          "code": "COL09",
+          "displayCode": "09",
+          "name": "BLACK",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          },
+          "filterCode": "BLACK"
+        },
+        {
+          "code": "COL37",
+          "displayCode": "37",
+          "name": "BROWN",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          },
+          "filterCode": "BROWN"
+        }
+      ],
+      "genderName": "MEN",
+      "genderCategory": "MEN",
+      "images": {
+        "main": {
+          "37": {
+            "image": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/476854/item/goods_37_476854_3x4.jpg",
+            "model": []
+          },
+          "09": {
+            "image": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/476854/item/goods_09_476854_3x4.jpg",
+            "model": []
+          }
+        },
+        "chip": {
+          "37": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/476854/chip/goods_37_476854_chip.jpg",
+          "09": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/476854/chip/goods_09_476854_chip.jpg"
+        },
+        "sub": []
+      },
+      "l1Id": "476854",
+      "name": "Italian Leather Slide Buckle Belt",
+      "prices": {
+        "base": {
+          "currency": {
+            "code": "USD",
+            "symbol": "$"
+          },
+          "value": 29.9
+        },
+        "promo": null,
+        "isDualPrice": false
+      },
+      "productId": "E476854-000",
+      "priceGroup": "00",
+      "plds": [
+        {
+          "code": "PTB000",
+          "displayCode": "000",
+          "name": "-",
+          "display": {
+            "showFlag": false,
+            "chipType": 0
+          }
+        }
+      ],
+      "rating": {
+        "average": 0,
+        "count": 0
+      },
+      "representative": {
+        "color": {
+          "code": "COL09",
+          "displayCode": "09",
+          "name": "BLACK",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          },
+          "filterCode": "BLACK"
+        },
+        "flags": {
+          "priceFlags": [],
+          "productFlags": [
+            {
+              "code": "salesStart",
+              "name": "New",
+              "id": 6,
+              "rank": 9,
+              "type": "product_flag",
+              "isRepresentativeL2Flag": true,
+              "effectiveTime": {
+                "start": 1732539600,
+                "end": 1733749200
+              },
+              "flagColor": "normal"
+            }
+          ]
+        },
+        "l2Id": "08404231",
+        "pld": {
+          "code": "PTB000",
+          "displayCode": "000",
+          "name": "-",
+          "display": {
+            "showFlag": false,
+            "chipType": 0
+          }
+        },
+        "sales": true,
+        "size": {
+          "code": "SMA004",
+          "displayCode": "004",
+          "name": "M",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          }
+        },
+        "communicationCode": "476854-09-004-000"
+      },
+      "sizes": [
+        {
+          "code": "SMA004",
+          "displayCode": "004",
+          "name": "M",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          }
+        },
+        {
+          "code": "SMA005",
+          "displayCode": "005",
+          "name": "L",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          }
+        },
+        {
+          "code": "SMA006",
+          "displayCode": "006",
+          "name": "XL",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          }
+        }
+      ],
+      "promotionText": "",
+      "storeStockOnly": false
+    },
+    {
+      "colors": [
+        {
+          "code": "COL09",
+          "displayCode": "09",
+          "name": "BLACK",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          },
+          "filterCode": "BLACK"
+        },
+        {
+          "code": "COL37",
+          "displayCode": "37",
+          "name": "BROWN",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          },
+          "filterCode": "BROWN"
+        }
+      ],
+      "genderName": "MEN",
+      "genderCategory": "MEN",
+      "images": {
+        "main": {
+          "37": {
+            "image": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/476853/item/goods_37_476853_3x4.jpg",
+            "model": []
+          },
+          "09": {
+            "image": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/476853/item/goods_09_476853_3x4.jpg",
+            "model": []
+          }
+        },
+        "chip": {
+          "37": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/476853/chip/goods_37_476853_chip.jpg",
+          "09": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/476853/chip/goods_09_476853_chip.jpg"
+        },
+        "sub": []
+      },
+      "l1Id": "476853",
+      "name": "Italian Leather Garrison Belt",
+      "prices": {
+        "base": {
+          "currency": {
+            "code": "USD",
+            "symbol": "$"
+          },
+          "value": 29.9
+        },
+        "promo": null,
+        "isDualPrice": false
+      },
+      "productId": "E476853-000",
+      "priceGroup": "00",
+      "plds": [
+        {
+          "code": "PTB000",
+          "displayCode": "000",
+          "name": "-",
+          "display": {
+            "showFlag": false,
+            "chipType": 0
+          }
+        }
+      ],
+      "rating": {
+        "average": 0,
+        "count": 0
+      },
+      "representative": {
+        "color": {
+          "code": "COL09",
+          "displayCode": "09",
+          "name": "BLACK",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          },
+          "filterCode": "BLACK"
+        },
+        "flags": {
+          "priceFlags": [],
+          "productFlags": [
+            {
+              "code": "salesStart",
+              "name": "New",
+              "id": 6,
+              "rank": 9,
+              "type": "product_flag",
+              "isRepresentativeL2Flag": true,
+              "effectiveTime": {
+                "start": 1732539600,
+                "end": 1733749200
+              },
+              "flagColor": "normal"
+            }
+          ]
+        },
+        "l2Id": "08404223",
+        "pld": {
+          "code": "PTB000",
+          "displayCode": "000",
+          "name": "-",
+          "display": {
+            "showFlag": false,
+            "chipType": 0
+          }
+        },
+        "sales": true,
+        "size": {
+          "code": "SMA004",
+          "displayCode": "004",
+          "name": "M",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          }
+        },
+        "communicationCode": "476853-09-004-000"
+      },
+      "sizes": [
+        {
+          "code": "SMA004",
+          "displayCode": "004",
+          "name": "M",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          }
+        },
+        {
+          "code": "SMA005",
+          "displayCode": "005",
+          "name": "L",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          }
+        },
+        {
+          "code": "SMA006",
+          "displayCode": "006",
+          "name": "XL",
+          "display": {
+            "showFlag": true,
+            "chipType": 0
+          }
+        }
+      ],
+      "promotionText": "",
+      "storeStockOnly": false
+    }
+  ]
+}

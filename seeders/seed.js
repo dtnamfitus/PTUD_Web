@@ -4,6 +4,8 @@ const ProductCategory = require("./../models/product-category.model");
 const Product = require("./../models/product.model");
 const User = require("./../models/user.model");
 const colors = require("./../constant/color.constant");
+const productType = require("./../constant/product-type.constant");
+const shirtSizes = require("./../constant/shirt-size.constant");
 
 mongoose
   .connect(process.env.MONGODB_URL || "mongodb://root:root@localhost:27017")
@@ -1187,12 +1189,6 @@ const mockProductCategories = [
   { name: "Kidswear", description: "Clothes designed for children." },
 ];
 
-const mockProducts = [
-  {
-    name: "",
-  },
-];
-
 const clearDatabase = async () => {
   try {
     await User.deleteMany({});
@@ -1235,16 +1231,15 @@ const generateProduct = async () => {
     {
       name: "Classic White Tee",
       description: "A versatile white t-shirt made from 100% cotton.",
-      price: 150,
+      price: 19.9,
       categories: [new mongoose.Types.ObjectId(obj['"T-Shirts"'])],
-      main_image:
+      mainImage:
         "https://image.uniqlo.com/UQ/ST3/vn/imagesgoods/465187/item/vngoods_00_465187_3x4.jpg?width=423",
       colors: [
         {
           color_name: colors.white,
           images: [
-            "https://cdn.mockdata.com/images/t-shirts-white-front.jpg",
-            "https://cdn.mockdata.com/images/t-shirts-white-back.jpg",
+            "https://image.uniqlo.com/UQ/ST3/vn/imagesgoods/465187/item/vngoods_00_465187_3x4.jpg?width=369",
           ],
         },
         {
@@ -1302,6 +1297,302 @@ const generateProduct = async () => {
           ],
         },
       ],
+      type: productType.TOP_WEAR,
+      size: [
+        shirtSizes.XS,
+        shirtSizes.S,
+        shirtSizes.M,
+        shirtSizes.L,
+        shirtSizes.XL,
+      ],
+    },
+    {
+      name: "Ultra Light Down Jacket",
+      description: "A lightweight and warm jacket for cold weather.",
+      price: 69.9,
+      categories: [new mongoose.Types.ObjectId(obj['"Jackets"'])],
+      mainImage:
+        "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/470067/item/usgoods_69_470067_3x4.jpg?width=600",
+      colors: [
+        {
+          color_name: colors.black,
+          images: [
+            "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/470067/item/usgoods_09_470067_3x4.jpg?width=600",
+          ],
+        },
+        {
+          color_name: colors.wine,
+          images: [
+            "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/470067/item/usgoods_19_470067_3x4.jpg?width=600",
+          ],
+        },
+        {
+          color_name: colors.beige,
+          images: [
+            "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/470067/item/usgoods_32_470067_3x4.jpg?width=600",
+          ],
+        },
+        {
+          color_name: colors.olive,
+          images: [
+            "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/470067/item/usgoods_57_470067_3x4.jpg?width=600",
+          ],
+        },
+        {
+          color_name: colors.navyBlue,
+          images: [
+            "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/470067/item/usgoods_69_470067_3x4.jpg?width=600",
+          ],
+        },
+      ],
+      type: productType.TOP_WEAR,
+      size: [
+        shirtSizes.XS,
+        shirtSizes.S,
+        shirtSizes.M,
+        shirtSizes.L,
+        shirtSizes.XL,
+      ],
+    },
+    {
+      name: "ARCANE LEAGUE OF LEGENDS UT Graphic T-Shirt",
+      price: 24.9,
+      mainImage:
+        "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/477148/item/usgoods_00_477148_3x4.jpg",
+      colors: [
+        {
+          color_name: colors.white,
+          images: [
+            "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/477148/item/usgoods_00_477148_3x4.jpg",
+          ],
+        },
+      ],
+      size: [
+        shirtSizes.XXS,
+        shirtSizes.XS,
+        shirtSizes.S,
+        shirtSizes.M,
+        shirtSizes.L,
+        shirtSizes.XL,
+        shirtSizes.XXL,
+        shirtSizes.XXXL,
+      ],
+      categories: [new mongoose.Types.ObjectId(obj['"T-Shirts"'])],
+      type: productType.TOP_WEAR,
+    },
+    {
+      name: "ARCANE LEAGUE OF LEGENDS UT Graphic T-Shirt",
+      price: 24.9,
+      mainImage:
+        "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/477147/item/usgoods_59_477147_3x4.jpg",
+      colors: [
+        {
+          color_name: colors.darkGreen,
+          images: [
+            "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/477147/item/usgoods_59_477147_3x4.jpg",
+          ],
+        },
+      ],
+      size: [
+        shirtSizes.XXS,
+        shirtSizes.XS,
+        shirtSizes.S,
+        shirtSizes.M,
+        shirtSizes.L,
+        shirtSizes.XL,
+        shirtSizes.XXL,
+        shirtSizes.XXXL,
+      ],
+      categories: [new mongoose.Types.ObjectId(obj['"T-Shirts"'])],
+      type: productType.TOP_WEAR,
+    },
+    {
+      name: "ARCANE LEAGUE OF LEGENDS UT Graphic T-Shirt",
+      price: 24.9,
+      mainImage:
+        "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/477146/item/usgoods_08_477146_3x4.jpg",
+      colors: [
+        {
+          color_name: colors.darkGray,
+          images: [
+            "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/477146/item/usgoods_08_477146_3x4.jpg",
+          ],
+        },
+      ],
+      size: [shirtSizes.XXS, shirtSizes.XXL, shirtSizes.XXXL],
+      categories: [new mongoose.Types.ObjectId(obj['"T-Shirts"'])],
+      type: productType.TOP_WEAR,
+    },
+    {
+      name: "Round Mini Shoulder Bag | Striped",
+      price: 19.9,
+      mainImage:
+        "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/477115/item/goods_15_477115_3x4.jpg",
+      colors: [
+        {
+          color_name: colors.red,
+          images: [
+            "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/477115/item/goods_15_477115_3x4.jpg",
+          ],
+        },
+        {
+          color_name: colors.navyBlue,
+          images: [
+            "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/477115/item/goods_69_477115_3x4.jpg",
+          ],
+        },
+      ],
+      size: [],
+      categories: [new mongoose.Types.ObjectId(obj['"Accessories"'])],
+      type: productType.ACCESSORIES,
+    },
+    {
+      name: "Unsodo Open Collar Shirt | Short Sleeve | Printed",
+      price: 39.9,
+      mainImage:
+        "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/477091/item/usgoods_00_477091_3x4.jpg",
+      colors: [
+        {
+          color_name: colors.white,
+          images: [
+            "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/477091/item/usgoods_00_477091_3x4.jpg",
+          ],
+        },
+      ],
+      size: [
+        shirtSizes.XXS,
+        shirtSizes.XS,
+        shirtSizes.S,
+        shirtSizes.M,
+        shirtSizes.L,
+        shirtSizes.XL,
+        shirtSizes.XXL,
+      ],
+      categories: [new mongoose.Types.ObjectId(obj['"Shirts"'])],
+      type: productType.TOP_WEAR,
+    },
+    {
+      name: "Unsodo Open Collar Shirt | Short Sleeve | Printed",
+      price: 39.9,
+      mainImage:
+        "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/477090/item/usgoods_66_477090_3x4.jpg",
+      colors: [
+        {
+          color_name: colors.blue,
+          images: [
+            "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/477090/item/usgoods_66_477090_3x4.jpg",
+          ],
+        },
+      ],
+      size: [
+        shirtSizes.XXS,
+        shirtSizes.XS,
+        shirtSizes.S,
+        shirtSizes.M,
+        shirtSizes.L,
+        shirtSizes.XL,
+        shirtSizes.XXL,
+      ],
+      categories: [new mongoose.Types.ObjectId(obj['"Shirts"'])],
+      type: productType.TOP_WEAR,
+    },
+    {
+      name: "The SAKE Collection UT Graphic T-Shirt",
+      price: 19.9,
+      mainImage:
+        "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/477043/item/usgoods_09_477043_3x4.jpg",
+      colors: [
+        {
+          color_name: colors.black,
+          images: [
+            "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/477043/item/usgoods_09_477043_3x4.jpg",
+          ],
+        },
+      ],
+      size: [
+        shirtSizes.XXS,
+        shirtSizes.XS,
+        shirtSizes.S,
+        shirtSizes.M,
+        shirtSizes.L,
+        shirtSizes.XL,
+        shirtSizes.XXL,
+        shirtSizes.XXXL,
+      ],
+      categories: [new mongoose.Types.ObjectId(obj['"T-Shirts"'])],
+      type: productType.TOP_WEAR,
+    },
+    {
+      name: "The SAKE Collection UT Graphic T-Shirt",
+      price: 19.9,
+      mainImage:
+        "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/477042/item/usgoods_01_477042_3x4.jpg",
+      colors: [
+        {
+          color_name: colors.white,
+          images: [
+            "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/477042/item/usgoods_01_477042_3x4.jpg",
+          ],
+        },
+      ],
+      size: [
+        shirtSizes.XXS,
+        shirtSizes.XS,
+        shirtSizes.S,
+        shirtSizes.M,
+        shirtSizes.L,
+        shirtSizes.XL,
+        shirtSizes.XXL,
+        shirtSizes.XXXL,
+      ],
+      categories: [new mongoose.Types.ObjectId(obj['"T-Shirts"'])],
+      type: productType.TOP_WEAR,
+    },
+    {
+      name: "Italian Leather Slide Buckle Belt",
+      price: 29.9,
+      mainImage:
+        "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/476854/item/goods_37_476854_3x4.jpg",
+      colors: [
+        {
+          color_name: colors.black,
+          images: [
+            "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/476854/item/goods_09_476854_3x4.jpg",
+          ],
+        },
+        {
+          color_name: colors.brown,
+          images: [
+            "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/476854/item/goods_37_476854_3x4.jpg",
+          ],
+        },
+      ],
+      size: [shirtSizes.M, shirtSizes.L, shirtSizes.XL],
+      categories: [new mongoose.Types.ObjectId(obj['"Accessories"'])],
+      type: productType.ACCESSORIES,
+    },
+    {
+      name: "Italian Leather Garrison Belt",
+      price: 29.9,
+      mainImage:
+        "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/476853/item/goods_37_476853_3x4.jpg",
+      colors: [
+        {
+          color_name: colors.black,
+          images: [
+            "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/476853/item/goods_09_476853_3x4.jpg",
+          ],
+        },
+        {
+          color_name: colors.brown,
+          images: [
+            "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/476853/item/goods_37_476853_3x4.jpg",
+          ],
+        },
+      ],
+      size: [shirtSizes.M, shirtSizes.L, shirtSizes.XL],
+      categories: [new mongoose.Types.ObjectId(obj['"Accessories"'])],
+      type: productType.ACCESSORIES,
     },
   ];
 

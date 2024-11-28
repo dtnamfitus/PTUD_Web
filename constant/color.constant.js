@@ -80,6 +80,12 @@ const colors = {
 
   // Màu rượu vang
   wine: "#722F37",
+
+  // Màu beige
+  beige: "#F5F5DC",
+
+  // Màu olive
+  olive: "#808000",
 };
 
 module.exports = colors;
