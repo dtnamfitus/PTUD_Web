@@ -550,6 +550,29 @@ ul.sub-menu {
     text-decoration: underline;
 }
 
+.container {
+    max-width: 1200px; /* Tăng độ rộng tối đa */
+    margin: 0 auto; /* Giữ căn giữa */
+  }
+  
+  .col-sm-9.col-sm-offset-1 {
+    width: 100%;
+    margin: 0;
+  }
+  
+  .product-details {
+    display: flex; 
+    gap: 20px; 
+  }
+  
+.view-product img,
+.product-image-wrapper img,
+.productinfo img {
+  width: 100%; 
+  height: auto; 
+  object-fit: cover; 
+}
+
 
 /*************************
 ******* Home ******

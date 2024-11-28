@@ -1,45 +1,15 @@
 <body>
   <section>
     <div class="container">
-      <div class="row">
-        <!-- Có thể thêm sidebar ở đây nếu cần -->
-        <!-- Ví dụ: -->
-        <!--
-        <div class="col-sm-3">
-          <!-- Nội dung sidebar -->
-      </div>
-      -->
-
-      <!-- Nội dung chính được canh giữa bằng cách sử dụng offset -->
       <div class="col-sm-9 col-sm-offset-1">
         <div class="product-details">
           <!--product-details-->
           <div class="col-sm-5">
             <div class="view-product">
-              <img src="/images/product-details/1.jpg" alt="" />
-              <h3>ZOOM</h3>
+              <img src="<%=product.mainImage%>" alt="" />
             </div>
             <div id="similar-product" class="carousel slide" data-ride="carousel">
 
-              <!-- Wrapper for slides -->
-              <div class="carousel-inner">
-                <div class="item active">
-                  <a href=""><img src="/images/product-details/similar1.jpg" alt=""></a>
-                  <a href=""><img src="/images/product-details/similar2.jpg" alt=""></a>
-                  <a href=""><img src="/images/product-details/similar3.jpg" alt=""></a>
-                </div>
-                <div class="item">
-                  <a href=""><img src="/images/product-details/similar1.jpg" alt=""></a>
-                  <a href=""><img src="/images/product-details/similar2.jpg" alt=""></a>
-                  <a href=""><img src="/images/product-details/similar3.jpg" alt=""></a>
-                </div>
-                <div class="item">
-                  <a href=""><img src="/images/product-details/similar1.jpg" alt=""></a>
-                  <a href=""><img src="/images/product-details/similar2.jpg" alt=""></a>
-                  <a href=""><img src="/images/product-details/similar3.jpg" alt=""></a>
-                </div>
-
-              </div>
 
               <!-- Controls -->
               <a class="left item-control" href="#similar-product" data-slide="prev">
@@ -53,32 +23,51 @@
           </div>
           <div class="col-sm-7">
             <div class="product-information">
-              <!--/product-information-->
-              <img src="/images/product-details/new.jpg" class="newarrival" alt="" />
-              <h2>Anne Klein Sleeveless Colorblock Scuba</h2>
+              <h2><%= product.name %></h2>
               <p>Web ID: 1089772</p>
-              <img src="/images/product-details/rating.png" alt="" />
-              <span>
-                <span>US $59</span>
+              <!-- Colors -->
+              <div class="product-colors">
+                <p>Color: <span id="selected-color">#000000</span></p>
+                <div class="color-options">
+                  <% for (let i = 0; i < product.colors.length; i++) { %>
+                  <div class="color-circle" style="background-color: <%= product.colors[i].color_name %>" data-color="<%= product.colors[i].color_name %>" onclick="updateSelectedColor('<%= product.colors[i].color_name %>')"></div>
+                  <!-- <div><%= product.colors[i].color_name %></div> -->
+                  <% } %>
+                </div>
+              </div>
+              <!-- Sizes -->
+              <div class="product-sizes">
+                <p>Size:</p>
+                <div class="size-options">
+                  <% product.size.forEach(size => { %>
+                  <button class="size-btn"><%= size %></button>
+                  <% }); %>
+                </div>
+              </div>
+              <!-- Price -->
+              <div class="product-price">
+                <p>
+                  <span class="price">$<%= product.price %></span>
+                </p>
+              </div>
+              <!-- Quantity -->
+              <div class="product-quantity">
                 <label>Quantity:</label>
-                <input type="text" value="3" />
-                <button type="button" class="btn btn-fefault cart">
-                  <i class="fa fa-shopping-cart"></i>
-                  Add to cart
-                </button>
-              </span>
-              <p><b>Availability:</b> In Stock</p>
-              <p><b>Condition:</b> New</p>
-              <p><b>Brand:</b> E-SHOPPER</p>
-              <a href=""><img src="/images/product-details/share.png" class="share img-responsive" alt="" /></a>
+                <div class="quantity-controls">
+                  <button onclick="decreaseQuantity()">-</button>
+                  <input type="text" id="quantity" value="1" />
+                  <button onclick="increaseQuantity()">+</button>
+                </div>
+              </div>
+              <!-- Add to Cart -->
+              <button type="button" class="btn btn-fefault cart">
+                <i class="fa fa-shopping-cart"></i>
+                Add to cart
+              </button>
             </div>
-            <!--/product-information-->
           </div>
+
         </div>
-        <!--/product-details-->
-
-
-        <!--/category-tab-->
 
         <div class="recommended_items">
           <!--recommended_items-->
