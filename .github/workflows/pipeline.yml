@@ -23,12 +23,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
-      - name: Check secrets
-        run: |
-          echo "Checking secrets..."
-          echo "Server User: ${#secrets.SERVER_USER} characters long"
-          echo "Server Host: ${#secrets.SERVER_HOST} characters long"
-
       - name: Install dependencies
         run: npm install
 
