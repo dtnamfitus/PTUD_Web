@@ -15,25 +15,19 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Get Commit ID
-        id: vars
-        run: echo "COMMIT_ID=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
+      - name: Install dependencies
+        run: npm install
 
-      - name: Build Docker image
-        run: docker build -t ecommerce:${{ env.COMMIT_ID }} .
+      - name: Build
+        run: npm run build
 
-      # - name: Run Docker container
-      #   run: |
-      #     DOCKER_USERNAME=${{secrets.DOCKER_USERNAME}} COMMIT_ID=${{ env.COMMIT_ID }} docker-compose up --build -d ecommerce
+      - name: Test
+        run: npm run test
 
-      # - name: Log in to Docker Hub with token
-      #   uses: docker/login-action@v2
-      #   with:
-      #     username: ${{ secrets.DOCKER_USERNAME }}
-      #     password: ${{ secrets.DOCKER_TOKEN }}
-
-      # - name: Push Docker image
-      #   run: docker push ${secrets.DOCKER_USERNAME}/ecommerce:${{ env.COMMIT_ID }}
+      - name: Deliver dist to server
+        run: |
+          echo "Delivering dist to server"
+          scp -r dist/ ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:~/dist
 
   deploy:
     runs-on: ubuntu-latest
@@ -47,8 +41,6 @@ jobs:
       - name: Deploy on server
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'EOF'
-          docker pull ${{ secrets.DOCKER_USERNAME }}/ecommerce:${{ env.COMMIT_ID }}
-          docker stop ecommerce || true
-          docker rm ecommerce || true
-          docker run -d --name ecommerce -p 80:80 ${{ secrets.DOCKER_USERNAME }}/ecommerce:${{ env.COMMIT_ID }}
-          EOF
+            cd ~/dist
+            npm install
+            node ecosystem.config.js
