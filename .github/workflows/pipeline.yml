@@ -32,10 +32,19 @@ jobs:
       # - name: Test
       #   run: npm run test
 
+      - name: Save PEM key
+        run: echo "${{ secrets.SSH_PRIVATE_KEY }}" > private-key.pem
+
+      - name: Set permissions for PEM key
+        run: chmod 600 private-key.pem
+
       - name: Deliver dist to server
         run: |
           echo "Delivering dist to server"
-          scp -r dist/ ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:~/dist
+          scp -i private-key.pem -r dist/ ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:~/dist
+
+      - name: Clean up PEM key
+        run: rm private-key.pem
 
   deploy:
     runs-on: ubuntu-latest
