@@ -15,8 +15,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-        run: echo "User: ${{ secrets.SERVER_USER }}"
-
       - name: Cache Node.js modules
         uses: actions/cache@v3
         with:
@@ -24,6 +22,12 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
+
+      - name: Check secrets
+        run: |
+          echo "Checking secrets..."
+          echo "Server User: ${#secrets.SERVER_USER} characters long"
+          echo "Server Host: ${#secrets.SERVER_HOST} characters long"
 
       - name: Install dependencies
         run: npm install
