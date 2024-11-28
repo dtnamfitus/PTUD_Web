@@ -41,7 +41,7 @@ jobs:
       - name: Deliver dist to server
         run: |
           echo "Delivering dist to server"
-          scp -i private-key.pem -r dist/ ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:~/dist
+          scp -i private-key.pem -o StrictHostKeyChecking=no -r dist/ ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:~/dist
 
       - name: Clean up PEM key
         run: rm private-key.pem
