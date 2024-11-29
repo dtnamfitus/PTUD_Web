@@ -72,12 +72,11 @@ jobs:
         run: |
           ssh -i private-key.pem -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'EOF'
             echo "Extracting dist on server"
-            source ~/.bashrc
             cd ~
             tar -xzvf dist.tar.gz
             cd dist
-            npm install
-            pm2 start ecosystem.config.js
+            /home/ubuntu/.nvm/versions/node/v20.18.1/bin/npm install
+            /home/ubuntu/.nvm/versions/node/v20.18.1/bin/pm2 start ecosystem.config.js
           EOF
 
       - name: Clean up PEM key
