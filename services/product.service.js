@@ -74,7 +74,20 @@ const getProductById = async (id) => {
   }
 };
 
+const getRandomProducts = async (product) => {
+  try {
+    const randomProducts = await Product.aggregate([
+      { $match: { _id: { $ne: product._id } } },
+      { $sample: { size: 3 } },
+    ]);
+    return randomProducts;
+  } catch (err) {
+    throw new Error("Error fetching random product: " + err.message);
+  }
+};
+
 module.exports = {
   getAllProducts,
   getProductById,
+  getRandomProducts,
 };

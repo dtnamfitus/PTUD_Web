@@ -11,19 +11,15 @@ router.get("/:id", async (req, res) => {
       productCategoryService.getProductCategories(),
     ]);
 
-    const recommendedProducts = await productService.getAllProducts({
-      ...req,
-      limit: 4,
-      categories: [product.category],
-    });
-
+    const randomProducts = await productService.getRandomProducts(product);
+    console.log(randomProducts);
     const bodyHtml = await new Promise((resolve, reject) => {
       res.render(
         "client/products/product_detail",
         {
           product: product,
           productCategories: productCategories,
-          recommendedProducts: recommendedProducts.docs,
+          randomProducts: randomProducts,
         },
         (err, html) => {
           if (err) return reject(err);

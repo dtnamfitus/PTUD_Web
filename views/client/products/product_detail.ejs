@@ -24,7 +24,6 @@
           <div class="col-sm-7">
             <div class="product-information">
               <h2><%= product.name %></h2>
-              <p>Web ID: 1089772</p>
               <!-- Colors -->
               <div class="product-colors">
                 <p>Color: <span id="selected-color">#000000</span></p>
@@ -69,104 +68,233 @@
 
         </div>
 
-        <div class="recommended_items">
-          <!--recommended_items-->
-          <h2 class="title text-center">recommended items</h2>
-
-          <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner">
-              <div class="item active">
-                <div class="col-sm-4">
-                  <div class="product-image-wrapper">
-                    <div class="single-products">
-                      <div class="productinfo text-center">
-                        <img src="/images/home/recommend1.jpg" alt="" />
-                        <h2>$56</h2>
-                        <p>Easy Polo Black Edition</p>
-                        <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-sm-4">
-                  <div class="product-image-wrapper">
-                    <div class="single-products">
-                      <div class="productinfo text-center">
-                        <img src="/images/home/recommend2.jpg" alt="" />
-                        <h2>$56</h2>
-                        <p>Easy Polo Black Edition</p>
-                        <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-sm-4">
-                  <div class="product-image-wrapper">
-                    <div class="single-products">
-                      <div class="productinfo text-center">
-                        <img src="/images/home/recommend3.jpg" alt="" />
-                        <h2>$56</h2>
-                        <p>Easy Polo Black Edition</p>
-                        <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+        <div class="product-comments">
+          <h3>Comments (3)</h3>
+          <div id="comment-section">
+            <div class="comment">
+              <div class="avatar">
+                <img src="https://via.placeholder.com/50" alt="John Doe" />
               </div>
-              <div class="item">
-                <div class="col-sm-4">
-                  <div class="product-image-wrapper">
-                    <div class="single-products">
-                      <div class="productinfo text-center">
-                        <img src="/images/home/recommend1.jpg" alt="" />
-                        <h2>$56</h2>
-                        <p>Easy Polo Black Edition</p>
-                        <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-sm-4">
-                  <div class="product-image-wrapper">
-                    <div class="single-products">
-                      <div class="productinfo text-center">
-                        <img src="/images/home/recommend2.jpg" alt="" />
-                        <h2>$56</h2>
-                        <p>Easy Polo Black Edition</p>
-                        <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-sm-4">
-                  <div class="product-image-wrapper">
-                    <div class="single-products">
-                      <div class="productinfo text-center">
-                        <img src="/images/home/recommend3.jpg" alt="" />
-                        <h2>$56</h2>
-                        <p>Easy Polo Black Edition</p>
-                        <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+              <div class="comment-text">
+                <p><strong>John Doe:</strong> Great product! Highly recommended.</p>
               </div>
             </div>
-            <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
-              <i class="fa fa-angle-left"></i>
-            </a>
-            <a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
-              <i class="fa fa-angle-right"></i>
-            </a>
+            <div class="comment">
+              <div class="avatar">
+                <img src="https://via.placeholder.com/50" alt="Jane Smith" />
+              </div>
+              <div class="comment-text">
+                <p><strong>Jane Smith:</strong> The quality is amazing. Will buy again!</p>
+              </div>
+            </div>
+            <div class="comment">
+              <div class="avatar">
+                <img src="https://via.placeholder.com/50" alt="Michael Johnson" />
+              </div>
+              <div class="comment-text">
+                <p><strong>Michael Johnson:</strong> A bit pricey, but worth it.</p>
+              </div>
+            </div>
+          </div>
+          <div class="add-comment">
+            <h4>Add Your Comment</h4>
+            <form>
+              <textarea placeholder="Write your comment here..." rows="3"></textarea>
+              <button type="button" class="btn btn-primary">Submit</button>
+            </form>
           </div>
         </div>
-        <!--/recommended_items-->
+
+        <div class="recommended_items">
+
+          <h2 class="title text-center">random items</h2>
+
+          <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
+
+            <div class="item active">
+              <% for (let i = 0; i < randomProducts.length; i++) { %>
+              <div class="col-sm-4">
+                <div class="product-image-wrapper">
+                  <div class="single-products">
+                    <div class="productinfo text-center">
+                      <img src="<%=randomProducts[i].mainImage%>" alt="" />
+                      <h2>$<%=randomProducts[i].price%></h2>
+                      <p><%=randomProducts[i].name%></p>
+                      <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <% } %>
+
+            </div>
+          </div>
+        </div>
 
       </div>
     </div>
     </div>
   </section>
 
+  <style>
+    .product-comments {
+      margin-top: 20px;
+    }
+
+    .comment {
+      display: flex;
+      margin-bottom: 15px;
+    }
+
+    .avatar img {
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+
+    .comment-text {
+      flex: 1;
+    }
+
+    .add-comment textarea {
+      width: 100%;
+      margin-bottom: 10px;
+      resize: none;
+    }
+
+    .product-information {
+      font-family: Arial, sans-serif;
+      color: #333;
+      border: 1px solid #ddd;
+      padding: 20px;
+      border-radius: 10px;
+      background-color: #f9f9f9;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .product-information h2 {
+      font-size: 24px;
+      font-weight: bold;
+      color: #222;
+      margin-bottom: 10px;
+    }
+
+    .product-information p {
+      margin: 5px 0;
+    }
+
+    .product-colors,
+    .product-sizes,
+    .product-price,
+    .product-quantity {
+      margin-top: 20px;
+    }
+
+    .product-colors .color-options {
+      display: flex;
+      gap: 10px;
+    }
+
+    .color-circle {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      border: 2px solid #ddd;
+      cursor: pointer;
+      transition: transform 0.3s, border-color 0.3s;
+    }
+
+    .color-circle:hover {
+      transform: scale(1.1);
+      border-color: #999;
+    }
+
+    #selected-color {
+      font-weight: bold;
+      margin-left: 10px;
+    }
+
+    .size-options {
+      display: flex;
+      gap: 10px;
+    }
+
+    .size-btn {
+      padding: 10px 15px;
+      border: 1px solid #ddd;
+      background-color: #fff;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: all 0.3s;
+    }
+
+    .size-btn:hover {
+      background-color: #007bff;
+      color: #fff;
+      border-color: #007bff;
+    }
+
+    .product-price .price {
+      font-size: 22px;
+      font-weight: bold;
+      color: #e74c3c;
+    }
+
+    .quantity-controls {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 10px;
+    }
+
+    .quantity-controls button {
+      padding: 5px 10px;
+      border: 1px solid #ddd;
+      background-color: #fff;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: all 0.3s;
+    }
+
+    .quantity-controls button:hover {
+      background-color: #007bff;
+      color: #fff;
+      border-color: #007bff;
+    }
+
+    .quantity-controls input {
+      width: 50px;
+      text-align: center;
+      padding: 5px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+
+    .btn.btn-fefault.cart {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 10px 20px;
+      background-color: #28a745;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s;
+      margin-top: 20px;
+    }
+
+    .btn.btn-fefault.cart:hover {
+      background-color: #218838;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn.btn-fefault.cart i {
+      font-size: 18px;
+    }
+  </style>
 
   <script src="/js/jquery.js"></script>
   <script src="/js/price-range.js"></script>
