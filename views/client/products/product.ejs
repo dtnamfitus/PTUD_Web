@@ -41,18 +41,18 @@
             <h2>Category</h2>
             <div class="panel-group category-products" id="accordion">
               <!--category-products-->
-              <% for (let i = 0; i < productCategories.length; i++) { %>
-              <div class="panel panel-default">
-                <div class="panel-heading">
-                  <h4 class="panel-title">
-                    <a href="#" class="category-filter" data-id="<%= productCategories[i]._id %>">
-                      <span class="badge pull-right"></span>
-                      <%= productCategories[i].name %>
-                    </a>
-                  </h4>
+              <% for (let i=0; i < productCategories.length; i++) { %>
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">
+                      <a href="#" class="category-filter" data-id="<%= productCategories[i]._id %>">
+                        <span class="badge pull-right"></span>
+                        <%= productCategories[i].name %>
+                      </a>
+                    </h4>
+                  </div>
                 </div>
-              </div>
-              <% } %>
+                <% } %>
             </div>
             <!--/category-products-->
 
@@ -60,7 +60,8 @@
               <!--price-range-->
               <h2>Price Range</h2>
               <div class="well">
-                <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="600" data-slider-step="5" data-slider-value="[250,450]" id="sl2"><br />
+                <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="600" data-slider-step="5"
+                  data-slider-value="[250,450]" id="sl2"><br />
                 <b>$ 0</b> <b class="pull-right">$ 600</b>
               </div>
             </div>
@@ -106,63 +107,72 @@
 
             <!-- Bắt đầu div #products -->
             <div id="products">
-              <% for (let i = 0; i < products.docs.length; i++) { %>
-              <div class="col-sm-4">
-                <div class="product-image-wrapper">
-                  <div class="single-products">
-                    <div class="productinfo text-center">
-                      <img src="<%= products.docs[i].mainImage %>" alt="" />
-                      <h2>$ <%= products.docs[i].price %></h2>
-                      <p><%= products.docs[i].name %></p>
-                      <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                    </div>
-                    <div class="product-overlay">
-                      <div class="overlay-content">
-                        <h2>$ <%= products.docs[i].price %></h2>
-                        <p><%= products.docs[i].name %></p>
-                        <a href="/client/product_detail/<%= products.docs[i]._id %>" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Details</a>
+              <% for (let i=0; i < products.docs.length; i++) { %>
+                <div class="col-sm-4">
+                  <div class="product-image-wrapper">
+                    <div class="single-products">
+                      <div class="productinfo text-center">
+                        <img src="<%= products.docs[i].mainImage %>" alt="" />
+                        <h2>$ <%= products.docs[i].price %>
+                        </h2>
+                        <p>
+                          <%= products.docs[i].name %>
+                        </p>
+                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to
+                          cart</a>
+                      </div>
+                      <div class="product-overlay">
+                        <div class="overlay-content">
+                          <h2>$ <%= products.docs[i].price %>
+                          </h2>
+                          <p>
+                            <%= products.docs[i].name %>
+                          </p>
+                          <a href="/client/product/<%= products.docs[i]._id %>" class="btn btn-default add-to-cart"><i
+                              class="fa fa-shopping-cart"></i>Details</a>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div class="choose">
-                    <ul class="nav nav-pills nav-justified">
-                      <li><a href=""><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-                      <li><a href=""><i class="fa fa-plus-square"></i>Add to compare</a></li>
-                    </ul>
+                    <div class="choose">
+                      <ul class="nav nav-pills nav-justified">
+                        <li><a href=""><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
+                        <li><a href=""><i class="fa fa-plus-square"></i>Add to compare</a></li>
+                      </ul>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <% } %>
-
-              <ul class="pagination">
-                <% if (products.hasPrevPage) { %>
-                <li>
-                  <a href="#" onclick="handlePagination({page:<%= products.prevPage %>, limit:1}); return false;">
-                    &laquo;
-                  </a>
-                </li>
-                <% } else { %>
-                <li class="disabled"><a href="#">&laquo;</a></li>
                 <% } %>
 
-                <% for (let p = 1; p <= products.totalPages; p++) { %>
-                <li class="<%= p === products.page ? 'active' : '' %>">
-                  <a href="#" onclick="handlePagination({page:<%= p %>, limit:1}); return false;">
-                    <%= p %>
-                  </a>
-                </li>
-                <% } %>
+                  <ul class="pagination">
+                    <% if (products.hasPrevPage) { %>
+                      <li>
+                        <a href="#" onclick="handlePagination({page:<%= products.prevPage %>, limit:1}); return false;">
+                          &laquo;
+                        </a>
+                      </li>
+                      <% } else { %>
+                        <li class="disabled"><a href="#">&laquo;</a></li>
+                        <% } %>
 
-                <% if (products.hasNextPage) { %>
-                <li>
-                  <a href="#" onclick="handlePagination({page:<%= products.nextPage %>, limit:1}); return false;">
-                    &raquo;
-                  </a>
-                </li>
-                <% } else { %>
-                <li class="disabled"><a href="#">&raquo;</a></li>
-                <% } %>
-              </ul>
+                          <% for (let p=1; p <=products.totalPages; p++) { %>
+                            <li class="<%= p === products.page ? 'active' : '' %>">
+                              <a href="#" onclick="handlePagination({page:<%= p %>, limit:1}); return false;">
+                                <%= p %>
+                              </a>
+                            </li>
+                            <% } %>
+
+                              <% if (products.hasNextPage) { %>
+                                <li>
+                                  <a href="#"
+                                    onclick="handlePagination({page:<%= products.nextPage %>, limit:1}); return false;">
+                                    &raquo;
+                                  </a>
+                                </li>
+                                <% } else { %>
+                                  <li class="disabled"><a href="#">&raquo;</a></li>
+                                  <% } %>
+                  </ul>
             </div>
             <!-- Kết thúc div #products -->
 

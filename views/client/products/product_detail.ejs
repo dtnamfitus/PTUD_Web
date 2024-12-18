@@ -1,140 +1,25 @@
-<body>
-  <section>
-    <div class="container">
-      <div class="col-sm-9 col-sm-offset-1">
-        <div class="product-details">
-          <!--product-details-->
-          <div class="col-sm-5">
-            <div class="view-product">
-              <img src="<%=product.mainImage%>" alt="" />
-            </div>
-            <div id="similar-product" class="carousel slide" data-ride="carousel">
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sản Phẩm</title>
 
-              <!-- Controls -->
-              <a class="left item-control" href="#similar-product" data-slide="prev">
-                <i class="fa fa-angle-left"></i>
-              </a>
-              <a class="right item-control" href="#similar-product" data-slide="next">
-                <i class="fa fa-angle-right"></i>
-              </a>
-            </div>
-
-          </div>
-          <div class="col-sm-7">
-            <div class="product-information">
-              <h2><%= product.name %></h2>
-              <!-- Colors -->
-              <div class="product-colors">
-                <p>Color: <span id="selected-color">#000000</span></p>
-                <div class="color-options">
-                  <% for (let i = 0; i < product.colors.length; i++) { %>
-                  <div class="color-circle" style="background-color: <%= product.colors[i].color_name %>" data-color="<%= product.colors[i].color_name %>" onclick="updateSelectedColor('<%= product.colors[i].color_name %>')"></div>
-                  <!-- <div><%= product.colors[i].color_name %></div> -->
-                  <% } %>
-                </div>
-              </div>
-              <!-- Sizes -->
-              <div class="product-sizes">
-                <p>Size:</p>
-                <div class="size-options">
-                  <% product.size.forEach(size => { %>
-                  <button class="size-btn"><%= size %></button>
-                  <% }); %>
-                </div>
-              </div>
-              <!-- Price -->
-              <div class="product-price">
-                <p>
-                  <span class="price">$<%= product.price %></span>
-                </p>
-              </div>
-              <!-- Quantity -->
-              <div class="product-quantity">
-                <label>Quantity:</label>
-                <div class="quantity-controls">
-                  <button onclick="decreaseQuantity()">-</button>
-                  <input type="text" id="quantity" value="1" />
-                  <button onclick="increaseQuantity()">+</button>
-                </div>
-              </div>
-              <!-- Add to Cart -->
-              <button type="button" class="btn btn-fefault cart">
-                <i class="fa fa-shopping-cart"></i>
-                Add to cart
-              </button>
-            </div>
-          </div>
-
-        </div>
-
-        <div class="product-comments">
-          <h3>Comments (3)</h3>
-          <div id="comment-section">
-            <div class="comment">
-              <div class="avatar">
-                <img src="https://via.placeholder.com/50" alt="John Doe" />
-              </div>
-              <div class="comment-text">
-                <p><strong>John Doe:</strong> Great product! Highly recommended.</p>
-              </div>
-            </div>
-            <div class="comment">
-              <div class="avatar">
-                <img src="https://via.placeholder.com/50" alt="Jane Smith" />
-              </div>
-              <div class="comment-text">
-                <p><strong>Jane Smith:</strong> The quality is amazing. Will buy again!</p>
-              </div>
-            </div>
-            <div class="comment">
-              <div class="avatar">
-                <img src="https://via.placeholder.com/50" alt="Michael Johnson" />
-              </div>
-              <div class="comment-text">
-                <p><strong>Michael Johnson:</strong> A bit pricey, but worth it.</p>
-              </div>
-            </div>
-          </div>
-          <div class="add-comment">
-            <h4>Add Your Comment</h4>
-            <form>
-              <textarea placeholder="Write your comment here..." rows="3"></textarea>
-              <button type="button" class="btn btn-primary">Submit</button>
-            </form>
-          </div>
-        </div>
-
-        <div class="recommended_items">
-
-          <h2 class="title text-center">random items</h2>
-
-          <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
-
-            <div class="item active">
-              <% for (let i = 0; i < randomProducts.length; i++) { %>
-              <div class="col-sm-4">
-                <div class="product-image-wrapper">
-                  <div class="single-products">
-                    <div class="productinfo text-center">
-                      <img src="<%=randomProducts[i].mainImage%>" alt="" />
-                      <h2>$<%=randomProducts[i].price%></h2>
-                      <p><%=randomProducts[i].name%></p>
-                      <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <% } %>
-
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-    </div>
-  </section>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <!-- Font Awesome CSS -->
+  <link rel="stylesheet" href="/css/font-awesome.min.css">
+  <!-- PrettyPhoto CSS -->
+  <link rel="stylesheet" href="/css/prettyPhoto.css">
+  <!-- Price Range CSS -->
+  <link rel="stylesheet" href="/css/price-range.css">
+  <!-- Animate CSS -->
+  <link rel="stylesheet" href="/css/animate.css">
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="/css/main.css">
+  <!-- Responsive CSS -->
+  <link rel="stylesheet" href="/css/responsive.css">
 
   <style>
     .product-comments {
@@ -294,12 +179,266 @@
     .btn.btn-fefault.cart i {
       font-size: 18px;
     }
+
+    .view-product {
+      position: relative;
+      width: 100%;
+      height: 500px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #main-product-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease-in-out;
+      /* Hiệu ứng chuyển cảnh mượt */
+      transform-origin: center center;
+      /* Phóng to từ tâm */
+    }
+
+    .view-product:hover #main-product-image {
+      transform: scale(1.5);
+    }
+
+    .recommended_items {
+      text-align: center;
+    }
+
+    .recommended_items .carousel-inner .item {
+      display: flex;
+      justify-content: center;
+      /* Căn giữa nội dung theo trục ngang */
+      flex-wrap: wrap;
+      gap: 20px;
+      /* khoảng cách giữa các sản phẩm nếu muốn */
+    }
+
+    .recommended_items .col-sm-4 {
+      float: none;
+      margin: 0 auto;
+    }
+
+    .product-image-wrapper {
+      border: 1px solid #eee;
+      border-radius: 10px;
+      padding: 20px;
+      background: #fff;
+      text-align: center;
+      transition: box-shadow 0.3s;
+    }
+
+    .product-image-wrapper:hover {
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .productinfo h2 {
+      font-size: 18px;
+      font-weight: 500;
+      color: #e74c3c;
+    }
+
+    .productinfo p {
+      margin-bottom: 15px;
+      font-size: 15px;
+      color: #555;
+    }
+
+    .productinfo .btn.add-to-cart {
+      padding: 8px 15px;
+      background: #007bff;
+      color: #fff;
+      font-size: 14px;
+      border-radius: 5px;
+      border: none;
+      transition: background 0.3s;
+    }
+
+    .productinfo .btn.add-to-cart:hover {
+      background: #0056b3;
+    }
   </style>
 
+</head>
+
+<body>
+
+  <section>
+    <div class="container">
+      <div class="col-sm-9 col-sm-offset-1">
+        <div class="product-details">
+          <!--product-details-->
+          <div class="col-sm-5">
+            <div class="view-product">
+              <img id="main-product-image" src="<%=product.colors[0].images[0]%>" alt="" />
+            </div>
+            <div id="similar-product" class="carousel slide" data-ride="carousel">
+
+            </div>
+          </div>
+          <div class="col-sm-7">
+            <div class="product-information">
+              <h2>
+                <%= product.name %>
+              </h2>
+              <!-- Colors -->
+              <div class="product-colors">
+                <div class="color-options">
+                  <% for (let i=0; i < product.colors.length; i++) { %>
+                    <div class="color-circle" style="background-color: <%= product.colors[i].color_name %>"
+                      data-color="<%= product.colors[i].color_name %>" data-image="<%= product.colors[i].images[0] %>"
+                      onclick="updateMainImage('<%= product.colors[i].images[0] %>', '<%= product.colors[i].color_name %>', this)">
+                    </div>
+                    <% } %>
+                </div>
+              </div>
+              <!-- Sizes -->
+              <div class="product-sizes">
+                <p>Size:</p>
+                <div class="size-options">
+                  <% product.size.forEach(size=> { %>
+                    <button class="size-btn">
+                      <%= size %>
+                    </button>
+                    <% }); %>
+                </div>
+              </div>
+              <!-- Price -->
+              <div class="product-price">
+                <p><span class="price">$<%= product.price %></span></p>
+              </div>
+              <!-- Quantity -->
+              <div class="product-quantity">
+                <label>Quantity:</label>
+                <div class="quantity-controls">
+                  <button onclick="decreaseQuantity()">-</button>
+                  <input type="text" id="quantity" value="1" />
+                  <button onclick="increaseQuantity()">+</button>
+                </div>
+              </div>
+              <!-- Add to Cart -->
+              <button type="button" class="btn btn-fefault cart">
+                <i class="fa fa-shopping-cart"></i>
+                Add to cart
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="product-comments">
+          <h3>Comments (3)</h3>
+          <div id="comment-section">
+            <div class="comment">
+              <div class="avatar">
+                <img src="https://via.placeholder.com/50" alt="John Doe" />
+              </div>
+              <div class="comment-text">
+                <p><strong>John Doe:</strong> Great product! Highly recommended.</p>
+              </div>
+            </div>
+            <div class="comment">
+              <div class="avatar">
+                <img src="https://via.placeholder.com/50" alt="Jane Smith" />
+              </div>
+              <div class="comment-text">
+                <p><strong>Jane Smith:</strong> The quality is amazing. Will buy again!</p>
+              </div>
+            </div>
+            <div class="comment">
+              <div class="avatar">
+                <img src="https://via.placeholder.com/50" alt="Michael Johnson" />
+              </div>
+              <div class="comment-text">
+                <p><strong>Michael Johnson:</strong> A bit pricey, but worth it.</p>
+              </div>
+            </div>
+          </div>
+          <div class="add-comment">
+            <h4>Add Your Comment</h4>
+            <form>
+              <textarea placeholder="Write your comment here..." rows="3"></textarea>
+              <button type="button" class="btn btn-primary">Submit</button>
+            </form>
+          </div>
+        </div>
+
+        <div class="recommended_items">
+          <h2 class="title text-center">random items</h2>
+          <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
+            <div class="item active">
+              <% for (let i=0; i < randomProducts.length; i++) { %>
+                <div class="col-sm-4">
+                  <div class="product-image-wrapper">
+                    <div class="single-products">
+                      <div class="productinfo text-center">
+                        <img src="<%=randomProducts[i].mainImage%>" alt="" />
+                        <h2>$<%=randomProducts[i].price%>
+                        </h2>
+                        <p>
+                          <%=randomProducts[i].name%>
+                        </p>
+                        <button type="button" class="btn btn-default add-to-cart">
+                          <i class="fa fa-shopping-cart"></i>Add to cart
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <% } %>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- jQuery -->
   <script src="/js/jquery.js"></script>
-  <script src="/js/price-range.js"></script>
-  <script src="/js/jquery.scrollUp.min.js"></script>
+  <!-- Bootstrap JS -->
   <script src="/js/bootstrap.min.js"></script>
+  <!-- Price Range JS -->
+  <script src="/js/price-range.js"></script>
+  <!-- ScrollUp JS -->
+  <script src="/js/jquery.scrollUp.min.js"></script>
+  <!-- PrettyPhoto JS -->
   <script src="/js/jquery.prettyPhoto.js"></script>
+  <!-- Main JS -->
   <script src="/js/main.js"></script>
+
+  <script>
+    function updateMainImage(imageUrl, colorName, element) {
+      const mainImage = document.getElementById('main-product-image');
+      mainImage.src = imageUrl;
+
+      const selectedColor = document.getElementById('selected-color');
+      selectedColor.textContent = colorName;
+
+      const colorCircles = document.querySelectorAll('.color-circle');
+      colorCircles.forEach(circle => circle.classList.remove('selected'));
+
+      element.classList.add('selected');
+    }
+
+    function decreaseQuantity() {
+      const qtyInput = document.getElementById('quantity');
+      let qty = parseInt(qtyInput.value);
+      if (qty > 1) {
+        qtyInput.value = qty - 1;
+      }
+    }
+
+    function increaseQuantity() {
+      const qtyInput = document.getElementById('quantity');
+      let qty = parseInt(qtyInput.value);
+      qtyInput.value = qty + 1;
+    }
+  </script>
+
 </body>
+
+</html>
