@@ -10,6 +10,7 @@ const getHome = async (req, res) => {
         resolve(html);
       });
     });
+    console.log(user);
     res.render("layout/client-layout/layout", {
       title: "Products",
       body: bodyHtml,

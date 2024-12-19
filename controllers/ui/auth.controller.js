@@ -37,6 +37,7 @@ const register = async (req, res) => {
   try {
     const { email, password, firstName, lastName, gender, birthDate } =
       req.body;
+
     const user = await userService.createUser({
       email,
       password,
@@ -45,6 +46,8 @@ const register = async (req, res) => {
       gender,
       birthDate,
     });
+
+    console.log(user);
     res.redirect("/client/auth/login?success=Account created successfully");
   } catch (error) {
     console.error(error);
