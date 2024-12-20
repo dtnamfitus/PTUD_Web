@@ -21,6 +21,34 @@
   <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/images/ico/apple-touch-icon-72-precomposed.png">
   <link rel="apple-touch-icon-precomposed" href="/images/ico/apple-touch-icon-57-precomposed.png">
 </head>
+<style>
+  /* Định kiểu cho avatar */
+  .avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    vertical-align: middle;
+    border: 1px solid #fff;
+    margin-top: -3px;
+  }
+
+  /* Canh chỉnh văn bản của các mục trong navbar */
+  .navbar-nav li a {
+    display: flex;
+    /* Sử dụng flexbox để dễ căn chỉnh */
+    align-items: center;
+    /* Canh giữa nội dung của mỗi mục theo chiều dọc */
+    text-decoration: none;
+    /* Loại bỏ gạch chân */
+  }
+
+  .navbar-nav li a i,
+  .navbar-nav li a img {
+    vertical-align: middle;
+    /* Đảm bảo biểu tượng và avatar đều căn chỉnh theo chiều dọc */
+  }
+</style>
 <header id="header">
   <!--header-->
   <div class="header_top">
@@ -65,11 +93,19 @@
         <div class="col-md-8 clearfix">
           <div class="shop-menu clearfix pull-right">
             <ul class="nav navbar-nav">
-              <li><a href=""><i class="fa fa-user"></i> Account</a></li>
               <li><a href=""><i class="fa fa-star"></i> Wishlist</a></li>
               <li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li>
               <li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Cart</a></li>
+              <% if (user!==undefined) { %>
+              <li>
+                <a href="/client/auth/profile">
+                  Hi <div style="font-weight: 500;"><%= user.firstName %> <%= user.lastName %> </div>
+                  <img src="<%= user.avatar %>" alt="Avatar" class="avatar">
+                </a>
+              </li>
+              <% } else { %>
               <li><a href="/client/auth/login"><i class="fa fa-lock"></i> Login</a></li>
+              <% } %>
             </ul>
           </div>
         </div>

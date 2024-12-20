@@ -1,8 +1,11 @@
 const productService = require("../../services/product.service");
 const productCategoryService = require("../../services/product-category.service");
+const renderLayout = require("./renderLayout");
 
 const getProducts = async (req, res) => {
   try {
+    const user = req.user;
+    console.log(user);
     const [products, productCategories] = await Promise.all([
       productService.getAllProducts(req),
       productCategoryService.getProductCategories(),
@@ -17,11 +20,7 @@ const getProducts = async (req, res) => {
         }
       );
     });
-    res.render("layout/client-layout/layout", {
-      title: "Products",
-      body: bodyHtml,
-      dirname: __dirname,
-    });
+    await renderLayout(req, res, bodyHtml, "Home");
   } catch (error) {
     console.error(error);
     res.status(500).send("Error fetching products");
@@ -37,7 +36,6 @@ const getProductDetails = async (req, res) => {
     ]);
 
     const randomProducts = await productService.getRandomProducts(product);
-    console.log(randomProducts);
     const bodyHtml = await new Promise((resolve, reject) => {
       res.render(
         "client/products/product_detail",
@@ -52,11 +50,7 @@ const getProductDetails = async (req, res) => {
         }
       );
     });
-    res.render("layout/client-layout/layout", {
-      title: "Products",
-      body: bodyHtml,
-      dirname: __dirname,
-    });
+    await renderLayout(req, res, bodyHtml, "Home");
   } catch (error) {
     console.error(error);
     res.status(500).send("Error fetching product details");

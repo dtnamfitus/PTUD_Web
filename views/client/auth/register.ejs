@@ -4,9 +4,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Login Page">
+  <meta name="description" content="Register Page">
   <meta name="author" content="">
-  <title>Login | E-Shopper</title>
+  <title>Register | E-Shopper</title>
 
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,600&display=swap">
@@ -34,7 +34,7 @@
       margin-block: 10px !important;
     }
 
-    .login-container {
+    .register-container {
       display: flex;
       background: rgba(255, 255, 255, 0.9);
       border-radius: 10px;
@@ -44,14 +44,7 @@
       width: 90%;
     }
 
-    .login-image {
-      flex: 1;
-      background: url('/images/login/side_image.jpg') no-repeat center center;
-      background-size: cover;
-      min-height: 400px;
-    }
-
-    .login-form {
+    .register-form {
       flex: 1;
       padding: 40px;
       display: flex;
@@ -59,21 +52,22 @@
       justify-content: center;
     }
 
-    .login-form img.logo {
+    .register-form img.logo {
       max-width: 100px;
       margin: 0 auto 20px auto;
       display: block;
     }
 
-    .login-form h2 {
+    .register-form h2 {
       font-weight: 600;
       color: #333;
       margin-bottom: 25px;
       text-align: center;
     }
 
-    .login-form input[type="email"],
-    .login-form input[type="password"] {
+    .register-form input[type="text"],
+    .register-form input[type="email"],
+    .register-form input[type="password"] {
       width: 100%;
       margin-bottom: 15px;
       padding: 10px 15px;
@@ -85,26 +79,12 @@
       transition: border-color 0.3s;
     }
 
-    .login-form input[type="email"]:focus,
-    .login-form input[type="password"]:focus {
+    .register-form input:focus {
       border-color: #FE980F;
       outline: none;
     }
 
-    .login-form span {
-      display: flex;
-      align-items: center;
-      margin-bottom: 15px;
-      color: #666;
-      font-size: 14px;
-    }
-
-    .login-form span .checkbox {
-      margin-right: 5px;
-      transform: scale(1.2);
-    }
-
-    .login-form button[type="submit"] {
+    .register-form button[type="submit"] {
       width: 100%;
       padding: 10px;
       background: #FE980F;
@@ -117,62 +97,22 @@
       transition: background 0.3s, transform 0.1s;
     }
 
-    .login-form button[type="submit"]:hover {
+    .register-form button[type="submit"]:hover {
       background: #e98708;
     }
 
-    .login-form button[type="submit"]:active {
+    .register-form button[type="submit"]:active {
       transform: scale(0.98);
     }
 
-    /* Các nút OAuth */
-    .oauth-buttons {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-top: 20px;
+    /* Side image bên phải */
+    .register-image {
+      flex: 1;
+      background: url('/images/login/side_image.jpg') no-repeat center center;
+      background-size: cover;
+      min-height: 400px;
     }
 
-    .oauth-button {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 10px;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 16px;
-      transition: background 0.3s, transform 0.1s;
-      color: #fff;
-      text-decoration: none;
-    }
-
-    .oauth-button .fa {
-      margin-right: 8px;
-      font-size: 18px;
-    }
-
-    .oauth-google {
-      background: #db4437;
-    }
-
-    .oauth-google:hover {
-      background: #c33d2e;
-    }
-
-    .oauth-facebook {
-      background: #3b5998;
-    }
-
-    .oauth-facebook:hover {
-      background: #334d84;
-    }
-
-    .oauth-button:active {
-      transform: scale(0.98);
-    }
-
-    /* Liên kết đăng ký và quên mật khẩu */
     .additional-links {
       margin-top: 20px;
       text-align: center;
@@ -190,17 +130,57 @@
       color: #FE980F;
     }
 
+    .gender-container {
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .gender-container label {
+      font-size: 14px;
+      font-weight: 400;
+      color: #555;
+      cursor: pointer;
+    }
+
+    .gender-container input[type="radio"] {
+      margin-right: 5px;
+      accent-color: #FE980F;
+    }
+
+    .register-form input[type="date"] {
+      width: 100%;
+      margin-bottom: 15px;
+      padding: 10px 15px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+      font-weight: 400;
+      color: #555;
+      background-color: #fff;
+      transition: border-color 0.3s, box-shadow 0.3s;
+      font-family: 'Open Sans', sans-serif;
+    }
+
+    .register-form input[type="date"]:focus {
+      border-color: #FE980F;
+      box-shadow: 0 0 5px rgba(254, 152, 15, 0.5);
+      outline: none;
+    }
+
+
     /* Responsive Design */
     @media (max-width: 768px) {
-      .login-container {
-        flex-direction: column;
+      .register-container {
+        flex-direction: column-reverse;
       }
 
-      .login-image {
+      .register-image {
         display: none;
       }
 
-      .login-form {
+      .register-form {
         padding: 20px;
       }
     }
@@ -215,38 +195,31 @@
 
 <body>
   <section id="form">
-    <div class="login-container">
-      <div class="login-image"></div>
-
-      <div class="login-form">
+    <div class="register-container">
+      <div class="register-form">
         <img src="/images/home/logo.png" alt="Brand Logo" class="logo">
-        <h2>Login to your account</h2>
-        <form action="/client/auth/verify" method="post">
-          <input type="email" id="email" name="email" placeholder="Email Address" style="border-color: #e5e5e5; background-color: #fff;" required />
-          <input type="password" id="password" name="password" placeholder="Password" style="border-color: #e5e5e5; background-color: #fff;" required />
-          <span>
-            <input type="checkbox" class="checkbox" name="remember">
-            Keep me signed in
-          </span>
-          <button type="submit" class="btn btn-default">Login</button>
+        <h2>Create Your Account</h2>
+        <form action="/client/auth/verifyRegister" method="post">
+          <input type="text" id="firstName" name="firstName" placeholder="First Name" required />
+          <input type="text" id="lastName" name="lastName" placeholder="Last Name" required />
+          <input type="email" id="email" name="email" placeholder="Email Address" required />
+          <input type="password" id="password" name="password" placeholder="Password" required />
+          <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" required />
+          <input type="date" id="birthDate" name="birthDate" placeholder="Date of Birth" required />
+
+          <div class="gender-container">
+            <label><input type="radio" name="gender" value="male" required /> Male</label>
+            <label><input type="radio" name="gender" value="female" required /> Female</label>
+            <label><input type="radio" name="gender" value="other" required /> Other</label>
+          </div>
+          <button type="submit" class="btn btn-default">Register</button>
         </form>
-
-        <!-- Các nút OAuth -->
-        <div class="oauth-buttons">
-          <a href="/auth/google" class="oauth-button oauth-google">
-            <i class="fa fa-google"></i> Sign in with Google
-          </a>
-          <a href="/auth/facebook" class="oauth-button oauth-facebook">
-            <i class="fa fa-facebook"></i> Sign in with Facebook
-          </a>
-        </div>
-
-        <!-- Liên kết đăng ký và quên mật khẩu -->
         <div class="additional-links">
-          <p>Don't have an account? <a href="/client/auth/register" style="color: #e98708;">Register here</a></p>
-          <p><a href="/forgot-password">Forgot Your Password?</a></p>
+          <p>Already have an account? <a href="/client/auth/login">Login here</a></p>
         </div>
       </div>
+
+      <div class="register-image"></div>
     </div>
   </section>
   <!--/form-->

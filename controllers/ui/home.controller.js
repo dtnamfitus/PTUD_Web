@@ -1,4 +1,5 @@
 const productService = require("../../services/product.service");
+const renderLayout = require("./renderLayout");
 
 const getHome = async (req, res) => {
   try {
@@ -10,13 +11,7 @@ const getHome = async (req, res) => {
         resolve(html);
       });
     });
-    console.log(user);
-    res.render("layout/client-layout/layout", {
-      title: "Products",
-      body: bodyHtml,
-      products: products.docs,
-      user,
-    });
+    await renderLayout(req, res, bodyHtml, "Home");
   } catch (error) {
     console.error(error);
     res.status(500).send("Error fetching products");

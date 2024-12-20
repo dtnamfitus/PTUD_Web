@@ -54,6 +54,7 @@
       border-radius: 10px;
       background-color: #f9f9f9;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      height: 100%;
     }
 
     .product-information h2 {
@@ -183,7 +184,7 @@
     .view-product {
       position: relative;
       width: 100%;
-      height: 500px;
+      height: 100%;
       overflow: hidden;
       display: flex;
       align-items: center;
@@ -254,7 +255,7 @@
       font-size: 14px;
       border-radius: 5px;
       border: none;
-      transition: background 0.3s;
+      transition: 0.3s;
     }
 
     .productinfo .btn.add-to-cart:hover {
@@ -288,11 +289,9 @@
               <div class="product-colors">
                 <div class="color-options">
                   <% for (let i=0; i < product.colors.length; i++) { %>
-                    <div class="color-circle" style="background-color: <%= product.colors[i].color_name %>"
-                      data-color="<%= product.colors[i].color_name %>" data-image="<%= product.colors[i].images[0] %>"
-                      onclick="updateMainImage('<%= product.colors[i].images[0] %>', '<%= product.colors[i].color_name %>', this)">
-                    </div>
-                    <% } %>
+                  <div class="color-circle" style="background-color: <%= product.colors[i].color_name %>" data-color="<%= product.colors[i].color_name %>" data-image="<%= product.colors[i].images[0] %>" onclick="updateMainImage('<%= product.colors[i].images[0] %>', '<%= product.colors[i].color_name %>', this)">
+                  </div>
+                  <% } %>
                 </div>
               </div>
               <!-- Sizes -->
@@ -300,10 +299,10 @@
                 <p>Size:</p>
                 <div class="size-options">
                   <% product.size.forEach(size=> { %>
-                    <button class="size-btn">
-                      <%= size %>
-                    </button>
-                    <% }); %>
+                  <button class="size-btn">
+                    <%= size %>
+                  </button>
+                  <% }); %>
                 </div>
               </div>
               <!-- Price -->
@@ -369,26 +368,26 @@
         <div class="recommended_items">
           <h2 class="title text-center">random items</h2>
           <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
-            <div class="item active">
+            <div class="item active" style="display: flex; padding-left: 0;">
               <% for (let i=0; i < randomProducts.length; i++) { %>
-                <div class="col-sm-4">
-                  <div class="product-image-wrapper">
-                    <div class="single-products">
-                      <div class="productinfo text-center">
-                        <img src="<%=randomProducts[i].mainImage%>" alt="" />
-                        <h2>$<%=randomProducts[i].price%>
-                        </h2>
-                        <p>
-                          <%=randomProducts[i].name%>
-                        </p>
-                        <button type="button" class="btn btn-default add-to-cart">
-                          <i class="fa fa-shopping-cart"></i>Add to cart
-                        </button>
-                      </div>
+              <div class="col-sm-4">
+                <div class="product-image-wrapper">
+                  <div class="single-products">
+                    <div class="productinfo text-center">
+                      <img src="<%=randomProducts[i].mainImage%>" alt="" />
+                      <h2>$<%=randomProducts[i].price%>
+                      </h2>
+                      <p>
+                        <%=randomProducts[i].name%>
+                      </p>
+                      <button type="button" class="btn btn-default add-to-cart">
+                        <i class="fa fa-shopping-cart"></i>Add to cart
+                      </button>
                     </div>
                   </div>
                 </div>
-                <% } %>
+              </div>
+              <% } %>
             </div>
           </div>
         </div>
@@ -414,7 +413,7 @@
     function updateMainImage(imageUrl, colorName, element) {
       const mainImage = document.getElementById('main-product-image');
       mainImage.src = imageUrl;
-
+      console.log(mainImage);
       const selectedColor = document.getElementById('selected-color');
       selectedColor.textContent = colorName;
 

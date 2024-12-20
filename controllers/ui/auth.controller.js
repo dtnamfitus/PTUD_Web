@@ -1,32 +1,34 @@
 const userService = require("../../services/user.service");
+const loginSchema = require("../../dto/auth/login.dto");
+const registerSchema = require("../../dto/auth/register.dto");
+const renderLayout = require("./renderLayout");
 
 const login = async (req, res) => {
   try {
     const user = req.user;
-    const error = req.query.error;
-    const bodyHtml = await new Promise((resolve, reject) => {
-      res.render("client/auth/login", {}, (err, html) => {
-        if (err) return reject(err);
-        resolve(html);
-      });
+    if (req.user) {
+      return res.redirect("/client/home");
+    }
+    const { error, value } = loginSchema.validate(req.body, {
+      abortEarly: false,
     });
-    res.render("layout/client-layout/layout", {
-      title: "Login",
-      body: bodyHtml,
-      user,
-      error,
-    });
-  } catch (error) {
-    console.error(error);
-    res.status(500).send("Error fetching products");
-  }
-};
 
-const verify = async (req, res) => {
-  try {
-    const { email, password } = req.body;
-    console.log(JSON.stringify(req.body, null, 2));
-    res.redirect("/client/auth/login");
+    const flashErrors = req.flash("error");
+
+    const bodyHtml = await new Promise((resolve, reject) => {
+      res.render(
+        "client/auth/login",
+        {
+          flashErrors,
+          error,
+        },
+        (err, html) => {
+          if (err) return reject(err);
+          resolve(html);
+        }
+      );
+    });
+    await renderLayout(req, res, bodyHtml, "Login");
   } catch (error) {
     console.error(error);
     res.redirect("/client/auth/login?error=Invalid email or password");
@@ -35,8 +37,46 @@ const verify = async (req, res) => {
 
 const register = async (req, res) => {
   try {
-    const { email, password, firstName, lastName, gender, birthDate } =
-      req.body;
+    if (req.user) {
+      return res.redirect("/client/home");
+    }
+    const { error, value } = registerSchema.validate(req.body, {
+      abortEarly: false,
+    });
+
+    const flashErrors = req.flash("error");
+
+    const bodyHtml = await new Promise((resolve, reject) => {
+      res.render(
+        "client/auth/register",
+        {
+          flashErrors,
+          error,
+        },
+        (err, html) => {
+          if (err) return reject(err);
+          resolve(html);
+        }
+      );
+    });
+    await renderLayout(req, res, bodyHtml, "Register");
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Error fetching products");
+  }
+};
+
+const verifyRegister = async (req, res) => {
+  try {
+    const {
+      email,
+      password,
+      confirmPassword,
+      firstName,
+      lastName,
+      gender,
+      birthDate,
+    } = req.body;
 
     const user = await userService.createUser({
       email,
@@ -57,6 +97,6 @@ const register = async (req, res) => {
 
 module.exports = {
   login,
-  verify,
   register,
+  verifyRegister,
 };

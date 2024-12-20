@@ -5,6 +5,8 @@ const uiAuthController = require("../../../controllers/ui/auth.controller");
 
 router.get("/login", uiAuthController.login);
 
+router.get("/register", uiAuthController.register);
+
 router.post(
   "/verify",
   passport.authenticate("local", {
@@ -14,6 +16,8 @@ router.post(
     successFlash: false,
   })
 );
+
+router.post("/verifyRegister", uiAuthController.verifyRegister);
 
 router.get("/logout", (req, res) => {
   req.logout((err) => {
