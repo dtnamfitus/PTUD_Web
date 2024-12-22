@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Sản Phẩm</title>
+  <title>Product Details</title>
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -21,245 +21,335 @@
   <!-- Responsive CSS -->
   <link rel="stylesheet" href="/css/responsive.css">
 
+  <link rel="preconnect" href="/css/custom/product_detail.css">
+
   <style>
-    .product-comments {
-      margin-top: 20px;
+    img {
+      max-width: 100%;
     }
 
-    .comment {
+    .preview {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
       display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+      flex-direction: column;
+    }
+
+    @media screen and (max-width: 996px) {
+      .preview {
+        margin-bottom: 20px;
+      }
+    }
+
+    .preview-pic {
+      -webkit-box-flex: 1;
+      -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+      flex-grow: 1;
+    }
+
+    .preview-thumbnail.nav-tabs {
+      border: none;
+      margin-top: 15px;
+    }
+
+    .preview-thumbnail.nav-tabs li {
+      width: 18%;
+      margin-right: 2.5%;
+    }
+
+    .preview-thumbnail.nav-tabs li img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .preview-thumbnail.nav-tabs li a {
+      padding: 0;
+      margin: 0;
+    }
+
+    .preview-thumbnail.nav-tabs li:last-of-type {
+      margin-right: 0;
+    }
+
+    .tab-content {
+      overflow: hidden;
+    }
+
+    .tab-content img {
+      width: 100%;
+      -webkit-animation-name: opacity;
+      animation-name: opacity;
+      -webkit-animation-duration: .3s;
+      animation-duration: .3s;
+    }
+
+    .card {
+      margin-top: 50px;
+      background: #eee;
+      padding: 3em;
+      line-height: 1.5em;
+    }
+
+    @media screen and (min-width: 997px) {
+      .wrapper {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+      }
+    }
+
+    .details {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+      flex-direction: column;
+    }
+
+    .colors {
+      -webkit-box-flex: 1;
+      -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+      flex-grow: 1;
+    }
+
+    .product-title,
+    .price,
+    .sizes,
+    .colors {
+      text-transform: UPPERCASE;
+      font-weight: bold;
+    }
+
+    .checked,
+    .price span {
+      color: #ff9f1a;
+    }
+
+    .product-title,
+    .rating,
+    .product-description,
+    .price,
+    .vote,
+    .sizes {
       margin-bottom: 15px;
     }
 
-    .avatar img {
-      border-radius: 50%;
+    .product-title {
+      margin-top: 0;
+    }
+
+    .size {
       margin-right: 10px;
     }
 
-    .comment-text {
-      flex: 1;
+    .size:first-of-type {
+      margin-left: 40px;
     }
 
-    .add-comment textarea {
-      width: 100%;
-      margin-bottom: 10px;
-      resize: none;
+    .color {
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 10px;
+      height: 2em;
+      width: 2em;
+      border-radius: 2px;
     }
 
-    .product-information {
-      font-family: Arial, sans-serif;
-      color: #333;
-      border: 1px solid #ddd;
-      padding: 20px;
-      border-radius: 10px;
-      background-color: #f9f9f9;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      height: 100%;
+    .color:first-of-type {
+      margin-left: 20px;
     }
 
-    .product-information h2 {
-      font-size: 24px;
+    .add-to-cart,
+    .like {
+      background: #ff9f1a;
+      padding: 1.2em 1.5em;
+      border: none;
+      text-transform: UPPERCASE;
       font-weight: bold;
-      color: #222;
-      margin-bottom: 10px;
+      color: #fff;
+      -webkit-transition: background .3s ease;
+      transition: background .3s ease;
     }
 
-    .product-information p {
-      margin: 5px 0;
+    .add-to-cart:hover,
+    .like:hover {
+      background: #b36800;
+      color: #fff;
     }
 
-    .product-colors,
-    .product-sizes,
-    .product-price,
-    .product-quantity {
+    .not-available {
+      text-align: center;
+      line-height: 2em;
+    }
+
+    .not-available:before {
+      font-family: fontawesome;
+      content: "\f00d";
+      color: #fff;
+    }
+
+    .orange {
+      background: #ff9f1a;
+    }
+
+    .green {
+      background: #85ad00;
+    }
+
+    .blue {
+      background: #0076ad;
+    }
+
+    .tooltip-inner {
+      padding: 1.3em;
+    }
+
+    @-webkit-keyframes opacity {
+      0% {
+        opacity: 0;
+        -webkit-transform: scale(3);
+        transform: scale(3);
+      }
+
+      100% {
+        opacity: 1;
+        -webkit-transform: scale(1);
+        transform: scale(1);
+      }
+    }
+
+    @keyframes opacity {
+      0% {
+        opacity: 0;
+        -webkit-transform: scale(3);
+        transform: scale(3);
+      }
+
+      100% {
+        opacity: 1;
+        -webkit-transform: scale(1);
+        transform: scale(1);
+      }
+    }
+
+    .action {
+      display: flex;
+      gap: 10px;
+      /* Khoảng cách giữa các nút */
+      justify-content: center;
+      /* Căn giữa các nút theo chiều ngang */
+      align-items: center;
+      /* Căn giữa các nút theo chiều dọc */
       margin-top: 20px;
     }
 
-    .product-colors .color-options {
-      display: flex;
-      gap: 10px;
-    }
-
-    .color-circle {
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      border: 2px solid #ddd;
-      cursor: pointer;
-      transition: transform 0.3s, border-color 0.3s;
-    }
-
-    .color-circle:hover {
-      transform: scale(1.1);
-      border-color: #999;
-    }
-
-    #selected-color {
-      font-weight: bold;
-      margin-left: 10px;
-    }
-
-    .size-options {
-      display: flex;
-      gap: 10px;
-    }
-
-    .size-btn {
-      padding: 10px 15px;
-      border: 1px solid #ddd;
-      background-color: #fff;
-      cursor: pointer;
-      border-radius: 5px;
-      transition: all 0.3s;
-    }
-
-    .size-btn:hover {
-      background-color: #007bff;
-      color: #fff;
-      border-color: #007bff;
-    }
-
-    .product-price .price {
-      font-size: 22px;
-      font-weight: bold;
-      color: #e74c3c;
-    }
-
-    .quantity-controls {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      margin-top: 10px;
-    }
-
-    .quantity-controls button {
-      padding: 5px 10px;
-      border: 1px solid #ddd;
-      background-color: #fff;
-      cursor: pointer;
-      border-radius: 5px;
-      transition: all 0.3s;
-    }
-
-    .quantity-controls button:hover {
-      background-color: #007bff;
-      color: #fff;
-      border-color: #007bff;
-    }
-
-    .quantity-controls input {
-      width: 50px;
-      text-align: center;
-      padding: 5px;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-    }
-
-    .btn.btn-fefault.cart {
-      display: flex;
+    .action button {
+      display: inline-flex;
+      /* Để biểu tượng và chữ căn giữa */
       align-items: center;
       justify-content: center;
       gap: 10px;
+      /* Khoảng cách giữa biểu tượng và chữ */
       padding: 10px 20px;
-      background-color: #28a745;
-      color: #fff;
-      border: none;
-      border-radius: 5px;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: all 0.3s;
-      margin-top: 20px;
-    }
-
-    .btn.btn-fefault.cart:hover {
-      background-color: #218838;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    .btn.btn-fefault.cart i {
-      font-size: 18px;
-    }
-
-    .view-product {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    #main-product-image {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.5s ease-in-out;
-      /* Hiệu ứng chuyển cảnh mượt */
-      transform-origin: center center;
-      /* Phóng to từ tâm */
-    }
-
-    .view-product:hover #main-product-image {
-      transform: scale(1.5);
-    }
-
-    .recommended_items {
-      text-align: center;
-    }
-
-    .recommended_items .carousel-inner .item {
-      display: flex;
-      justify-content: center;
-      /* Căn giữa nội dung theo trục ngang */
-      flex-wrap: wrap;
-      gap: 20px;
-      /* khoảng cách giữa các sản phẩm nếu muốn */
-    }
-
-    .recommended_items .col-sm-4 {
-      float: none;
-      margin: 0 auto;
-    }
-
-    .product-image-wrapper {
-      border: 1px solid #eee;
-      border-radius: 10px;
-      padding: 20px;
-      background: #fff;
-      text-align: center;
-      transition: box-shadow 0.3s;
-    }
-
-    .product-image-wrapper:hover {
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    }
-
-    .productinfo h2 {
-      font-size: 18px;
-      font-weight: 500;
-      color: #e74c3c;
-    }
-
-    .productinfo p {
-      margin-bottom: 15px;
-      font-size: 15px;
-      color: #555;
-    }
-
-    .productinfo .btn.add-to-cart {
-      padding: 8px 15px;
-      background: #007bff;
-      color: #fff;
+      /* Kích thước của nút */
       font-size: 14px;
-      border-radius: 5px;
+      font-weight: bold;
+      text-transform: uppercase;
+      color: #fff;
+      background-color: #007bff;
       border: none;
-      transition: 0.3s;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s, box-shadow 0.3s;
     }
 
-    .productinfo .btn.add-to-cart:hover {
-      background: #0056b3;
+    .action button:hover {
+      background-color: #0056b3;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .action .add-to-cart {
+      background-color: #28a745;
+      /* Màu xanh lá cho nút Add to Cart */
+    }
+
+    .action .add-to-cart:hover {
+      background-color: #218838;
+    }
+
+    .action .like {
+      background-color: #dc3545;
+    }
+
+    .action .like:hover {
+      background-color: #c82333;
+    }
+
+    .action .fa-heart {
+      font-size: 16px;
+      /* Kích thước biểu tượng trái tim */
+    }
+
+    /*# sourceMappingURL=style.css.map */
+  </style>
+
+  <!-- review -->
+  <style>
+    .ClientReview_Card {
+      min-height: 355px;
+      border-top: 5px solid #13588F;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      font-weight: 700;
+      overflow: hidden;
+      padding: 60px 50px 0px;
+      position: relative;
+    }
+
+    .ClientReview_Top {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      padding-bottom: 30px;
+    }
+
+    .ClientReview_Pfp {
+      width: 70px;
+    }
+
+    .ClientReview_Stars {
+      font-size: 36px;
+      padding-left: 20px;
+      color: #ffbf00;
+    }
+
+    .ClientReview_Body {
+      padding-bottom: 20px;
+    }
+
+    .ClientReview_Name {
+      color: #13588F;
+      font-size: 18px;
+      padding-bottom: 40px;
+    }
+
+    .ClientReview_Img img {
+      filter: brightness(0) invert(1) sepia(1) saturate(10000%) hue-rotate(180deg) brightness(1.1);
+      position: absolute;
+      right: -70px;
+      bottom: -50px;
+      z-index: -1;
     }
   </style>
 
@@ -270,99 +360,101 @@
   <section>
     <div class="container">
       <div class="col-sm-9 col-sm-offset-1">
-        <div class="product-details">
-          <!--product-details-->
-          <div class="col-sm-5">
-            <div class="view-product">
-              <img id="main-product-image" src="<%=product.colors[0].images[0]%>" alt="" />
-            </div>
-            <div id="similar-product" class="carousel slide" data-ride="carousel">
+        <div class="card">
+          <div class="container-fliud">
+            <div class="wrapper row">
+              <div class="preview col-md-6">
 
-            </div>
-          </div>
-          <div class="col-sm-7">
-            <div class="product-information">
-              <h2>
-                <%= product.name %>
-              </h2>
-              <!-- Colors -->
-              <div class="product-colors">
-                <div class="color-options">
-                  <% for (let i=0; i < product.colors.length; i++) { %>
-                  <div class="color-circle" style="background-color: <%= product.colors[i].color_name %>" data-color="<%= product.colors[i].color_name %>" data-image="<%= product.colors[i].images[0] %>" onclick="updateMainImage('<%= product.colors[i].images[0] %>', '<%= product.colors[i].color_name %>', this)">
+                <div class="preview-pic tab-content">
+                  <div class="tab-pane active" id="pic-1"><img src="<%=product.mainImage%>" /></div>
+                </div>
+
+              </div>
+              <div class="details col-md-6">
+                <h3 class="product-title">
+                  <%= product.name %>
+                </h3>
+                <div class="rating">
+                  <div class="stars">
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
                   </div>
-                  <% } %>
+                  <span class="review-no">41 reviews</span>
+                </div>
+                <p class="product-description">Suspendisse quos? Tempus cras iure temporibus? Eu laudantium cubilia sem
+                  sem! Repudiandae et! Massa senectus enim minim sociosqu delectus posuere.</p>
+                <h4 class="price">current price: <span>$<%= product.price %></span></h4>
+                <p class="vote"><strong>91%</strong> of buyers enjoyed this product! <strong>(87 votes)</strong></p>
+                <h5 class="sizes">
+                  <div style="margin-bottom: 5px;">sizes:</div>
+                  <% for (let i=0; i < product.size.length; i++) { %>
+                    <span class="size" data-toggle="tooltip" title="small">
+                      <%=product.size[i]%>
+                    </span>
+                    <% } %>
+                </h5>
+                <h5 class="colors">
+                  <div style="margin-bottom: 5px;">colors:</div>
+                  <div style="display: flex;">
+                    <% for (let i=0; i < product.colors.length; i++) { %>
+                      <div class="color-circle" style="background-color: <%= product.colors[i].color_name %>"
+                        data-color="<%= product.colors[i].color_name %>" data-image="<%= product.colors[i].images[0] %>"
+                        onclick="updateMainImage('<%= product.colors[i].images[0] %>', '<%= product.colors[i].color_name %>', this)">
+                      </div>
+                      <% } %>
+                  </div>
+                </h5>
+                <div class="product-quantity">
+                  <label>Quantity:</label>
+                  <div class="quantity-controls">
+                    <button onclick="decreaseQuantity()">-</button>
+                    <input type="text" id="quantity" value="1" />
+                    <button onclick="increaseQuantity()">+</button>
+                  </div>
+                </div>
+                <div class="action">
+                  <button class="btn-default" type="button" style="height: 40px;">add to cart</button>
+                  <button class="btn-default" type="button" style="height: 40px;"><span
+                      class="fa fa-heart"></span></button>
                 </div>
               </div>
-              <!-- Sizes -->
-              <div class="product-sizes">
-                <p>Size:</p>
-                <div class="size-options">
-                  <% product.size.forEach(size=> { %>
-                  <button class="size-btn">
-                    <%= size %>
-                  </button>
-                  <% }); %>
-                </div>
-              </div>
-              <!-- Price -->
-              <div class="product-price">
-                <p><span class="price">$<%= product.price %></span></p>
-              </div>
-              <!-- Quantity -->
-              <div class="product-quantity">
-                <label>Quantity:</label>
-                <div class="quantity-controls">
-                  <button onclick="decreaseQuantity()">-</button>
-                  <input type="text" id="quantity" value="1" />
-                  <button onclick="increaseQuantity()">+</button>
-                </div>
-              </div>
-              <!-- Add to Cart -->
-              <button type="button" class="btn btn-fefault cart">
-                <i class="fa fa-shopping-cart"></i>
-                Add to cart
-              </button>
             </div>
           </div>
-
         </div>
 
-        <div class="product-comments">
-          <h3>Comments (3)</h3>
-          <div id="comment-section">
-            <div class="comment">
-              <div class="avatar">
-                <img src="https://via.placeholder.com/50" alt="John Doe" />
+        <div class="product-comments" style="margin-top: 30px;">
+          <% for (let j=0; j < comments.length; j++) { %>
+          <div class="comment">
+            <div class="ClientReview_Top">
+              <div class="ClientReview_Pfp">
+                <!-- Client's Profile Picture -->
+                <img
+                  src="<%= comments[j]._user.avatar %>" />
               </div>
-              <div class="comment-text">
-                <p><strong>John Doe:</strong> Great product! Highly recommended.</p>
+              <div class="ClientReview_Stars">
+                <% for (let x=0; x < comments[j].rate; x++) { %>
+                  ★
+                <% } %>
+                <% for (let y=0; y < 5 - comments[j].rate; y++) { %>
+                  ☆
+                <% } %>
               </div>
             </div>
-            <div class="comment">
-              <div class="avatar">
-                <img src="https://via.placeholder.com/50" alt="Jane Smith" />
-              </div>
-              <div class="comment-text">
-                <p><strong>Jane Smith:</strong> The quality is amazing. Will buy again!</p>
-              </div>
+            <div class="ClientReview_Body">
+              <%= comments[j].content %>
             </div>
-            <div class="comment">
-              <div class="avatar">
-                <img src="https://via.placeholder.com/50" alt="Michael Johnson" />
-              </div>
-              <div class="comment-text">
-                <p><strong>Michael Johnson:</strong> A bit pricey, but worth it.</p>
-              </div>
+            <div class="ClientReview_Name">
+              —
+              <%= comments[j]._user.firstName %> <%= comments[j]._user.lastName %>
+            </div>
+            <div class="ClientReview_Img">
+              <img src="https://edgelaw.kinsta.cloud/wp-content/uploads/white-logo.png" />
             </div>
           </div>
-          <div class="add-comment">
-            <h4>Add Your Comment</h4>
-            <form>
-              <textarea placeholder="Write your comment here..." rows="3"></textarea>
-              <button type="button" class="btn btn-primary">Submit</button>
-            </form>
-          </div>
+          <% } %>
         </div>
 
         <div class="recommended_items">
@@ -370,24 +462,24 @@
           <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
             <div class="item active" style="display: flex; padding-left: 0;">
               <% for (let i=0; i < randomProducts.length; i++) { %>
-              <div class="col-sm-4">
-                <div class="product-image-wrapper">
-                  <div class="single-products">
-                    <div class="productinfo text-center">
-                      <img src="<%=randomProducts[i].mainImage%>" alt="" />
-                      <h2>$<%=randomProducts[i].price%>
-                      </h2>
-                      <p>
-                        <%=randomProducts[i].name%>
-                      </p>
-                      <button type="button" class="btn btn-default add-to-cart">
-                        <i class="fa fa-shopping-cart"></i>Add to cart
-                      </button>
+                <div class="col-sm-4">
+                  <div class="product-image-wrapper">
+                    <div class="single-products">
+                      <div class="productinfo text-center">
+                        <img src="<%=randomProducts[i].mainImage%>" alt="" />
+                        <h2>$<%=randomProducts[i].price%>
+                        </h2>
+                        <p>
+                          <%=randomProducts[i].name%>
+                        </p>
+                        <button type="button" class="btn btn-default add-to-cart">
+                          <i class="fa fa-shopping-cart"></i>Add to cart
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <% } %>
+                <% } %>
             </div>
           </div>
         </div>
@@ -411,31 +503,46 @@
 
   <script>
     function updateMainImage(imageUrl, colorName, element) {
-      const mainImage = document.getElementById('main-product-image');
-      mainImage.src = imageUrl;
-      console.log(mainImage);
-      const selectedColor = document.getElementById('selected-color');
-      selectedColor.textContent = colorName;
+      // Cập nhật hình ảnh chính
+      const mainImage = document.querySelector(".tab-content .tab-pane.active img");
+      if (mainImage) {
+        mainImage.src = imageUrl;
+      }
 
-      const colorCircles = document.querySelectorAll('.color-circle');
-      colorCircles.forEach(circle => circle.classList.remove('selected'));
+      // Hiển thị màu được chọn (nếu cần)
+      const selectedColor = document.getElementById("selected-color");
+      if (selectedColor) {
+        selectedColor.textContent = colorName;
+      }
 
-      element.classList.add('selected');
+      // Cập nhật trạng thái các ô màu (deselect tất cả, chọn lại ô màu hiện tại)
+      const colorCircles = document.querySelectorAll(".color-circle");
+      colorCircles.forEach(circle => circle.classList.remove("selected"));
+      if (element) {
+        element.classList.add("selected");
+      }
     }
 
     function decreaseQuantity() {
-      const qtyInput = document.getElementById('quantity');
-      let qty = parseInt(qtyInput.value);
-      if (qty > 1) {
-        qtyInput.value = qty - 1;
+      const qtyInput = document.getElementById("quantity");
+      if (qtyInput) {
+        let qty = parseInt(qtyInput.value, 10);
+        if (!isNaN(qty) && qty > 1) {
+          qtyInput.value = qty - 1;
+        }
       }
     }
 
     function increaseQuantity() {
-      const qtyInput = document.getElementById('quantity');
-      let qty = parseInt(qtyInput.value);
-      qtyInput.value = qty + 1;
+      const qtyInput = document.getElementById("quantity");
+      if (qtyInput) {
+        let qty = parseInt(qtyInput.value, 10);
+        if (!isNaN(qty)) {
+          qtyInput.value = qty + 1;
+        }
+      }
     }
+
   </script>
 
 </body>

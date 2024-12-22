@@ -3,6 +3,7 @@ const bcrypt = require("bcrypt");
 const ProductCategory = require("./../models/product-category.model");
 const Product = require("./../models/product.model");
 const User = require("./../models/user.model");
+const Comment = require("./../models/comment.model");
 const colors = require("./../constant/color.constant");
 const productType = require("./../constant/product-type.constant");
 const shirtSizes = require("./../constant/shirt-size.constant");
@@ -1606,11 +1607,111 @@ const generateProduct = async () => {
   console.log("Product added successfully");
 };
 
+const generateComment = async () => {
+  const mockComment = [
+    'This is a great product!',
+    'I love this product!',
+    'The quality is amazing!',
+    'The product is exactly as described!',
+    'I would definitely recommend this product!',
+    'The product is worth the price!',
+    'I am very satisfied with this product!',
+    'The product is very comfortable!',
+    'I am very happy with this product!',
+    'The product is very stylish!',
+    'The product is very durable!',
+    'The product is very versatile!',
+    'I am very impressed with this product!',
+    'The product is very trendy!',
+    'The product is very fashionable!',
+    'I am very pleased with this product!',
+    'The product is very high quality!',
+    'The product is very soft and comfortable!',
+    'The product is very lightweight',
+    'The product is very lightweight!',
+    'The product is very breathable!',
+    'The product is very easy to clean!',
+    'The product is very well-made!',
+    'The product is very affordable!',
+    'The product is very practical!',
+    'The product is very elegant!',
+    'The product is very chic!',
+    'The product is very modern!',
+    'The product is very classic!',
+    'The product is very unique!',
+    'The product is very eye-catching!',
+    'The product is very comfortable to wear!',
+    'The product is very easy to wear!',
+    'The product is very functional!',
+    'The product is very stylish and comfortable!',
+    'The product is very soft!',
+    'The product is very warm!',
+    'The product is very cool!',
+    'The product is very trendy and fashionable!',
+    'The product is very high-end!',
+    'The product is very luxurious!',
+    'The product is very premium!',
+    'The product is very durable and long-lasting!',
+    'The product is very versatile and practical!',
+    'The product is very well-designed!',
+    'The product is very high-quality and well-made!',
+    'The product is very comfortable and stylish!',
+    'The product is very soft and cozy!',
+    'The product is very lightweight and breathable!',
+    'The product is very easy to care for!',
+    'The product is very affordable and practical!',
+    'The product is very elegant and chic!',
+    'The product is very modern and stylish!',
+    'The product is very classic and timeless!',
+    'The product is very unique and eye-catching!',
+    'The product is very comfortable and easy to wear!',
+    'The product is very functional and practical!',
+    'The product is very stylish and trendy!',
+    'The product is very soft and warm!',
+    'The product is very cool and trendy!',
+    'The product is very high-end and luxurious!',
+    'The product is very premium and well-made!',
+    'The product is very durable and long-lasting!',
+    'The product is very versatile and practical!',
+    'The product is very well-designed and stylish!',
+    'The product is very high-quality and comfortable!',
+    'The product is very soft and cozy!',
+    'The product is very lightweight and breathable!'
+  ];
+
+  const users = await User.find({}, { _id: 1 });
+  const products = await Product.find({}, { _id: 1 });
+
+  const createCommentPromise = [];
+
+  products.forEach(async (product) => {
+    for (let i = 0; i < 5; i++) {
+      const randomUser = users[Math.floor(Math.random() * users.length)];
+      const randomComment = mockComment[Math.floor(Math.random() * mockComment.length)];
+      const randomRate = Math.floor(Math.random() * 5) + 1;
+      createCommentPromise.push(
+        Comment.create({
+          content: randomComment,
+          rate: randomRate,
+          _user: randomUser._id,
+          _product: product._id,
+        })
+      );
+    }
+
+    await Promise.all(createCommentPromise);
+  });
+
+  await Promise.all(createCommentPromise);
+  console.log("Comments added successfully");
+}
+
 const main = async () => {
   await clearDatabase();
   await generateUser(mockUsers);
   await generateProductCategories(mockProductCategories);
   await generateProduct();
+  await generateComment();
 };
 
 main();
