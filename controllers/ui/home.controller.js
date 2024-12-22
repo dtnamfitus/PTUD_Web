@@ -3,10 +3,11 @@ const renderLayout = require("./renderLayout");
 
 const getHome = async (req, res) => {
   try {
-    const products = await productService.getAllProducts(req);
     const user = req.user;
+    const newArrivals = await productService.getAllProducts({query: {page: 1, limit: 6, sort: "createdAt"}});
+
     const bodyHtml = await new Promise((resolve, reject) => {
-      res.render("client/home", { products: products.docs }, (err, html) => {
+      res.render("client/home", { products: newArrivals.docs }, (err, html) => {
         if (err) return reject(err);
         resolve(html);
       });

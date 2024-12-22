@@ -1,11 +1,10 @@
 const productService = require("../../services/product.service");
 const productCategoryService = require("../../services/product-category.service");
+const commentService = require("../../services/comment.service");
 const renderLayout = require("./renderLayout");
 
 const getProducts = async (req, res) => {
   try {
-    const user = req.user;
-    console.log(user);
     const [products, productCategories] = await Promise.all([
       productService.getAllProducts(req),
       productCategoryService.getProductCategories(),
@@ -30,9 +29,10 @@ const getProducts = async (req, res) => {
 const getProductDetails = async (req, res) => {
   try {
     const { id } = req.params;
-    const [product, productCategories] = await Promise.all([
+    const [product, productCategories, comments] = await Promise.all([
       productService.getProductById(id),
       productCategoryService.getProductCategories(),
+      commentService.getCommentByProductId(id),
     ]);
 
     const randomProducts = await productService.getRandomProducts(product);
@@ -43,6 +43,7 @@ const getProductDetails = async (req, res) => {
           product: product,
           productCategories: productCategories,
           randomProducts: randomProducts,
+          comments: comments,
         },
         (err, html) => {
           if (err) return reject(err);
