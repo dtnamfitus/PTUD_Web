@@ -26,6 +26,9 @@ const getUser = async (query) => {
 
 const updateUser = async (id, userData) => {
   try {
+    if (userData.password) {
+      delete userData.password;
+    }
     const user = await User.findByIdAndUpdate(id, userData, { new: true });
     return user;
   } catch (err) {
@@ -49,9 +52,19 @@ const loginUser = async (email, password) => {
   }
 };
 
+const getUserById = async (id) => {
+  try {
+    const user = await User.findById(id);
+    return user;
+  } catch (err) {
+    throw new Error("Error fetching user: " + err.message);
+  }
+};
+
 module.exports = {
   createUser,
   getUser,
   updateUser,
   loginUser,
+  getUserById,
 };

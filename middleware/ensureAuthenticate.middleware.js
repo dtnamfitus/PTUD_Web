@@ -4,3 +4,5 @@ function ensureAuthenticated(req, res, next) {
   }
   res.redirect("/client/auth/login?error=You must be logged in");
 }
+
+module.exports = ensureAuthenticated;
