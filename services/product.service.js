@@ -64,7 +64,7 @@ const getAllProducts = async (req) => {
 
 const getProductById = async (id) => {
   try {
-    const product = await Product.findById(id).populate("categories");
+    const product = await Product.findById(id).populate("categories").populate("_manufacturer");
     if (!product) {
       throw new Error("Product not found");
     }

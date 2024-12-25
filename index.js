@@ -18,6 +18,10 @@ require("./models/product-category.model");
 require("./models/product.model");
 require("./models/user.model");
 require("./models/comment.model");
+require("./models/manufacturer.model");
+require("./models/order.model");
+require("./models/cart.model");
+require("./models/order-item.model");
 
 const app = express();
 

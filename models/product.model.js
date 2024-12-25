@@ -59,6 +59,12 @@ const productSchema = new mongoose.Schema(
           `Invalid size(s) for the selected type: ${props.value.join(", ")}.`,
       },
     },
+    stock: { type: Number, required: true },
+    _manufacturer: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Manufacturer",
+      required: true,
+    },
   },
   { timestamps: true }
 );
