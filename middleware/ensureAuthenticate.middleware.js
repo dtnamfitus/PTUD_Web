@@ -1,8 +1,9 @@
 function ensureAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) {
+  if (req.isAuthenticated() && req.user?.isVerified === true) {
     return next();
   }
-  res.redirect("/client/auth/login?error=You must be logged in");
+  req.flash("error", "You must be logged in");
+  return res.redirect("/client/auth/login");
 }
 
 module.exports = ensureAuthenticated;

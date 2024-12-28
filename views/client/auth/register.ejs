@@ -214,11 +214,21 @@
           </div>
           <button type="submit" class="btn btn-default">Register</button>
         </form>
-        <div class="additional-links">
-          <p>Already have an account? <a href="/client/auth/login">Login here</a></p>
-        </div>
+        <% if (flashErrors && flashErrors.length) { %>
+          <div class="alert alert-danger" style="margin-bottom: 20px;">
+            <ul style="margin: 0; padding-left: 18px;">
+              <% flashErrors.forEach(function(error) { %>
+                <li>
+                  <%= error %>
+                </li>
+                <% }); %>
+            </ul>
+          </div>
+          <% } %>
+            <div class="additional-links">
+              <p>Already have an account? <a href="/client/auth/login">Login here</a></p>
+            </div>
       </div>
-
       <div class="register-image"></div>
     </div>
   </section>

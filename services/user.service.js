@@ -7,6 +7,8 @@ const createUser = async (userData) => {
     const user = new User({
       ...userData,
       password: hashedPassword,
+      isVerified: false,
+      isAdmin: false,
     });
     await user.save();
     return user;
