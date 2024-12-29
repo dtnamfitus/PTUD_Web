@@ -38,16 +38,16 @@ const getProductDetails = async (req, res) => {
       productCategoryService.getProductCategories(),
       commentService.getCommentByProductId(id),
     ]);
-
+    console.log(JSON.stringify(product.value.colors, null, 2));
     const randomProducts = await productService.getRandomProducts(product);
     const bodyHtml = await new Promise((resolve, reject) => {
       res.render(
         "client/products/product_detail",
         {
-          product: product,
+          product: product.value,
           productCategories: productCategories,
           randomProducts: randomProducts,
-          comments: comments,
+          comments: comments.value,
         },
         (err, html) => {
           if (err) return reject(err);

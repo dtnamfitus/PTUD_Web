@@ -303,6 +303,13 @@
     }
 
     /*# sourceMappingURL=style.css.map */
+    .color-circle {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      margin: 5px;
+      border: 1px solid #ccc;
+    }
   </style>
 
   <!-- review -->
@@ -400,12 +407,13 @@
                   <div style="margin-bottom: 5px;">colors:</div>
                   <div style="display: flex;">
                     <% for (let i=0; i < product.colors.length; i++) { %>
-                      <div class="color-circle" style="background-color: <%= product.colors[i].color_name %>"
+                      <div class="color-circle" style="background-color: <%= product.colors[i].color_name %>;"
                         data-color="<%= product.colors[i].color_name %>" data-image="<%= product.colors[i].images[0] %>"
                         onclick="updateMainImage('<%= product.colors[i].images[0] %>', '<%= product.colors[i].color_name %>', this)">
                       </div>
                       <% } %>
                   </div>
+
                 </h5>
                 <div class="product-quantity">
                   <label>Quantity:</label>
@@ -427,34 +435,34 @@
 
         <div class="product-comments" style="margin-top: 30px;">
           <% for (let j=0; j < comments.length; j++) { %>
-          <div class="comment">
-            <div class="ClientReview_Top">
-              <div class="ClientReview_Pfp">
-                <!-- Client's Profile Picture -->
-                <img
-                  src="<%= comments[j]._user.avatar %>" />
+            <div class="comment">
+              <div class="ClientReview_Top">
+                <div class="ClientReview_Pfp">
+                  <!-- Client's Profile Picture -->
+                  <img src="<%= comments[j]._user.avatar %>" />
+                </div>
+                <div class="ClientReview_Stars">
+                  <% for (let x=0; x < comments[j].rate; x++) { %>
+                    ★
+                    <% } %>
+                      <% for (let y=0; y < 5 - comments[j].rate; y++) { %>
+                        ☆
+                        <% } %>
+                </div>
               </div>
-              <div class="ClientReview_Stars">
-                <% for (let x=0; x < comments[j].rate; x++) { %>
-                  ★
-                <% } %>
-                <% for (let y=0; y < 5 - comments[j].rate; y++) { %>
-                  ☆
-                <% } %>
+              <div class="ClientReview_Body">
+                <%= comments[j].content %>
+              </div>
+              <div class="ClientReview_Name">
+                —
+                <%= comments[j]._user.firstName %>
+                  <%= comments[j]._user.lastName %>
+              </div>
+              <div class="ClientReview_Img">
+                <img src="https://edgelaw.kinsta.cloud/wp-content/uploads/white-logo.png" />
               </div>
             </div>
-            <div class="ClientReview_Body">
-              <%= comments[j].content %>
-            </div>
-            <div class="ClientReview_Name">
-              —
-              <%= comments[j]._user.firstName %> <%= comments[j]._user.lastName %>
-            </div>
-            <div class="ClientReview_Img">
-              <img src="https://edgelaw.kinsta.cloud/wp-content/uploads/white-logo.png" />
-            </div>
-          </div>
-          <% } %>
+            <% } %>
         </div>
 
         <div class="recommended_items">
@@ -503,19 +511,16 @@
 
   <script>
     function updateMainImage(imageUrl, colorName, element) {
-      // Cập nhật hình ảnh chính
       const mainImage = document.querySelector(".tab-content .tab-pane.active img");
       if (mainImage) {
         mainImage.src = imageUrl;
       }
 
-      // Hiển thị màu được chọn (nếu cần)
       const selectedColor = document.getElementById("selected-color");
       if (selectedColor) {
         selectedColor.textContent = colorName;
       }
 
-      // Cập nhật trạng thái các ô màu (deselect tất cả, chọn lại ô màu hiện tại)
       const colorCircles = document.querySelectorAll(".color-circle");
       colorCircles.forEach(circle => circle.classList.remove("selected"));
       if (element) {
