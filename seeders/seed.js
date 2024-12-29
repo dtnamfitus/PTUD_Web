@@ -1813,12 +1813,21 @@ const generateComment = async () => {
 };
 
 const main = async () => {
-  await clearDatabase();
-  await generateManufacturer(mockManufacturers);
-  await generateUser(mockUsers);
-  await generateProductCategories(mockProductCategories);
-  await generateProduct();
-  await generateComment();
+  try {
+    await clearDatabase();
+    await generateManufacturer(mockManufacturers);
+    await generateUser(mockUsers);
+    await generateProductCategories(mockProductCategories);
+    await generateProduct();
+    await generateComment();
+    console.log("All tasks completed successfully.");
+  } catch (err) {
+    console.error("An error occurred:", err);
+    process.exit(1);
+  }
+  process.exit(0);
 };
+
+main();
 
 main();
