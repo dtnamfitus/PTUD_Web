@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Detail</title>
+  <!-- Bootstrap 3 CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <style>
+    .form-control[disabled] {
+      background-color: #f9f9f9;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+      <li class="active"><a href="#profile" role="tab" data-toggle="tab">User Profile</a></li>
+      <li><a href="#change-password" role="tab" data-toggle="tab">Change Password</a></li>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+      <!-- User Profile Tab -->
+      <div role="tabpanel" class="tab-pane active" id="profile">
+        <% if (typeof flashSuccesses !=='undefined' ) { %>
+          <div class="alert alert-success" style="margin-bottom: 20px; margin-top: 20px;">
+            <ul style="margin: 0; padding-left: 18px;">
+              <% flashSuccesses.forEach(function(error) { %>
+                <li>
+                  <%= error %>
+                </li>
+                <% }); %>
+            </ul>
+          </div>
+          <% } %>
+
+            <form class="form-horizontal" style="margin-top: 20px;">
+              <div class="form-group">
+                <div class="col-sm-3 text-center">
+                  <img src="<%= user.avatar ? user.avatar : '/images/default/default_avatar.png' %>" alt="Avatar"
+                    class="img-thumbnail" id="avatar-preview" style="width: 150px; height: 150px;">
+                  <button type="button" class="btn btn-primary" style="margin-top: 10px;" id="upload-avatar-btn">Upload
+                    Avatar</button>
+                  <input type="file" class="form-control" id="avatar-input" accept="image/*" style="margin-top: 10px;">
+                </div>
+                <div class="col-sm-9">
+                  <div class="form-group">
+                    <label class="control-label">First Name</label>
+                    <input type="text" class="form-control" placeholder="Enter your first name" disabled>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label">Last Name</label>
+                    <input type="text" class="form-control" placeholder="Enter your last name" disabled>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label">Email</label>
+                    <input type="email" class="form-control" placeholder="Enter your email" disabled>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label">Gender</label>
+                    <select class="form-control" value="<%= user.gender %>" disabled>
+                      <option value="male">Male</option>
+                      <option value="female">Female</option>
+                      <option value="other">Other</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label">Birth Date</label>
+                    <input type="date" class="form-control" value="<%= user.birthDate 
+                ? new Date(user.birthDate).toISOString().split('T')[0] : '' %>" disabled>
+                  </div>
+                  <button type="button" class="btn btn-primary" id="edit-btn">Edit</button>
+                  <button type="submit" class="btn btn-primary" disabled id="save-btn">Save Changes</button>
+                </div>
+              </div>
+            </form>
+      </div>
+
+      <!-- Change Password Tab -->
+      <div role="tabpanel" class="tab-pane" id="change-password">
+        <form class="form-horizontal" id="change-password-form" style="margin-top: 20px;"
+          action="/client/profile/change-password" method="post">
+          <div class="form-group">
+            <label class="col-sm-2 control-label">New Password</label>
+            <div class="col-sm-10">
+              <input type="password" class="form-control" id="new-password" placeholder="Enter new password"
+                name="newPassword">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Confirm Password</label>
+            <div class="col-sm-10">
+              <input type="password" class="form-control" id="confirm-password" placeholder="Confirm new password"
+                name="confirmPassword">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <button type="subit" class="btn btn-danger" id="change-password-btn">Change Password</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap 3 JavaScript -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script>
+    document.getElementById('edit-btn').addEventListener('click', function () {
+      const formControls = document.querySelectorAll('#profile .form-control');
+      formControls.forEach(function (control) {
+        if (control.type !== 'email') {
+          control.disabled = false;
+        }
+      });
+      document.getElementById('save-btn').disabled = false;
+    });
+
+    document.getElementById('upload-avatar-btn').addEventListener('click', function () {
+      const fileInput = document.getElementById('avatar-input');
+      const file = fileInput.files[0];
+
+      if (!file || !file.type.startsWith('image/')) {
+        alert('Please select a valid image file.');
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append('avatar', file);
+
+      fetch('/client/profile/upload-avatar', {
+        method: 'PUT',
+        body: formData
+      })
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            alert('Avatar updated successfully!');
+            document.getElementById('avatar-preview').src = URL.createObjectURL(file);
+          } else {
+            alert('Failed to update avatar.');
+          }
+        })
+        .catch(error => {
+          window.location.href = '/client/profile';
+        });
+    });
+  </script>
+</body>
+
+</html>

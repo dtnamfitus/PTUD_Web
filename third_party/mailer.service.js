@@ -1,4 +1,5 @@
 const nodemailer = require("nodemailer");
+const emailQueue = require("../worker/email.worker");
 require("dotenv").config();
 
 const transporter = nodemailer.createTransport({
@@ -13,24 +14,16 @@ const transporter = nodemailer.createTransport({
 
 const sendEmail = async (to, subject, templateName, templateData) => {
   try {
-    const templatePath = path.join(
-      __dirname,
-      "email_templates",
-      `${templateName}.ejs`
-    );
-
-    const html = await ejs.renderFile(templatePath, templateData);
-
-    const info = await transporter.sendMail({
-      from: '"E Shopper" <eshopper@info.com>',
+    await emailQueue.add({
       to,
       subject,
-      html,
+      templateName,
+      templateData,
     });
 
-    return info;
+    return { status: "Email job added to queue" };
   } catch (error) {
-    throw new Error("Error sending email: " + error.message);
+    throw new Error("Error adding email job to queue: " + error.message);
   }
 };
 

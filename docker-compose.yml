@@ -50,5 +50,19 @@ services:
     volumes:
       - elasticsearch_data:/usr/share/elasticsearch/data
 
+  redis:
+    image: redis:latest
+    container_name: redis
+    ports:
+      - "6379:6379"
+    environment:
+      - REDISPASSWORD=root
+    command: >
+      redis-server --requirepass root
+    volumes:
+      - redis_data:/data
+
 volumes:
   mongo_data:
+  elasticsearch_data:
+  redis_data:

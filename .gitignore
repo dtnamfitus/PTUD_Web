@@ -60,3 +60,6 @@ temp/
 # Lint/styling results
 lint-staged.config.js
 prettier.config.js
+
+# Storage
+public/images/storage
