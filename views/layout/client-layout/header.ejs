@@ -97,15 +97,19 @@
               <li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li>
               <li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Cart</a></li>
               <% if (user!==undefined) { %>
-              <li>
-                <a href="/client/auth/profile">
-                  Hi <div style="font-weight: 500;"><%= user.firstName %> <%= user.lastName %> </div>
-                  <img src="<%= user.avatar %>" alt="Avatar" class="avatar">
-                </a>
-              </li>
-              <% } else { %>
-              <li><a href="/client/auth/login"><i class="fa fa-lock"></i> Login</a></li>
-              <% } %>
+                <li>
+                  <a href="/client/profile">
+                    Hi <div style="font-weight: 500;">
+                      <%= user.firstName %>
+                        <%= user.lastName %>
+                    </div>
+                    <img src="<%= user.avatar ? user.avatar : '/images/default/default_avatar.png' %>" alt="Avatar"
+                      class="avatar">
+                  </a>
+                </li>
+                <% } else { %>
+                  <li><a href="/client/auth/login"><i class="fa fa-lock"></i> Login</a></li>
+                  <% } %>
             </ul>
           </div>
         </div>

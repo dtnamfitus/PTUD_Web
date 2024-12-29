@@ -4,7 +4,7 @@ const mongoosePaginate = require("mongoose-paginate-v2");
 const userSchema = new mongoose.Schema(
   {
     email: { type: String, required: true, unique: true },
-    password: { type: String, required: true },
+    password: { type: String, required: true, select: false },
     firstName: { type: String, required: true },
     lastName: { type: String, required: true },
     gender: { type: String, required: true },
@@ -12,6 +12,8 @@ const userSchema = new mongoose.Schema(
     avatar: { type: String, default: null },
     isAdmin: { type: Boolean, default: false },
     isVerified: { type: Boolean, default: false },
+    otp: { type: String, select: false },
+    otpExpiresAt: { type: Date, select: false },
   },
   { timestamps: true }
 );

@@ -5,7 +5,7 @@ const renderLayout = require("./renderLayout");
 
 const getProducts = async (req, res) => {
   try {
-    const [products, productCategories] = await Promise.all([
+    const [products, productCategories] = await Promise.allSettled([
       productService.getAllProducts(req),
       productCategoryService.getProductCategories(),
     ]);
@@ -29,7 +29,7 @@ const getProducts = async (req, res) => {
 const getProductDetails = async (req, res) => {
   try {
     const { id } = req.params;
-    const [product, productCategories, comments] = await Promise.all([
+    const [product, productCategories, comments] = await Promise.allSettled([
       productService.getProductById(id),
       productCategoryService.getProductCategories(),
       commentService.getCommentByProductId(id),

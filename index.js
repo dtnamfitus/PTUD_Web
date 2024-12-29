@@ -6,6 +6,7 @@ const path = require("path");
 const session = require("express-session");
 const flash = require("connect-flash");
 const MongoStore = require("connect-mongo");
+const cookieParser = require("cookie-parser");
 
 const route = require("./routes");
 const passport = require("./config/passport");
@@ -27,6 +28,8 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(cookieParser());
 
 app.use(morgan("dev"));
 

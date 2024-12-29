@@ -42,4 +42,10 @@ router.get(
   })
 );
 
+router.get("/verify-account", uiAuthController.getOTPUI);
+
+router.get("/send-otp", uiAuthController.sendOTP);
+
+router.post("/verify-otp", uiAuthController.verifyOTP);
+
 module.exports = router;
