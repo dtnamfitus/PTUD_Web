@@ -1,9 +1,7 @@
 const Product = require("./../models/product.model");
-const qs = require("qs");
 
-const getAllProducts = async (req) => {
+const getAllProducts = async (parsedQuery) => {
   try {
-    const parsedQuery = qs.parse(req.query);
     const {
       page,
       limit,
@@ -64,7 +62,9 @@ const getAllProducts = async (req) => {
 
 const getProductById = async (id) => {
   try {
-    const product = await Product.findById(id).populate("categories").populate("_manufacturer");
+    const product = await Product.findById(id)
+      .populate("categories")
+      .populate("_manufacturer");
     if (!product) {
       throw new Error("Product not found");
     }

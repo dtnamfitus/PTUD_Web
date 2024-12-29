@@ -81,6 +81,7 @@ jobs:
             tar -xzvf dist.tar.gz
             cd dist
             /home/ubuntu/.nvm/versions/node/v20.18.1/bin/npm install
+            /home/ubuntu/.nvm/versions/node/v20.18.1/bin/npm run seed
             /home/ubuntu/.nvm/versions/node/v20.18.1/bin/pm2 start ecosystem.config.js
           EOF
 

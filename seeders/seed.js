@@ -4,9 +4,11 @@ const ProductCategory = require("./../models/product-category.model");
 const Product = require("./../models/product.model");
 const User = require("./../models/user.model");
 const Comment = require("./../models/comment.model");
+const Manufacturer = require("./../models/manufacturer.model");
 const colors = require("./../constant/color.constant");
 const productType = require("./../constant/product-type.constant");
 const shirtSizes = require("./../constant/shirt-size.constant");
+require("dotenv").config();
 
 mongoose
   .connect(process.env.MONGODB_URL || "mongodb://root:root@localhost:27017")
@@ -16,7 +18,6 @@ mongoose
   .catch((err) => {
     console.error("Error connecting to MongoDB", err);
   });
-
 const mockUsers = [
   {
     email: "rbutters0@icq.com",
@@ -1190,6 +1191,89 @@ const mockProductCategories = [
   { name: "Kidswear", description: "Clothes designed for children." },
 ];
 
+const mockManufacturers = [
+  {
+    name: "Fashionista Co.",
+    description: "Specializing in trendy casual wear for young adults.",
+  },
+  {
+    name: "Global Trends Inc.",
+    description: "Affordable and stylish streetwear manufacturer.",
+  },
+  {
+    name: "EcoWear Ltd.",
+    description: "Eco-friendly clothing made from sustainable materials.",
+  },
+  {
+    name: "Vintage Vogue",
+    description: "Luxury vintage-inspired clothing brand.",
+  },
+  {
+    name: "Urban Streetwear",
+    description: "Pioneers in urban and street fashion.",
+  },
+  {
+    name: "Classic Comfort",
+    description: "Premium classic wear focused on comfort and durability.",
+  },
+  {
+    name: "Athleisure Pros",
+    description: "Activewear blending sports and casual fashion.",
+  },
+  {
+    name: "Denim Dreams",
+    description: "Experts in high-quality denim jeans and jackets.",
+  },
+  {
+    name: "Elegance Couture",
+    description: "Sophisticated formal wear for special occasions.",
+  },
+  {
+    name: "Youth Threads",
+    description: "Casual and colorful apparel for teenagers.",
+  },
+  {
+    name: "Bold Basics",
+    description: "Minimalist designs with bold, clean cuts.",
+  },
+  {
+    name: "Silk & Style",
+    description: "Luxury silk clothing with timeless designs.",
+  },
+  {
+    name: "Modern Nomad",
+    description: "Bohemian and travel-inspired apparel brand.",
+  },
+  {
+    name: "Cotton Comforts",
+    description: "Soft and breathable cotton-based clothing.",
+  },
+  {
+    name: "Heritage Wear",
+    description: "Cultural and traditional designs with a modern twist.",
+  },
+  {
+    name: "NextGen Fashion",
+    description: "Tech-inspired futuristic clothing designs.",
+  },
+  {
+    name: "Warm Winters",
+    description: "Specialized in cozy winter wear and accessories.",
+  },
+  {
+    name: "Spring Bloom",
+    description: "Floral and pastel designs for spring and summer.",
+  },
+  {
+    name: "Chic & Co.",
+    description: "Elegant everyday wear with a chic touch.",
+  },
+  {
+    name: "TrendWeave",
+    description: "Fast fashion for the trendsetters of today.",
+  },
+];
+
 const clearDatabase = async () => {
   try {
     await User.deleteMany({});
@@ -1199,6 +1283,11 @@ const clearDatabase = async () => {
   } catch (err) {
     console.error("Error clearing database:", err);
   }
+};
+
+const generateManufacturer = async (mockManufacturer) => {
+  await Manufacturer.insertMany(mockManufacturer);
+  console.log("Manufacturers added successfully!");
 };
 
 const generateUser = async (mockUser) => {
@@ -1224,6 +1313,7 @@ const generateProductCategories = async (mockProductCategories) => {
 
 const generateProduct = async () => {
   const productCategories = await ProductCategory.find({});
+  const manufacturers = await Manufacturer.find({});
   const obj = {};
   productCategories.map((productCategory) => {
     obj[productCategory.name] = productCategory._id.toString();
@@ -1306,6 +1396,7 @@ const generateProduct = async () => {
         shirtSizes.L,
         shirtSizes.XL,
       ],
+      stock: 10,
     },
     {
       name: "Ultra Light Down Jacket",
@@ -1354,6 +1445,7 @@ const generateProduct = async () => {
         shirtSizes.L,
         shirtSizes.XL,
       ],
+      stock: 10,
     },
     {
       name: "ARCANE LEAGUE OF LEGENDS UT Graphic T-Shirt",
@@ -1380,6 +1472,7 @@ const generateProduct = async () => {
       ],
       categories: [new mongoose.Types.ObjectId(obj['"T-Shirts"'])],
       type: productType.TOP_WEAR,
+      stock: 10,
     },
     {
       name: "ARCANE LEAGUE OF LEGENDS UT Graphic T-Shirt",
@@ -1406,6 +1499,7 @@ const generateProduct = async () => {
       ],
       categories: [new mongoose.Types.ObjectId(obj['"T-Shirts"'])],
       type: productType.TOP_WEAR,
+      stock: 10,
     },
     {
       name: "ARCANE LEAGUE OF LEGENDS UT Graphic T-Shirt",
@@ -1423,6 +1517,7 @@ const generateProduct = async () => {
       size: [shirtSizes.XXS, shirtSizes.XXL, shirtSizes.XXXL],
       categories: [new mongoose.Types.ObjectId(obj['"T-Shirts"'])],
       type: productType.TOP_WEAR,
+      stock: 10,
     },
     {
       name: "Round Mini Shoulder Bag | Striped",
@@ -1446,6 +1541,7 @@ const generateProduct = async () => {
       size: [],
       categories: [new mongoose.Types.ObjectId(obj['"Accessories"'])],
       type: productType.ACCESSORIES,
+      stock: 10,
     },
     {
       name: "Unsodo Open Collar Shirt | Short Sleeve | Printed",
@@ -1471,6 +1567,7 @@ const generateProduct = async () => {
       ],
       categories: [new mongoose.Types.ObjectId(obj['"Shirts"'])],
       type: productType.TOP_WEAR,
+      stock: 10,
     },
     {
       name: "Unsodo Open Collar Shirt | Short Sleeve | Printed",
@@ -1496,6 +1593,7 @@ const generateProduct = async () => {
       ],
       categories: [new mongoose.Types.ObjectId(obj['"Shirts"'])],
       type: productType.TOP_WEAR,
+      stock: 10,
     },
     {
       name: "The SAKE Collection UT Graphic T-Shirt",
@@ -1522,6 +1620,7 @@ const generateProduct = async () => {
       ],
       categories: [new mongoose.Types.ObjectId(obj['"T-Shirts"'])],
       type: productType.TOP_WEAR,
+      stock: 10,
     },
     {
       name: "The SAKE Collection UT Graphic T-Shirt",
@@ -1548,6 +1647,7 @@ const generateProduct = async () => {
       ],
       categories: [new mongoose.Types.ObjectId(obj['"T-Shirts"'])],
       type: productType.TOP_WEAR,
+      stock: 10,
     },
     {
       name: "Italian Leather Slide Buckle Belt",
@@ -1571,6 +1671,7 @@ const generateProduct = async () => {
       size: [shirtSizes.M, shirtSizes.L, shirtSizes.XL],
       categories: [new mongoose.Types.ObjectId(obj['"Accessories"'])],
       type: productType.ACCESSORIES,
+      stock: 10,
     },
     {
       name: "Italian Leather Garrison Belt",
@@ -1594,89 +1695,93 @@ const generateProduct = async () => {
       size: [shirtSizes.M, shirtSizes.L, shirtSizes.XL],
       categories: [new mongoose.Types.ObjectId(obj['"Accessories"'])],
       type: productType.ACCESSORIES,
+      stock: 10,
     },
   ];
 
-  const createProductPromise = [];
-
-  mockProduct.map((product) => {
-    createProductPromise.push(Product.create(product));
+  mockProduct.map(async (product) => {
+    const randomIndexManufacturer = Math.floor(
+      Math.random() * manufacturers.length
+    );
+    await Product.create({
+      ...product,
+      _manufacturer: manufacturers[randomIndexManufacturer]._id,
+    });
   });
 
-  await Promise.all(createProductPromise);
   console.log("Product added successfully");
 };
 
 const generateComment = async () => {
   const mockComment = [
-    'This is a great product!',
-    'I love this product!',
-    'The quality is amazing!',
-    'The product is exactly as described!',
-    'I would definitely recommend this product!',
-    'The product is worth the price!',
-    'I am very satisfied with this product!',
-    'The product is very comfortable!',
-    'I am very happy with this product!',
-    'The product is very stylish!',
-    'The product is very durable!',
-    'The product is very versatile!',
-    'I am very impressed with this product!',
-    'The product is very trendy!',
-    'The product is very fashionable!',
-    'I am very pleased with this product!',
-    'The product is very high quality!',
-    'The product is very soft and comfortable!',
-    'The product is very lightweight',
-    'The product is very lightweight!',
-    'The product is very breathable!',
-    'The product is very easy to clean!',
-    'The product is very well-made!',
-    'The product is very affordable!',
-    'The product is very practical!',
-    'The product is very elegant!',
-    'The product is very chic!',
-    'The product is very modern!',
-    'The product is very classic!',
-    'The product is very unique!',
-    'The product is very eye-catching!',
-    'The product is very comfortable to wear!',
-    'The product is very easy to wear!',
-    'The product is very functional!',
-    'The product is very stylish and comfortable!',
-    'The product is very soft!',
-    'The product is very warm!',
-    'The product is very cool!',
-    'The product is very trendy and fashionable!',
-    'The product is very high-end!',
-    'The product is very luxurious!',
-    'The product is very premium!',
-    'The product is very durable and long-lasting!',
-    'The product is very versatile and practical!',
-    'The product is very well-designed!',
-    'The product is very high-quality and well-made!',
-    'The product is very comfortable and stylish!',
-    'The product is very soft and cozy!',
-    'The product is very lightweight and breathable!',
-    'The product is very easy to care for!',
-    'The product is very affordable and practical!',
-    'The product is very elegant and chic!',
-    'The product is very modern and stylish!',
-    'The product is very classic and timeless!',
-    'The product is very unique and eye-catching!',
-    'The product is very comfortable and easy to wear!',
-    'The product is very functional and practical!',
-    'The product is very stylish and trendy!',
-    'The product is very soft and warm!',
-    'The product is very cool and trendy!',
-    'The product is very high-end and luxurious!',
-    'The product is very premium and well-made!',
-    'The product is very durable and long-lasting!',
-    'The product is very versatile and practical!',
-    'The product is very well-designed and stylish!',
-    'The product is very high-quality and comfortable!',
-    'The product is very soft and cozy!',
-    'The product is very lightweight and breathable!'
+    "This is a great product!",
+    "I love this product!",
+    "The quality is amazing!",
+    "The product is exactly as described!",
+    "I would definitely recommend this product!",
+    "The product is worth the price!",
+    "I am very satisfied with this product!",
+    "The product is very comfortable!",
+    "I am very happy with this product!",
+    "The product is very stylish!",
+    "The product is very durable!",
+    "The product is very versatile!",
+    "I am very impressed with this product!",
+    "The product is very trendy!",
+    "The product is very fashionable!",
+    "I am very pleased with this product!",
+    "The product is very high quality!",
+    "The product is very soft and comfortable!",
+    "The product is very lightweight",
+    "The product is very lightweight!",
+    "The product is very breathable!",
+    "The product is very easy to clean!",
+    "The product is very well-made!",
+    "The product is very affordable!",
+    "The product is very practical!",
+    "The product is very elegant!",
+    "The product is very chic!",
+    "The product is very modern!",
+    "The product is very classic!",
+    "The product is very unique!",
+    "The product is very eye-catching!",
+    "The product is very comfortable to wear!",
+    "The product is very easy to wear!",
+    "The product is very functional!",
+    "The product is very stylish and comfortable!",
+    "The product is very soft!",
+    "The product is very warm!",
+    "The product is very cool!",
+    "The product is very trendy and fashionable!",
+    "The product is very high-end!",
+    "The product is very luxurious!",
+    "The product is very premium!",
+    "The product is very durable and long-lasting!",
+    "The product is very versatile and practical!",
+    "The product is very well-designed!",
+    "The product is very high-quality and well-made!",
+    "The product is very comfortable and stylish!",
+    "The product is very soft and cozy!",
+    "The product is very lightweight and breathable!",
+    "The product is very easy to care for!",
+    "The product is very affordable and practical!",
+    "The product is very elegant and chic!",
+    "The product is very modern and stylish!",
+    "The product is very classic and timeless!",
+    "The product is very unique and eye-catching!",
+    "The product is very comfortable and easy to wear!",
+    "The product is very functional and practical!",
+    "The product is very stylish and trendy!",
+    "The product is very soft and warm!",
+    "The product is very cool and trendy!",
+    "The product is very high-end and luxurious!",
+    "The product is very premium and well-made!",
+    "The product is very durable and long-lasting!",
+    "The product is very versatile and practical!",
+    "The product is very well-designed and stylish!",
+    "The product is very high-quality and comfortable!",
+    "The product is very soft and cozy!",
+    "The product is very lightweight and breathable!",
   ];
 
   const users = await User.find({}, { _id: 1 });
@@ -1687,7 +1792,8 @@ const generateComment = async () => {
   products.forEach(async (product) => {
     for (let i = 0; i < 5; i++) {
       const randomUser = users[Math.floor(Math.random() * users.length)];
-      const randomComment = mockComment[Math.floor(Math.random() * mockComment.length)];
+      const randomComment =
+        mockComment[Math.floor(Math.random() * mockComment.length)];
       const randomRate = Math.floor(Math.random() * 5) + 1;
       createCommentPromise.push(
         Comment.create({
@@ -1704,10 +1810,11 @@ const generateComment = async () => {
 
   await Promise.all(createCommentPromise);
   console.log("Comments added successfully");
-}
+};
 
 const main = async () => {
   await clearDatabase();
+  await generateManufacturer(mockManufacturers);
   await generateUser(mockUsers);
   await generateProductCategories(mockProductCategories);
   await generateProduct();

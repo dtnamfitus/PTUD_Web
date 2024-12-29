@@ -2,17 +2,21 @@ const productService = require("../../services/product.service");
 const productCategoryService = require("../../services/product-category.service");
 const commentService = require("../../services/comment.service");
 const renderLayout = require("./renderLayout");
+const qs = require("qs");
 
 const getProducts = async (req, res) => {
   try {
+    const parsedQuery = qs.parse(req.query);
     const [products, productCategories] = await Promise.allSettled([
-      productService.getAllProducts(req),
+      productService.getAllProducts(parsedQuery),
       productCategoryService.getProductCategories(),
     ]);
+    console.log(products);
+
     const bodyHtml = await new Promise((resolve, reject) => {
       res.render(
         "client/products/product",
-        { products: products, productCategories: productCategories },
+        { products: products.value, productCategories: productCategories },
         (err, html) => {
           if (err) return reject(err);
           resolve(html);
