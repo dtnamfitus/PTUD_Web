@@ -11,7 +11,7 @@ const profileUIRoute = require("./profile.ui");
 
 router.use("/product", productUIRoute);
 router.use("/home", homeUIRoute);
-router.use("/auth", loginUIRoute);
+// router.use("/auth", loginUIRoute);
 router.use("/cart", cartUIRoute);
 router.use("/comment", commentUIRoute);
 router.use("/profile", profileUIRoute);
