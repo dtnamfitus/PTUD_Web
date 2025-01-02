@@ -1,9 +1,21 @@
 const nodemailer = require("nodemailer");
+const renderLayout = require("./renderLayout");
 
 const getContact = async (req, res) => {
   try {
-    // Render the contact page
-    res.render("client/contact/contact", { title: "Contact Us" });
+    const bodyHtml = await new Promise((resolve, reject) => {
+      res.render(
+        "client/contact/contact",
+        { title: "Contact Us" },
+        (err, html) => {
+          if (err) return reject(err);
+          resolve(html);
+        }
+      );
+    });
+
+    // Render layout với nội dung body từ contact.ejs
+    await renderLayout(req, res, bodyHtml, "Contact Us");
   } catch (error) {
     console.error(error);
     res.status(500).send("Error loading contact page");
