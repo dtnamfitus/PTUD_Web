@@ -3,8 +3,13 @@ const mongoosePaginate = require("mongoose-paginate-v2");
 
 const productCategorySchema = new mongoose.Schema(
   {
-    name: { type: String, required: true },
+    name: { type: String, required: true, unique: true  },
     description: { type: String, default: "" },
+    status: {
+      type: String,
+      enum: ["active", "inactive"],
+      default: "active",
+    },
   },
   { timestamps: true }
 );
