@@ -9,7 +9,7 @@ const MongoStore = require("connect-mongo");
 const cookieParser = require("cookie-parser");
 
 const route = require("./routes");
-// const passport = require("./config/passport");
+const passport = require("./config/passport");
 
 const isTestEnv = process.env.NODE_ENV === "test";
 
@@ -62,8 +62,8 @@ app.use(
     },
   })
 );
-// app.use(passport.initialize());
-// app.use(passport.session());
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use(flash());
 

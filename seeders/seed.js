@@ -1348,13 +1348,13 @@ const generateProduct = async () => {
         {
           color_name: colors.wine,
           images: [
-            "https://image.uniqlo.com/UQ/ST3/vn/imagesgoods/465187/item/vngoods_42_465187_3x4.jpg?width=369",
+            "https://image.uniqlo.com/UQ/ST3/vn/imagesgoods/465187/item/vngoods_18_465187_3x4.jpg?width=369",
           ],
         },
         {
           color_name: colors.yellow,
           images: [
-            "https://image.uniqlo.com/UQ/ST3/vn/imagesgoods/465187/item/vngoods_18_465187_3x4.jpg?width=369",
+            "https://image.uniqlo.com/UQ/ST3/vn/imagesgoods/465187/item/vngoods_42_465187_3x4.jpg?width=369",
           ],
         },
         {
@@ -1368,17 +1368,11 @@ const generateProduct = async () => {
           images: [
             "https://image.uniqlo.com/UQ/ST3/vn/imagesgoods/465187/item/vngoods_59_465187_3x4.jpg?width=369",
           ],
-        },
-        {
-          color_name: colors.deepSkyBlue,
-          images: [
-            "https://image.uniqlo.com/UQ/ST3/vn/imagesgoods/465187/item/vngoods_18_465187_3x4.jpg?width=369",
-          ],
-        },
+        },  
         {
           color_name: colors.royalBlue,
           images: [
-            "https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/465187/item/goods_68_465187_3x4.jpg?width=369",
+            "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/465185/item/usgoods_67_465185_3x4.jpg?width=400 ",
           ],
         },
         {

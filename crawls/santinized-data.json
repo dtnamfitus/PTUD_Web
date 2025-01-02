@@ -11,7 +11,16 @@
         ]
       }
     ],
-    "size": ["XXS", "XS", "S", "M", "L", "XL", "XXL", "3XL"]
+    "size": [
+      "XXS",
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL",
+      "3XL"
+    ]
   },
   {
     "name": "ARCANE LEAGUE OF LEGENDS UT Graphic T-Shirt",
@@ -25,7 +34,16 @@
         ]
       }
     ],
-    "size": ["XXS", "XS", "S", "M", "L", "XL", "XXL", "3XL"]
+    "size": [
+      "XXS",
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL",
+      "3XL"
+    ]
   },
   {
     "name": "ARCANE LEAGUE OF LEGENDS UT Graphic T-Shirt",
@@ -39,7 +57,11 @@
         ]
       }
     ],
-    "size": ["XXS", "XXL", "3XL"]
+    "size": [
+      "XXS",
+      "XXL",
+      "3XL"
+    ]
   },
   {
     "name": "Round Mini Shoulder Bag | Striped",
@@ -59,7 +81,9 @@
         ]
       }
     ],
-    "size": ["One Size"]
+    "size": [
+      "One Size"
+    ]
   },
   {
     "name": "Unsodo Open Collar Shirt | Short Sleeve | Printed",
@@ -73,7 +97,15 @@
         ]
       }
     ],
-    "size": ["XXS", "XS", "S", "M", "L", "XL", "XXL"]
+    "size": [
+      "XXS",
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ]
   },
   {
     "name": "Unsodo Open Collar Shirt | Short Sleeve | Printed",
@@ -87,7 +119,15 @@
         ]
       }
     ],
-    "size": ["XXS", "XS", "S", "M", "L", "XL", "XXL"]
+    "size": [
+      "XXS",
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ]
   },
   {
     "name": "The SAKE Collection UT Graphic T-Shirt",
@@ -101,7 +141,16 @@
         ]
       }
     ],
-    "size": ["XXS", "XS", "S", "M", "L", "XL", "XXL", "3XL"]
+    "size": [
+      "XXS",
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL",
+      "3XL"
+    ]
   },
   {
     "name": "The SAKE Collection UT Graphic T-Shirt",
@@ -115,7 +164,16 @@
         ]
       }
     ],
-    "size": ["XXS", "XS", "S", "M", "L", "XL", "XXL", "3XL"]
+    "size": [
+      "XXS",
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL",
+      "3XL"
+    ]
   },
   {
     "name": "Italian Leather Slide Buckle Belt",
@@ -135,7 +193,11 @@
         ]
       }
     ],
-    "size": ["M", "L", "XL"]
+    "size": [
+      "M",
+      "L",
+      "XL"
+    ]
   },
   {
     "name": "Italian Leather Garrison Belt",
@@ -155,6 +217,10 @@
         ]
       }
     ],
-    "size": ["M", "L", "XL"]
+    "size": [
+      "M",
+      "L",
+      "XL"
+    ]
   }
 ]
