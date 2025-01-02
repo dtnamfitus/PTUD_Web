@@ -1,0 +1,32 @@
+<section id="admin-categories">
+    <div class="container">
+      <h2>Category Management</h2>
+      <a href="/admin/categories/new" class="btn btn-primary">Add New Category</a>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% categories.forEach(category => { %>
+            <tr>
+              <td><%= category.name %></td>
+              <td><%= category.description %></td>
+              <td><%= category.status %></td>
+              <td>
+                <a href="/admin/categories/<%= category._id %>/edit" class="btn btn-warning">Edit</a>
+                <form action="/admin/categories/<%= category._id %>?_method=DELETE" method="POST" style="display:inline;">
+                  <button class="btn btn-danger">Delete</button>
+                </form>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </section>
+  
