@@ -1,14 +1,19 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
+const colors = require("./../constant/color.constant");
+const productType = require("./../constant/product-type.constant");
+const shirtSizes = require("./../constant/shirt-size.constant");
+require("dotenv").config();
+
 const ProductCategory = require("./../models/product-category.model");
 const Product = require("./../models/product.model");
 const User = require("./../models/user.model");
 const Comment = require("./../models/comment.model");
 const Manufacturer = require("./../models/manufacturer.model");
-const colors = require("./../constant/color.constant");
-const productType = require("./../constant/product-type.constant");
-const shirtSizes = require("./../constant/shirt-size.constant");
-require("dotenv").config();
+const Order = require("./../models/order.model");
+const Cart = require("./../models/cart.model");
+const OrderItem = require("./../models/order-item.model");
+const ProductStock = require("./../models/product-stock.model");
 
 mongoose
   .connect(process.env.MONGODB_URL || "mongodb://root:root@localhost:27017")
@@ -1279,6 +1284,13 @@ const clearDatabase = async () => {
     await User.deleteMany({});
     await ProductCategory.deleteMany({});
     await Product.deleteMany({});
+    await Manufacturer.deleteMany({});
+    await Order.deleteMany({});
+    await OrderItem.deleteMany({});
+    await Cart.deleteMany({});
+    await ProductStock.deleteMany({});
+    await Comment.deleteMany({});
+
     console.log("Database cleared!");
   } catch (err) {
     console.error("Error clearing database:", err);
@@ -1287,7 +1299,6 @@ const clearDatabase = async () => {
 
 const generateManufacturer = async (mockManufacturer) => {
   await Manufacturer.insertMany(mockManufacturer);
-  console.log("Manufacturers added successfully!");
 };
 
 const generateUser = async (mockUser) => {
@@ -1368,7 +1379,7 @@ const generateProduct = async () => {
           images: [
             "https://image.uniqlo.com/UQ/ST3/vn/imagesgoods/465187/item/vngoods_59_465187_3x4.jpg?width=369",
           ],
-        },  
+        },
         {
           color_name: colors.royalBlue,
           images: [
@@ -1390,7 +1401,6 @@ const generateProduct = async () => {
         shirtSizes.L,
         shirtSizes.XL,
       ],
-      stock: 10,
     },
     {
       name: "Ultra Light Down Jacket",
@@ -1439,7 +1449,6 @@ const generateProduct = async () => {
         shirtSizes.L,
         shirtSizes.XL,
       ],
-      stock: 10,
     },
     {
       name: "ARCANE LEAGUE OF LEGENDS UT Graphic T-Shirt",
@@ -1466,7 +1475,6 @@ const generateProduct = async () => {
       ],
       categories: [new mongoose.Types.ObjectId(obj['"T-Shirts"'])],
       type: productType.TOP_WEAR,
-      stock: 10,
     },
     {
       name: "ARCANE LEAGUE OF LEGENDS UT Graphic T-Shirt",
@@ -1493,7 +1501,6 @@ const generateProduct = async () => {
       ],
       categories: [new mongoose.Types.ObjectId(obj['"T-Shirts"'])],
       type: productType.TOP_WEAR,
-      stock: 10,
     },
     {
       name: "ARCANE LEAGUE OF LEGENDS UT Graphic T-Shirt",
@@ -1511,7 +1518,6 @@ const generateProduct = async () => {
       size: [shirtSizes.XXS, shirtSizes.XXL, shirtSizes.XXXL],
       categories: [new mongoose.Types.ObjectId(obj['"T-Shirts"'])],
       type: productType.TOP_WEAR,
-      stock: 10,
     },
     {
       name: "Round Mini Shoulder Bag | Striped",
@@ -1535,7 +1541,6 @@ const generateProduct = async () => {
       size: [],
       categories: [new mongoose.Types.ObjectId(obj['"Accessories"'])],
       type: productType.ACCESSORIES,
-      stock: 10,
     },
     {
       name: "Unsodo Open Collar Shirt | Short Sleeve | Printed",
@@ -1561,7 +1566,6 @@ const generateProduct = async () => {
       ],
       categories: [new mongoose.Types.ObjectId(obj['"Shirts"'])],
       type: productType.TOP_WEAR,
-      stock: 10,
     },
     {
       name: "Unsodo Open Collar Shirt | Short Sleeve | Printed",
@@ -1587,7 +1591,6 @@ const generateProduct = async () => {
       ],
       categories: [new mongoose.Types.ObjectId(obj['"Shirts"'])],
       type: productType.TOP_WEAR,
-      stock: 10,
     },
     {
       name: "The SAKE Collection UT Graphic T-Shirt",
@@ -1614,7 +1617,6 @@ const generateProduct = async () => {
       ],
       categories: [new mongoose.Types.ObjectId(obj['"T-Shirts"'])],
       type: productType.TOP_WEAR,
-      stock: 10,
     },
     {
       name: "The SAKE Collection UT Graphic T-Shirt",
@@ -1641,7 +1643,6 @@ const generateProduct = async () => {
       ],
       categories: [new mongoose.Types.ObjectId(obj['"T-Shirts"'])],
       type: productType.TOP_WEAR,
-      stock: 10,
     },
     {
       name: "Italian Leather Slide Buckle Belt",
@@ -1665,7 +1666,6 @@ const generateProduct = async () => {
       size: [shirtSizes.M, shirtSizes.L, shirtSizes.XL],
       categories: [new mongoose.Types.ObjectId(obj['"Accessories"'])],
       type: productType.ACCESSORIES,
-      stock: 10,
     },
     {
       name: "Italian Leather Garrison Belt",
@@ -1689,7 +1689,6 @@ const generateProduct = async () => {
       size: [shirtSizes.M, shirtSizes.L, shirtSizes.XL],
       categories: [new mongoose.Types.ObjectId(obj['"Accessories"'])],
       type: productType.ACCESSORIES,
-      stock: 10,
     },
   ];
 
@@ -1821,7 +1820,5 @@ const main = async () => {
   }
   process.exit(0);
 };
-
-main();
 
 main();

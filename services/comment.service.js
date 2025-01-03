@@ -6,7 +6,8 @@ const getCommentByProductId = async (productId) => {
       _product: productId,
     })
       .populate("_user")
-      .sort({ createdAt: -1 });
+      .sort({ createdAt: -1 })
+      .lean();
 
     return comments;
   } catch (error) {

@@ -1,38 +1,44 @@
+const { default: mongoose } = require("mongoose");
 const Cart = require("../models/cart.model");
-const Product = require("../models/product.model");
 
 const getCartByUserId = async (userId) => {
   try {
-    const cart = await Cart.findOneAndUpdate(
-      { _user: userId },
-      { $setOnInsert: { _user: userId, products: [] } },
-      { upsert: true, new: true }
-    );
+    const cart = await Cart.find({ _user: userId }).populate("_product").lean();
     return cart;
   } catch (err) {
     throw new Error("Error fetching cart: " + err.message);
   }
 };
 
-const addToCart = async (userId, productId, quantity) => {
+const addToCart = async ({
+  userId,
+  productId,
+  selectedColor,
+  selectedSize,
+  quantity,
+}) => {
   try {
-    const product = await Product.findById(productId);
-    if (!product) {
-      throw new Error("Product not found");
+    const existingCartItem = await Cart.findOne({
+      _user: userId,
+      _product: productId,
+      color_name: selectedColor,
+      size: selectedSize,
+    });
+    if (existingCartItem) {
+      throw new Error("Product already in cart");
     }
-    const cart = await getCartByUserId(userId);
-    const productIndex = cart.products.findIndex(
-      (product) => product._product.toString() === productId
-    );
-    if (productIndex === -1) {
-      cart.products.push({ _product: productId, quantity });
-    } else {
-      cart.products[productIndex].quantity += quantity;
-    }
-    await cart.save();
-    return cart;
+    const newCart = await Cart.create({
+      _user: userId,
+      _product: new mongoose.Types.ObjectId(productId),
+      color_name: selectedColor,
+      size: selectedSize,
+      quantity: Number.parseInt(quantity),
+    });
+    console.log(newCart);
+    return newCart.save();
   } catch (err) {
-    throw new Error("Error adding to cart: " + err.message);
+    console.log("Error adding to cart: " + err.message);
+    return null;
   }
 };
 

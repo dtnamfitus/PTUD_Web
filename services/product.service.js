@@ -64,7 +64,8 @@ const getProductById = async (id) => {
   try {
     const product = await Product.findById(id)
       .populate("categories")
-      .populate("_manufacturer");
+      .populate("_manufacturer")
+      .lean();
     if (!product) {
       throw new Error("Product not found");
     }

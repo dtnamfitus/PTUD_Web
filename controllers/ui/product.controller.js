@@ -7,16 +7,15 @@ const qs = require("qs");
 const getProducts = async (req, res) => {
   try {
     const parsedQuery = qs.parse(req.query);
-    const [products, productCategories] = await Promise.allSettled([
+    const [products, productCategories] = await Promise.all([
       productService.getAllProducts(parsedQuery),
       productCategoryService.getProductCategories(),
     ]);
-    console.log(products);
 
     const bodyHtml = await new Promise((resolve, reject) => {
       res.render(
         "client/products/product",
-        { products: products.value, productCategories: productCategories },
+        { products: products, productCategories: productCategories },
         (err, html) => {
           if (err) return reject(err);
           resolve(html);
@@ -33,21 +32,21 @@ const getProducts = async (req, res) => {
 const getProductDetails = async (req, res) => {
   try {
     const { id } = req.params;
-    const [product, productCategories, comments] = await Promise.allSettled([
+    const [product, productCategories, comments] = await Promise.all([
       productService.getProductById(id),
       productCategoryService.getProductCategories(),
       commentService.getCommentByProductId(id),
     ]);
-    console.log(JSON.stringify(product.value.colors, null, 2));
+    console.log(productCategories);
     const randomProducts = await productService.getRandomProducts(product);
     const bodyHtml = await new Promise((resolve, reject) => {
       res.render(
         "client/products/product_detail",
         {
-          product: product.value,
+          product: product,
           productCategories: productCategories,
           randomProducts: randomProducts,
-          comments: comments.value,
+          comments: comments,
         },
         (err, html) => {
           if (err) return reject(err);

@@ -216,6 +216,18 @@
       padding: 1.3em;
     }
 
+    .color-circle.selected {
+      border: 2px solid #007bff;
+    }
+
+    .size.selected {
+      background-color: #007bff;
+      color: #fff;
+      padding: 5px 10px;
+      border-radius: 5px;
+    }
+
+
     @-webkit-keyframes opacity {
       0% {
         opacity: 0;
@@ -282,7 +294,6 @@
 
     .action .add-to-cart {
       background-color: #28a745;
-      /* Màu xanh lá cho nút Add to Cart */
     }
 
     .action .add-to-cart:hover {
@@ -299,10 +310,8 @@
 
     .action .fa-heart {
       font-size: 16px;
-      /* Kích thước biểu tượng trái tim */
     }
 
-    /*# sourceMappingURL=style.css.map */
     .color-circle {
       width: 30px;
       height: 30px;
@@ -312,7 +321,6 @@
     }
   </style>
 
-  <!-- review -->
   <style>
     .ClientReview_Card {
       min-height: 355px;
@@ -373,11 +381,14 @@
               <div class="preview col-md-6">
 
                 <div class="preview-pic tab-content">
-                  <div class="tab-pane active" id="pic-1"><img src="<%=product.mainImage%>" /></div>
+                  <div class="tab-pane active" id="pic-1"><img src="<%= product.mainImage %>" /></div>
                 </div>
 
               </div>
+
               <div class="details col-md-6">
+                <div id="message-container"
+                  style="display: none; padding: 10px; margin-bottom: 20px; border-radius: 5px;"></div>
                 <h3 class="product-title">
                   <%= product.name %>
                 </h3>
@@ -424,7 +435,10 @@
                   </div>
                 </div>
                 <div class="action">
-                  <button class="btn-default" type="button" style="height: 40px;">add to cart</button>
+                  <button class="btn-default" type="button" style="height: 40px;"
+                    onclick="addToCart('<%=product._id%>')">
+                    Add to Cart
+                  </button>
                   <button class="btn-default" type="button" style="height: 40px;"><span
                       class="fa fa-heart"></span></button>
                 </div>
@@ -480,9 +494,8 @@
                         <p>
                           <%=randomProducts[i].name%>
                         </p>
-                        <button type="button" class="btn btn-default add-to-cart">
-                          <i class="fa fa-shopping-cart"></i>Add to cart
-                        </button>
+                        <a href="/client/product/<%= randomProducts[i]._id %>" class="btn btn-default add-to-cart"><i
+                            class="fa fa-shopping-cart"></i>Details</a>
                       </div>
                     </div>
                   </div>
@@ -494,22 +507,50 @@
 
       </div>
     </div>
+    <div class="modal fade" id="myModal" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Modal Header</h4>
+          </div>
+          <div class="modal-body">
+            <p>Some text in the modal.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
   </section>
 
-  <!-- jQuery -->
   <script src="/js/jquery.js"></script>
-  <!-- Bootstrap JS -->
   <script src="/js/bootstrap.min.js"></script>
-  <!-- Price Range JS -->
   <script src="/js/price-range.js"></script>
-  <!-- ScrollUp JS -->
   <script src="/js/jquery.scrollUp.min.js"></script>
-  <!-- PrettyPhoto JS -->
   <script src="/js/jquery.prettyPhoto.js"></script>
-  <!-- Main JS -->
   <script src="/js/main.js"></script>
 
   <script>
+    document.querySelectorAll('.color-circle').forEach(circle => {
+      circle.addEventListener('click', function () {
+        document.querySelectorAll('.color-circle').forEach(c => c.classList.remove('selected'));
+        this.classList.add('selected');
+      });
+    });
+
+    document.querySelectorAll('.size').forEach(size => {
+      size.addEventListener('click', function () {
+        document.querySelectorAll('.size').forEach(s => s.classList.remove('selected'));
+        this.classList.add('selected');
+      });
+    });
+
     function updateMainImage(imageUrl, colorName, element) {
       const mainImage = document.querySelector(".tab-content .tab-pane.active img");
       if (mainImage) {
@@ -546,6 +587,63 @@
           qtyInput.value = qty + 1;
         }
       }
+    }
+
+
+    function addToCart(productId) {
+      const selectedColor = document.querySelector('.color-circle.selected')?.getAttribute('data-color') || '';
+      const selectedSize = document.querySelector('.size.selected')?.textContent.trim() || '';
+      const quantity = parseInt(document.getElementById('quantity').value, 10) || 0;
+
+      const messageContainer = document.getElementById('message-container');
+
+      if (messageContainer) {
+        messageContainer.style.display = 'none';
+        messageContainer.textContent = '';
+        messageContainer.className = '';
+      }
+
+      if (!selectedColor || !selectedSize || quantity <= 0) {
+        let errorMessage = 'Please select ';
+        if (!selectedColor) errorMessage += 'a color, ';
+        if (!selectedSize) errorMessage += 'a size, ';
+        if (quantity <= 0) errorMessage += 'and a quantity greater than 0.';
+
+        errorMessage = errorMessage.replace(/, $/, '.');
+
+        if (messageContainer) {
+          messageContainer.style.display = 'block';
+          messageContainer.textContent = errorMessage;
+          messageContainer.className = 'alert alert-danger';
+        }
+        return;
+      }
+
+      $.ajax({
+        url: '/client/cart/add',
+        method: 'POST',
+        data: { productId, selectedColor, selectedSize, quantity: Number.parseInt(quantity) },
+        dataType: 'json',
+        success: function (data) {
+          console.log('Server response:', data);
+          const successMessage = data.msg || 'Product added to cart successfully.';
+          const isSuccess = data.success || false;
+          if (messageContainer) {
+            messageContainer.style.display = 'block';
+            messageContainer.textContent = successMessage;
+            messageContainer.className = isSuccess ? 'alert alert-success' : 'alert alert-danger';
+          }
+        },
+        error: function (error) {
+          console.error('AJAX error:', error);
+          const errorMessage = 'You must login to add product to cart.';
+          if (messageContainer) {
+            messageContainer.style.display = 'block';
+            messageContainer.textContent = errorMessage;
+            messageContainer.className = 'alert alert-danger';
+          }
+        }
+      });
     }
 
   </script>

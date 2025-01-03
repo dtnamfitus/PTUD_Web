@@ -4,7 +4,7 @@ const productType = require("./../constant/product-type.constant");
 const shirtSizes = require("./../constant/shirt-size.constant");
 const pantSizes = require("./../constant/pant-size.constant");
 const shoeSizes = require("./../constant/shoe-size.constant");
-
+const ProductStock = require("./product-stock.model");
 const mongoosePaginate = require("mongoose-paginate-v2");
 
 const productSchema = new mongoose.Schema(
@@ -59,7 +59,6 @@ const productSchema = new mongoose.Schema(
           `Invalid size(s) for the selected type: ${props.value.join(", ")}.`,
       },
     },
-    stock: { type: Number, required: true },
     _manufacturer: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Manufacturer",
@@ -71,5 +70,26 @@ const productSchema = new mongoose.Schema(
 
 productSchema.index({ name: "text", type: 1 });
 productSchema.plugin(mongoosePaginate);
+
+productSchema.post("save", async function (doc, next) {
+  try {
+    const stockOperations = [];
+    for (const colorObj of doc.colors) {
+      for (const size of doc.size) {
+        stockOperations.push(
+          ProductStock.findOneAndUpdate(
+            { product: doc._id, color: colorObj.color_name, size },
+            { $setOnInsert: { quantity: 10 } },
+            { upsert: true, new: true }
+          )
+        );
+      }
+    }
+    await Promise.all(stockOperations);
+    next();
+  } catch (error) {
+    next(error);
+  }
+});
 
 module.exports = mongoose.model("Product", productSchema);
