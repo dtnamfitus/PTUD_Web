@@ -56,6 +56,7 @@ const mockUsers = [
     avatar: "https://robohash.org/inutitaque.png?size=50x50&set=set1",
     isAdmin: false,
     isVerified: true,
+    //admin have no status, so he cannot be banned
   },
   {
     email: "ckippie2@sina.com.cn",
