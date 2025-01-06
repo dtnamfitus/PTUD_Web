@@ -16,6 +16,4 @@ const renderLayout = async (req, res, bodyHtml, title) => {
   });
 };
 
-module.exports = {
-  renderLayout
-};
+module.exports = renderLayout;
