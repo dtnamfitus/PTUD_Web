@@ -77,29 +77,30 @@ const addToCart = async (req, res) => {
         selectedSize,
         quantity,
       }),
-      productStockService.updateProductStock(
-        {
-          product: productId,
-          color: selectedColor,
-          size: selectedSize,
-        },
-        {
-          quantity: productStock.quantity - quantity,
-        }
-      ),
+      // productStockService.updateProductStock(
+      //   {
+      //     product: productId,
+      //     color: selectedColor,
+      //     size: selectedSize,
+      //   },
+      //   {
+      //     quantity: productStock.quantity - quantity,
+      //   }
+      // ),
+      console.log("not updating stock"),
     ]);
 
     if (!cart) {
-      await productStockService.updateProductStock(
-        {
-          product: productId,
-          color: selectedColor,
-          size: selectedSize,
-        },
-        {
-          quantity: productStock.quantity + quantity,
-        }
-      );
+      // await productStockService.updateProductStock(
+      //   {
+      //     product: productId,
+      //     color: selectedColor,
+      //     size: selectedSize,
+      //   },
+      //   {
+      //     quantity: productStock.quantity + quantity,
+      //   }
+      // );
       return res.json({ success: false, msg: "Product already in cart" });
     }
 
@@ -113,12 +114,31 @@ const addToCart = async (req, res) => {
 const removeFromCart = async (req, res) => {
   try {
     const user = req.user;
-    const productId = req.body.productId;
-    const cart = await cartService.removeFromCart(user._id, productId);
-    res.json(cart);
+    const { productId, color_name, size } = req.body;
+
+    if (!productId || !color_name || !size) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid request",
+      });
+    }
+    const cart = await cartService.deleteOneCartByQuery({
+      _user: user._id,
+      _product: productId,
+      color_name: color_name,
+      size: size,
+    });
+    return res.json({
+      success: true,
+      message: "Product removed from cart",
+      cart,
+    });
   } catch (error) {
     console.error(error);
-    res.status(500).send("Error removing from cart");
+    return res.status(500).json({
+      success: false,
+      message: "Error removing product from cart",
+    });
   }
 };
 
@@ -139,9 +159,46 @@ const updateCart = async (req, res) => {
   }
 };
 
+const updateProductQuantity = async (req, res) => {
+  try {
+    const user = req.user;
+    const { productId, color_name, size, quantity } = req.body;
+
+    if (!quantity || !productId || !color_name || !size) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid request",
+      });
+    }
+    if (quantity < 1) {
+      return res.status(400).json({
+        success: false,
+        message: "Quantity must be greater than 0",
+      });
+    }
+    const cart = await cartService.updateProductByQuery(
+      {
+        _user: user._id,
+        _product: productId,
+        color_name: color_name,
+        size: size,
+      },
+      { quantity: quantity }
+    );
+    return res.json({
+      success: true,
+      message: "Product quantity updated successfully",
+      cart,
+    });
+  } catch (err) {
+    throw new Error("Error updating product quantity: " + err.message);
+  }
+};
+
 module.exports = {
   getCart,
   addToCart,
   removeFromCart,
   updateCart,
+  updateProductQuantity,
 };

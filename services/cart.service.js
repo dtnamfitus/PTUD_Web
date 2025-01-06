@@ -34,7 +34,6 @@ const addToCart = async ({
       size: selectedSize,
       quantity: Number.parseInt(quantity),
     });
-    console.log(newCart);
     return newCart.save();
   } catch (err) {
     console.log("Error adding to cart: " + err.message);
@@ -58,22 +57,19 @@ const removeFromCart = async (userId, productId) => {
   }
 };
 
-const updateProductQuantity = async (userId, productId, quantity) => {
+const updateProductByQuery = async (query, update) => {
   try {
-    if (quantity <= 0) {
-      throw new Error("Quantity must be greater than 0");
-    }
-    const cart = await getCartByUserId(userId);
-    const productIndex = cart.products.findIndex(
-      (product) => product._product.toString() === productId
-    );
-    if (productIndex === -1) {
-      throw new Error("Product not found in cart");
-    }
-    cart.products[productIndex].quantity = quantity;
-    return await cart.save();
+    return await Cart.findOneAndUpdate(query, update);
   } catch (err) {
-    throw new Error("Error updating product quantity: " + err.message);
+    throw new Error("Error updating product: " + err.message);
+  }
+};
+
+const deleteOneCartByQuery = async (query) => {
+  try {
+    return await Cart.deleteOne(query);
+  } catch (err) {
+    throw new Error("Error deleting cart: " + err.message);
   }
 };
 
@@ -81,5 +77,6 @@ module.exports = {
   getCartByUserId,
   addToCart,
   removeFromCart,
-  updateProductQuantity,
+  updateProductByQuery,
+  deleteOneCartByQuery,
 };

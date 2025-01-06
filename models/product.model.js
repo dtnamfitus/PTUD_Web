@@ -46,7 +46,7 @@ const productSchema = new mongoose.Schema(
             if (this.type === productType.TOP_WEAR) {
               return shirtSizes.hasOwnProperty(value);
             } else if (this.type === productType.BOTTOM_WEAR) {
-              return pantSizes.includes(parseInt(value, 10));
+              return true;
             } else if (this.type === productType.FOOT_WEAR) {
               return shoeSizes.hasOwnProperty(parseInt(value, 10));
             } else if (this.type === productType.OUTER_WEAR) {

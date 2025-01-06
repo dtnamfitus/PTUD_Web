@@ -86,6 +86,9 @@ const colors = {
 
   // Màu olive
   olive: "#808000",
+
+  // Natural color
+  natural: "#F5F5DC",
 };
 
 module.exports = colors;

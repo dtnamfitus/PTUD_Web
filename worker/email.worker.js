@@ -23,7 +23,6 @@ emailQueue.process(async (job) => {
       "email_template",
       `${templateName}.ejs`
     );
-    console.log(templatePath);
 
     const html = await ejs.renderFile(templatePath, templateData);
 

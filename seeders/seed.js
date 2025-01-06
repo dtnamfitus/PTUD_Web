@@ -14,6 +14,7 @@ const Order = require("./../models/order.model");
 const Cart = require("./../models/cart.model");
 const OrderItem = require("./../models/order-item.model");
 const ProductStock = require("./../models/product-stock.model");
+const pantSizes = require("../constant/pant-size.constant");
 
 mongoose
   .connect(process.env.MONGODB_URL || "mongodb://root:root@localhost:27017")
@@ -26,12 +27,13 @@ mongoose
 const mockUsers = [
   {
     email: "pngbao20@clc.fitus.edu.vn",
-    password: 'admin123',
+    password: "admin123",
     firstName: "Pham",
     lastName: "Bao",
-    birthDate: "20/12/2002",
+    birthDate: "12/20/2002",
     gender: "Male",
-    avatar: "https://web.facebook.com/photo/?fbid=1084508913058780&set=a.105473897628958",
+    avatar:
+      "https://web.facebook.com/photo/?fbid=1084508913058780&set=a.105473897628958",
     isAdmin: true,
     isVerified: true,
   },
@@ -1334,386 +1336,1438 @@ const generateProductCategories = async (mockProductCategories) => {
 };
 
 const generateProduct = async () => {
-  const productCategories = await ProductCategory.find({});
-  const manufacturers = await Manufacturer.find({});
-  const obj = {};
-  productCategories.map((productCategory) => {
-    obj[productCategory.name] = productCategory._id.toString();
-  });
-  const mockProduct = [
-    {
-      name: "Classic White Tee",
-      description: "A versatile white t-shirt made from 100% cotton.",
-      price: 19.9,
-      categories: [new mongoose.Types.ObjectId(obj['"T-Shirts"'])],
-      mainImage:
-        "https://image.uniqlo.com/UQ/ST3/vn/imagesgoods/465187/item/vngoods_00_465187_3x4.jpg?width=423",
-      colors: [
-        {
-          color_name: colors.white,
-          images: [
-            "https://image.uniqlo.com/UQ/ST3/vn/imagesgoods/465187/item/vngoods_00_465187_3x4.jpg?width=369",
-          ],
-        },
-        {
-          color_name: colors.black,
-          images: [
-            "https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/465187/item/goods_09_465187_3x4.jpg?width=369",
-          ],
-        },
-        {
-          color_name: colors.brown,
-          images: [
-            "https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/465187/item/goods_34_465187_3x4.jpg?width=369",
-          ],
-        },
-        {
-          color_name: colors.wine,
-          images: [
-            "https://image.uniqlo.com/UQ/ST3/vn/imagesgoods/465187/item/vngoods_18_465187_3x4.jpg?width=369",
-          ],
-        },
-        {
-          color_name: colors.yellow,
-          images: [
-            "https://image.uniqlo.com/UQ/ST3/vn/imagesgoods/465187/item/vngoods_42_465187_3x4.jpg?width=369",
-          ],
-        },
-        {
-          color_name: colors.green,
-          images: [
-            "https://image.uniqlo.com/UQ/ST3/vn/imagesgoods/465187/item/vngoods_55_465187_3x4.jpg?width=369",
-          ],
-        },
-        {
-          color_name: colors.darkGreen,
-          images: [
-            "https://image.uniqlo.com/UQ/ST3/vn/imagesgoods/465187/item/vngoods_59_465187_3x4.jpg?width=369",
-          ],
-        },
-        {
-          color_name: colors.royalBlue,
-          images: [
-            "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/465185/item/usgoods_67_465185_3x4.jpg?width=400 ",
-          ],
-        },
-        {
-          color_name: colors.navyBlue,
-          images: [
-            "https://image.uniqlo.com/UQ/ST3/vn/imagesgoods/465187/item/vngoods_69_465187_3x4.jpg?width=369",
-          ],
-        },
-      ],
-      type: productType.TOP_WEAR,
-      size: [
-        shirtSizes.XS,
-        shirtSizes.S,
-        shirtSizes.M,
-        shirtSizes.L,
-        shirtSizes.XL,
-      ],
-    },
-    {
-      name: "Ultra Light Down Jacket",
-      description: "A lightweight and warm jacket for cold weather.",
-      price: 69.9,
-      categories: [new mongoose.Types.ObjectId(obj['"Jackets"'])],
-      mainImage:
-        "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/470067/item/usgoods_69_470067_3x4.jpg?width=600",
-      colors: [
-        {
-          color_name: colors.black,
-          images: [
-            "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/470067/item/usgoods_09_470067_3x4.jpg?width=600",
-          ],
-        },
-        {
-          color_name: colors.wine,
-          images: [
-            "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/470067/item/usgoods_19_470067_3x4.jpg?width=600",
-          ],
-        },
-        {
-          color_name: colors.beige,
-          images: [
-            "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/470067/item/usgoods_32_470067_3x4.jpg?width=600",
-          ],
-        },
-        {
-          color_name: colors.olive,
-          images: [
-            "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/470067/item/usgoods_57_470067_3x4.jpg?width=600",
-          ],
-        },
-        {
-          color_name: colors.navyBlue,
-          images: [
-            "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/470067/item/usgoods_69_470067_3x4.jpg?width=600",
-          ],
-        },
-      ],
-      type: productType.TOP_WEAR,
-      size: [
-        shirtSizes.XS,
-        shirtSizes.S,
-        shirtSizes.M,
-        shirtSizes.L,
-        shirtSizes.XL,
-      ],
-    },
-    {
-      name: "ARCANE LEAGUE OF LEGENDS UT Graphic T-Shirt",
-      price: 24.9,
-      mainImage:
-        "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/477148/item/usgoods_00_477148_3x4.jpg",
-      colors: [
-        {
-          color_name: colors.white,
-          images: [
-            "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/477148/item/usgoods_00_477148_3x4.jpg",
-          ],
-        },
-      ],
-      size: [
-        shirtSizes.XXS,
-        shirtSizes.XS,
-        shirtSizes.S,
-        shirtSizes.M,
-        shirtSizes.L,
-        shirtSizes.XL,
-        shirtSizes.XXL,
-        shirtSizes.XXXL,
-      ],
-      categories: [new mongoose.Types.ObjectId(obj['"T-Shirts"'])],
-      type: productType.TOP_WEAR,
-    },
-    {
-      name: "ARCANE LEAGUE OF LEGENDS UT Graphic T-Shirt",
-      price: 24.9,
-      mainImage:
-        "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/477147/item/usgoods_59_477147_3x4.jpg",
-      colors: [
-        {
-          color_name: colors.darkGreen,
-          images: [
-            "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/477147/item/usgoods_59_477147_3x4.jpg",
-          ],
-        },
-      ],
-      size: [
-        shirtSizes.XXS,
-        shirtSizes.XS,
-        shirtSizes.S,
-        shirtSizes.M,
-        shirtSizes.L,
-        shirtSizes.XL,
-        shirtSizes.XXL,
-        shirtSizes.XXXL,
-      ],
-      categories: [new mongoose.Types.ObjectId(obj['"T-Shirts"'])],
-      type: productType.TOP_WEAR,
-    },
-    {
-      name: "ARCANE LEAGUE OF LEGENDS UT Graphic T-Shirt",
-      price: 24.9,
-      mainImage:
-        "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/477146/item/usgoods_08_477146_3x4.jpg",
-      colors: [
-        {
-          color_name: colors.darkGray,
-          images: [
-            "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/477146/item/usgoods_08_477146_3x4.jpg",
-          ],
-        },
-      ],
-      size: [shirtSizes.XXS, shirtSizes.XXL, shirtSizes.XXXL],
-      categories: [new mongoose.Types.ObjectId(obj['"T-Shirts"'])],
-      type: productType.TOP_WEAR,
-    },
-    {
-      name: "Round Mini Shoulder Bag | Striped",
-      price: 19.9,
-      mainImage:
-        "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/477115/item/goods_15_477115_3x4.jpg",
-      colors: [
-        {
-          color_name: colors.red,
-          images: [
-            "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/477115/item/goods_15_477115_3x4.jpg",
-          ],
-        },
-        {
-          color_name: colors.navyBlue,
-          images: [
-            "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/477115/item/goods_69_477115_3x4.jpg",
-          ],
-        },
-      ],
-      size: [],
-      categories: [new mongoose.Types.ObjectId(obj['"Accessories"'])],
-      type: productType.ACCESSORIES,
-    },
-    {
-      name: "Unsodo Open Collar Shirt | Short Sleeve | Printed",
-      price: 39.9,
-      mainImage:
-        "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/477091/item/usgoods_00_477091_3x4.jpg",
-      colors: [
-        {
-          color_name: colors.white,
-          images: [
-            "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/477091/item/usgoods_00_477091_3x4.jpg",
-          ],
-        },
-      ],
-      size: [
-        shirtSizes.XXS,
-        shirtSizes.XS,
-        shirtSizes.S,
-        shirtSizes.M,
-        shirtSizes.L,
-        shirtSizes.XL,
-        shirtSizes.XXL,
-      ],
-      categories: [new mongoose.Types.ObjectId(obj['"Shirts"'])],
-      type: productType.TOP_WEAR,
-    },
-    {
-      name: "Unsodo Open Collar Shirt | Short Sleeve | Printed",
-      price: 39.9,
-      mainImage:
-        "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/477090/item/usgoods_66_477090_3x4.jpg",
-      colors: [
-        {
-          color_name: colors.blue,
-          images: [
-            "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/477090/item/usgoods_66_477090_3x4.jpg",
-          ],
-        },
-      ],
-      size: [
-        shirtSizes.XXS,
-        shirtSizes.XS,
-        shirtSizes.S,
-        shirtSizes.M,
-        shirtSizes.L,
-        shirtSizes.XL,
-        shirtSizes.XXL,
-      ],
-      categories: [new mongoose.Types.ObjectId(obj['"Shirts"'])],
-      type: productType.TOP_WEAR,
-    },
-    {
-      name: "The SAKE Collection UT Graphic T-Shirt",
-      price: 19.9,
-      mainImage:
-        "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/477043/item/usgoods_09_477043_3x4.jpg",
-      colors: [
-        {
-          color_name: colors.black,
-          images: [
-            "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/477043/item/usgoods_09_477043_3x4.jpg",
-          ],
-        },
-      ],
-      size: [
-        shirtSizes.XXS,
-        shirtSizes.XS,
-        shirtSizes.S,
-        shirtSizes.M,
-        shirtSizes.L,
-        shirtSizes.XL,
-        shirtSizes.XXL,
-        shirtSizes.XXXL,
-      ],
-      categories: [new mongoose.Types.ObjectId(obj['"T-Shirts"'])],
-      type: productType.TOP_WEAR,
-    },
-    {
-      name: "The SAKE Collection UT Graphic T-Shirt",
-      price: 19.9,
-      mainImage:
-        "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/477042/item/usgoods_01_477042_3x4.jpg",
-      colors: [
-        {
-          color_name: colors.white,
-          images: [
-            "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/477042/item/usgoods_01_477042_3x4.jpg",
-          ],
-        },
-      ],
-      size: [
-        shirtSizes.XXS,
-        shirtSizes.XS,
-        shirtSizes.S,
-        shirtSizes.M,
-        shirtSizes.L,
-        shirtSizes.XL,
-        shirtSizes.XXL,
-        shirtSizes.XXXL,
-      ],
-      categories: [new mongoose.Types.ObjectId(obj['"T-Shirts"'])],
-      type: productType.TOP_WEAR,
-    },
-    {
-      name: "Italian Leather Slide Buckle Belt",
-      price: 29.9,
-      mainImage:
-        "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/476854/item/goods_37_476854_3x4.jpg",
-      colors: [
-        {
-          color_name: colors.black,
-          images: [
-            "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/476854/item/goods_09_476854_3x4.jpg",
-          ],
-        },
-        {
-          color_name: colors.brown,
-          images: [
-            "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/476854/item/goods_37_476854_3x4.jpg",
-          ],
-        },
-      ],
-      size: [shirtSizes.M, shirtSizes.L, shirtSizes.XL],
-      categories: [new mongoose.Types.ObjectId(obj['"Accessories"'])],
-      type: productType.ACCESSORIES,
-    },
-    {
-      name: "Italian Leather Garrison Belt",
-      price: 29.9,
-      mainImage:
-        "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/476853/item/goods_37_476853_3x4.jpg",
-      colors: [
-        {
-          color_name: colors.black,
-          images: [
-            "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/476853/item/goods_09_476853_3x4.jpg",
-          ],
-        },
-        {
-          color_name: colors.brown,
-          images: [
-            "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/476853/item/goods_37_476853_3x4.jpg",
-          ],
-        },
-      ],
-      size: [shirtSizes.M, shirtSizes.L, shirtSizes.XL],
-      categories: [new mongoose.Types.ObjectId(obj['"Accessories"'])],
-      type: productType.ACCESSORIES,
-    },
-  ];
-
-  mockProduct.map(async (product) => {
-    const randomIndexManufacturer = Math.floor(
-      Math.random() * manufacturers.length
-    );
-    await Product.create({
-      ...product,
-      _manufacturer: manufacturers[randomIndexManufacturer]._id,
+  try {
+    const productCategories = await ProductCategory.find({});
+    const manufacturers = await Manufacturer.find({});
+    const obj = {};
+    productCategories.map((productCategory) => {
+      obj[productCategory.name] = productCategory._id.toString();
     });
-  });
+    const mockProduct = [
+      {
+        name: "Classic White Tee",
+        description: "A versatile white t-shirt made from 100% cotton.",
+        price: 19.9,
+        categories: [new mongoose.Types.ObjectId(obj['"T-Shirts"'])],
+        mainImage:
+          "https://image.uniqlo.com/UQ/ST3/vn/imagesgoods/465187/item/vngoods_00_465187_3x4.jpg?width=423",
+        colors: [
+          {
+            color_name: colors.white,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/vn/imagesgoods/465187/item/vngoods_00_465187_3x4.jpg?width=369",
+            ],
+          },
+          {
+            color_name: colors.black,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/465187/item/goods_09_465187_3x4.jpg?width=369",
+            ],
+          },
+          {
+            color_name: colors.brown,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/465187/item/goods_34_465187_3x4.jpg?width=369",
+            ],
+          },
+          {
+            color_name: colors.wine,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/vn/imagesgoods/465187/item/vngoods_18_465187_3x4.jpg?width=369",
+            ],
+          },
+          {
+            color_name: colors.yellow,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/vn/imagesgoods/465187/item/vngoods_42_465187_3x4.jpg?width=369",
+            ],
+          },
+          {
+            color_name: colors.green,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/vn/imagesgoods/465187/item/vngoods_55_465187_3x4.jpg?width=369",
+            ],
+          },
+          {
+            color_name: colors.darkGreen,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/vn/imagesgoods/465187/item/vngoods_59_465187_3x4.jpg?width=369",
+            ],
+          },
+          {
+            color_name: colors.royalBlue,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/465185/item/usgoods_67_465185_3x4.jpg?width=400 ",
+            ],
+          },
+          {
+            color_name: colors.navyBlue,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/vn/imagesgoods/465187/item/vngoods_69_465187_3x4.jpg?width=369",
+            ],
+          },
+        ],
+        type: productType.TOP_WEAR,
+        size: [
+          shirtSizes.XS,
+          shirtSizes.S,
+          shirtSizes.M,
+          shirtSizes.L,
+          shirtSizes.XL,
+        ],
+      },
+      {
+        name: "Ultra Light Down Jacket",
+        description: "A lightweight and warm jacket for cold weather.",
+        price: 69.9,
+        categories: [new mongoose.Types.ObjectId(obj['"Jackets"'])],
+        mainImage:
+          "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/470067/item/usgoods_69_470067_3x4.jpg?width=600",
+        colors: [
+          {
+            color_name: colors.black,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/470067/item/usgoods_09_470067_3x4.jpg?width=600",
+            ],
+          },
+          {
+            color_name: colors.wine,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/470067/item/usgoods_19_470067_3x4.jpg?width=600",
+            ],
+          },
+          {
+            color_name: colors.beige,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/470067/item/usgoods_32_470067_3x4.jpg?width=600",
+            ],
+          },
+          {
+            color_name: colors.olive,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/470067/item/usgoods_57_470067_3x4.jpg?width=600",
+            ],
+          },
+          {
+            color_name: colors.navyBlue,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/470067/item/usgoods_69_470067_3x4.jpg?width=600",
+            ],
+          },
+        ],
+        type: productType.TOP_WEAR,
+        size: [
+          shirtSizes.XS,
+          shirtSizes.S,
+          shirtSizes.M,
+          shirtSizes.L,
+          shirtSizes.XL,
+        ],
+      },
+      {
+        name: "ARCANE LEAGUE OF LEGENDS UT Graphic T-Shirt",
+        price: 24.9,
+        mainImage:
+          "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/477148/item/usgoods_00_477148_3x4.jpg",
+        colors: [
+          {
+            color_name: colors.white,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/477148/item/usgoods_00_477148_3x4.jpg",
+            ],
+          },
+        ],
+        size: [
+          shirtSizes.XXS,
+          shirtSizes.XS,
+          shirtSizes.S,
+          shirtSizes.M,
+          shirtSizes.L,
+          shirtSizes.XL,
+          shirtSizes.XXL,
+          shirtSizes.XXXL,
+        ],
+        categories: [new mongoose.Types.ObjectId(obj['"T-Shirts"'])],
+        type: productType.TOP_WEAR,
+      },
+      {
+        name: "ARCANE LEAGUE OF LEGENDS UT Graphic T-Shirt",
+        price: 24.9,
+        mainImage:
+          "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/477147/item/usgoods_59_477147_3x4.jpg",
+        colors: [
+          {
+            color_name: colors.darkGreen,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/477147/item/usgoods_59_477147_3x4.jpg",
+            ],
+          },
+        ],
+        size: [
+          shirtSizes.XXS,
+          shirtSizes.XS,
+          shirtSizes.S,
+          shirtSizes.M,
+          shirtSizes.L,
+          shirtSizes.XL,
+          shirtSizes.XXL,
+          shirtSizes.XXXL,
+        ],
+        categories: [new mongoose.Types.ObjectId(obj['"T-Shirts"'])],
+        type: productType.TOP_WEAR,
+      },
+      {
+        name: "ARCANE LEAGUE OF LEGENDS UT Graphic T-Shirt",
+        price: 24.9,
+        mainImage:
+          "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/477146/item/usgoods_08_477146_3x4.jpg",
+        colors: [
+          {
+            color_name: colors.darkGray,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/477146/item/usgoods_08_477146_3x4.jpg",
+            ],
+          },
+        ],
+        size: [shirtSizes.XXS, shirtSizes.XXL, shirtSizes.XXXL],
+        categories: [new mongoose.Types.ObjectId(obj['"T-Shirts"'])],
+        type: productType.TOP_WEAR,
+      },
+      {
+        name: "Round Mini Shoulder Bag | Striped",
+        price: 19.9,
+        mainImage:
+          "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/477115/item/goods_15_477115_3x4.jpg",
+        colors: [
+          {
+            color_name: colors.red,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/477115/item/goods_15_477115_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.navyBlue,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/477115/item/goods_69_477115_3x4.jpg",
+            ],
+          },
+        ],
+        size: [],
+        categories: [new mongoose.Types.ObjectId(obj['"Accessories"'])],
+        type: productType.ACCESSORIES,
+      },
+      {
+        name: "Unsodo Open Collar Shirt | Short Sleeve | Printed",
+        price: 39.9,
+        mainImage:
+          "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/477091/item/usgoods_00_477091_3x4.jpg",
+        colors: [
+          {
+            color_name: colors.white,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/477091/item/usgoods_00_477091_3x4.jpg",
+            ],
+          },
+        ],
+        size: [
+          shirtSizes.XXS,
+          shirtSizes.XS,
+          shirtSizes.S,
+          shirtSizes.M,
+          shirtSizes.L,
+          shirtSizes.XL,
+          shirtSizes.XXL,
+        ],
+        categories: [new mongoose.Types.ObjectId(obj['"Shirts"'])],
+        type: productType.TOP_WEAR,
+      },
+      {
+        name: "Unsodo Open Collar Shirt | Short Sleeve | Printed",
+        price: 39.9,
+        mainImage:
+          "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/477090/item/usgoods_66_477090_3x4.jpg",
+        colors: [
+          {
+            color_name: colors.blue,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/477090/item/usgoods_66_477090_3x4.jpg",
+            ],
+          },
+        ],
+        size: [
+          shirtSizes.XXS,
+          shirtSizes.XS,
+          shirtSizes.S,
+          shirtSizes.M,
+          shirtSizes.L,
+          shirtSizes.XL,
+          shirtSizes.XXL,
+        ],
+        categories: [new mongoose.Types.ObjectId(obj['"Shirts"'])],
+        type: productType.TOP_WEAR,
+      },
+      {
+        name: "The SAKE Collection UT Graphic T-Shirt",
+        price: 19.9,
+        mainImage:
+          "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/477043/item/usgoods_09_477043_3x4.jpg",
+        colors: [
+          {
+            color_name: colors.black,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/477043/item/usgoods_09_477043_3x4.jpg",
+            ],
+          },
+        ],
+        size: [
+          shirtSizes.XXS,
+          shirtSizes.XS,
+          shirtSizes.S,
+          shirtSizes.M,
+          shirtSizes.L,
+          shirtSizes.XL,
+          shirtSizes.XXL,
+          shirtSizes.XXXL,
+        ],
+        categories: [new mongoose.Types.ObjectId(obj['"T-Shirts"'])],
+        type: productType.TOP_WEAR,
+      },
+      {
+        name: "The SAKE Collection UT Graphic T-Shirt",
+        price: 19.9,
+        mainImage:
+          "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/477042/item/usgoods_01_477042_3x4.jpg",
+        colors: [
+          {
+            color_name: colors.white,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/477042/item/usgoods_01_477042_3x4.jpg",
+            ],
+          },
+        ],
+        size: [
+          shirtSizes.XXS,
+          shirtSizes.XS,
+          shirtSizes.S,
+          shirtSizes.M,
+          shirtSizes.L,
+          shirtSizes.XL,
+          shirtSizes.XXL,
+          shirtSizes.XXXL,
+        ],
+        categories: [new mongoose.Types.ObjectId(obj['"T-Shirts"'])],
+        type: productType.TOP_WEAR,
+      },
+      {
+        name: "Italian Leather Slide Buckle Belt",
+        price: 29.9,
+        mainImage:
+          "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/476854/item/goods_37_476854_3x4.jpg",
+        colors: [
+          {
+            color_name: colors.black,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/476854/item/goods_09_476854_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.brown,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/476854/item/goods_37_476854_3x4.jpg",
+            ],
+          },
+        ],
+        size: [shirtSizes.M, shirtSizes.L, shirtSizes.XL],
+        categories: [new mongoose.Types.ObjectId(obj['"Accessories"'])],
+        type: productType.ACCESSORIES,
+      },
+      {
+        name: "Italian Leather Garrison Belt",
+        price: 29.9,
+        mainImage:
+          "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/476853/item/goods_37_476853_3x4.jpg",
+        colors: [
+          {
+            color_name: colors.black,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/476853/item/goods_09_476853_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.brown,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/476853/item/goods_37_476853_3x4.jpg",
+            ],
+          },
+        ],
+        size: [shirtSizes.M, shirtSizes.L, shirtSizes.XL],
+        categories: [new mongoose.Types.ObjectId(obj['"Accessories"'])],
+        type: productType.ACCESSORIES,
+      },
+      {
+        name: "Seamless Down Parka",
+        price: 129.9,
+        mainImage:
+          "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/469896/item/usgoods_31_469896_3x4.jpg",
+        colors: [
+          {
+            color_name: colors.beige,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/469896/item/usgoods_31_469896_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.white,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/469896/item/usgoods_01_469896_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.grey,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/469896/item/usgoods_07_469896_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.black,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/469896/item/usgoods_09_469896_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.blue,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/469896/item/usgoods_67_469896_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.darkGreen,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/469896/item/usgoods_58_469896_3x4.jpg",
+            ],
+          },
+        ],
+        size: [shirtSizes.M, shirtSizes.L, shirtSizes.XL],
+        categories: [new mongoose.Types.ObjectId(obj['"Jackets"'])],
+        type: productType.TOP_WEAR,
+      },
+      {
+        name: "Powder Soft Down Jacket",
+        price: 79.9,
+        mainImage:
+          "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/469901/item/usgoods_56_469901_3x4.jpg",
+        colors: [
+          {
+            color_name: colors.white,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/469901/item/usgoods_01_469901_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.grey,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/469901/item/usgoods_07_469901_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.black,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/469901/item/usgoods_09_469901_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.olive,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/469901/item/usgoods_56_469901_3x4.jpg",
+            ],
+          },
+        ],
+        size: ["XXS", "XS", "S", "M", "L", "XL", "XXL"],
+        categories: [new mongoose.Types.ObjectId(obj['"Jackets"'])],
+        type: productType.TOP_WEAR,
+      },
+      {
+        name: "Hybrid Down Coat",
+        price: 129.9,
+        mainImage:
+          "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/469899/item/usgoods_30_469899_3x4.jpg",
+        colors: [
+          {
+            color_name: colors.black,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/469899/item/usgoods_09_469899_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.natural,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/469899/item/usgoods_30_469899_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.beige,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/469899/item/usgoods_32_469899_3x4.jpg",
+            ],
+          },
+        ],
+        size: ["XXS", "XS", "S", "M", "L", "XL", "XXL"],
+        categories: [new mongoose.Types.ObjectId(obj['"Coats"'])],
+        type: productType.TOP_WEAR,
+      },
+      {
+        name: "Ultra Light Down Parka | 2023 Edition",
+        price: 69.9,
+        mainImage:
+          "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/450311/item/goods_12_450311_3x4.jpg",
+        colors: [
+          {
+            color_name: colors.white,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/450311/item/goods_01_450311_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.black,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/450311/item/usgoods_09_450311_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.navyBlue,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/450311/item/usgoods_69_450311_3x4.jpg",
+            ],
+          },
+        ],
+        size: ["XXS", "XS", "S", "M", "L", "XL"],
+        categories: [new mongoose.Types.ObjectId(obj['"Jackets"'])],
+        type: productType.TOP_WEAR,
+      },
+      {
+        name: "Ultra Light Down Long Coat",
+        price: 129.9,
+        mainImage:
+          "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/469872/item/usgoods_31_469872_3x4.jpg",
+        colors: [
+          {
+            color_name: colors.darkGray,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/469872/item/usgoods_08_469872_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.black,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/469872/item/usgoods_09_469872_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.beige,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/469872/item/usgoods_31_469872_3x4.jpg",
+            ],
+          },
+        ],
+        size: ["XXS", "XS", "S", "M", "L", "XL", "XXL"],
+        categories: [new mongoose.Types.ObjectId(obj['"Coats"'])],
+        type: productType.TOP_WEAR,
+      },
+      {
+        name: "Ultra Light Down Parka",
+        price: 69.9,
+        mainImage:
+          "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/473413/item/usgoods_69_473413_3x4.jpg",
+        colors: [
+          {
+            color_name: colors.white,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/473413/item/usgoods_00_473413_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.grey,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/473413/item/usgoods_04_473413_3x4.jpg",
+            ],
+          },
+        ],
+        size: ["XXS", "XS", "S", "M", "L", "XL", "XXL"],
+        categories: [new mongoose.Types.ObjectId(obj['"Jackets"'])],
+        type: productType.TOP_WEAR,
+      },
+      {
+        name: "PUFFTECH Parka",
+        price: 79.9,
+        mainImage:
+          "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/469871/item/usgoods_30_469871_3x4.jpg",
+        colors: [
+          {
+            color_name: colors.darkGray,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/469871/item/usgoods_08_469871_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.black,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/469871/item/usgoods_09_469871_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.natural,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/469871/item/usgoods_30_469871_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.purple,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/469871/item/usgoods_72_469871_3x4.jpg",
+            ],
+          },
+        ],
+        size: ["XXS", "XS", "S", "M", "L", "XL", "XXL"],
+        categories: [new mongoose.Types.ObjectId(obj['"Jackets"'])],
+        type: productType.TOP_WEAR,
+      },
+      {
+        name: "Down Belted Long Coat",
+        price: 59.9,
+        mainImage:
+          "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/469873/item/usgoods_32_469873_3x4.jpg",
+        colors: [
+          {
+            color_name: colors.black,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/469873/item/goods_09_469873_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.beige,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/469873/item/usgoods_32_469873_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.navyBlue,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/469873/item/usgoods_69_469873_3x4.jpg",
+            ],
+          },
+        ],
+        size: ["XXS", "XS", "S", "M", "L", "XL"],
+        categories: [new mongoose.Types.ObjectId(obj['"Coats"'])],
+        type: productType.TOP_WEAR,
+      },
+      {
+        name: "PUFFTECH Non-Quilted Coat",
+        price: 59.9,
+        mainImage:
+          "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/471545/item/usgoods_38_471545_3x4.jpg",
+        colors: [
+          {
+            color_name: colors.darkGray,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/471545/item/usgoods_08_471545_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.green,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/471545/item/usgoods_54_471545_3x4.jpg",
+            ],
+          },
+        ],
+        size: ["XXS", "XS", "S", "M"],
+        categories: [new mongoose.Types.ObjectId(obj['"Coats"'])],
+        type: productType.TOP_WEAR,
+      },
+      {
+        name: "Ultra Light Down Jacket",
+        price: 79.9,
+        mainImage:
+          "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/469869/item/usgoods_11_469869_3x4.jpg",
+        colors: [
+          {
+            color_name: colors.white,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/469869/item/usgoods_01_469869_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.grey,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/469869/item/usgoods_04_469869_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.black,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/469869/item/usgoods_09_469869_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.pink,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/469869/item/usgoods_12_469869_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.wine,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/469869/item/usgoods_19_469869_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.beige,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/469869/item/usgoods_32_469869_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.green,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/469869/item/usgoods_52_469869_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.darkGreen,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/469869/item/usgoods_59_469869_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.navyBlue,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/469869/item/usgoods_69_469869_3x4.jpg",
+            ],
+          },
+        ],
+        size: ["XXS", "XS", "S", "M", "L", "XL", "XXL"],
+        categories: [new mongoose.Types.ObjectId(obj['"Jackets"'])],
+        type: productType.TOP_WEAR,
+      },
+      {
+        name: "BLOCKTECH Half Coat",
+        price: 59.9,
+        mainImage:
+          "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/469912/item/usgoods_30_469912_3x4.jpg",
+        colors: [
+          {
+            color_name: colors.white,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/469912/item/usgoods_01_469912_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.black,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/469912/item/usgoods_09_469912_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.natural,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/469912/item/usgoods_30_469912_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.olive,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/469912/item/usgoods_57_469912_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.navyBlue,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/469912/item/usgoods_69_469912_3x4.jpg",
+            ],
+          },
+        ],
+        size: ["XXS", "XS", "S", "M", "L", "XL", "XXL"],
+        categories: [new mongoose.Types.ObjectId(obj['"Coats"'])],
+        type: productType.TOP_WEAR,
+      },
+      {
+        name: "PUFFTECH Relaxed Jacket | Quilted",
+        price: 39.9,
+        mainImage:
+          "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/469864/item/usgoods_30_469864_3x4.jpg",
+        colors: [
+          {
+            color_name: colors.black,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/469864/item/usgoods_09_469864_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.natural,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/469864/item/usgoods_30_469864_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.beige,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/469864/item/usgoods_32_469864_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.olive,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/469864/item/usgoods_57_469864_3x4.jpg",
+            ],
+          },
+        ],
+        size: ["XS", "S", "M", "L", "XL"],
+        categories: [new mongoose.Types.ObjectId(obj['"Jackets"'])],
+        type: productType.TOP_WEAR,
+      },
+      {
+        name: "Ultra Light Down Vest",
+        price: 39.9,
+        mainImage:
+          "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/469870/item/usgoods_31_469870_3x4.jpg",
+        colors: [
+          {
+            color_name: colors.white,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/469870/item/usgoods_01_469870_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.grey,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/469870/item/usgoods_04_469870_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.black,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/469870/item/usgoods_09_469870_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.beige,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/469870/item/usgoods_31_469870_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.brown,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/469870/item/goods_34_469870_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.skyBlue,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/469870/item/usgoods_60_469870_3x4.jpg",
+            ],
+          },
+        ],
+        size: ["XXS", "XS", "S", "M", "L", "XL", "XXL"],
+        categories: [new mongoose.Types.ObjectId(obj['"Blazers"'])],
+        type: productType.TOP_WEAR,
+      },
+      {
+        name: "HEATTECH Pile Lined Sweatpants",
+        price: 39.9,
+        mainImage:
+          "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/459792/item/usgoods_12_459792_3x4.jpg",
+        colors: [
+          {
+            color_name: colors.white,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/459792/item/usgoods_01_459792_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.grey,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/459792/item/usgoods_03_459792_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.black,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/459792/item/usgoods_09_459792_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.pink,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/459792/item/usgoods_12_459792_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.navyBlue,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/459792/item/usgoods_69_459792_3x4.jpg",
+            ],
+          },
+        ],
+        size: [
+          pantSizes[28],
+          pantSizes[30],
+          pantSizes[32],
+          pantSizes[34],
+          pantSizes[36],
+          pantSizes[38],
+          pantSizes[40],
+          pantSizes[42],
+          pantSizes[44],
+        ],
+        categories: [new mongoose.Types.ObjectId(obj['"Pants"'])],
+        type: productType.BOTTOM_WEAR,
+      },
+      {
+        name: "Single Collar Tweed Coat",
+        price: 59.9,
+        mainImage:
+          "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/469907/item/usgoods_32_469907_3x4.jpg",
+        colors: [
+          {
+            color_name: colors.darkGray,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/469907/item/usgoods_08_469907_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.beige,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/469907/item/usgoods_32_469907_3x4.jpg",
+            ],
+          },
+        ],
+        size: [
+          pantSizes[28],
+          pantSizes[30],
+          pantSizes[32],
+          pantSizes[34],
+          pantSizes[36],
+          pantSizes[38],
+          pantSizes[40],
+          pantSizes[42],
+          pantSizes[44],
+        ],
+        categories: [new mongoose.Types.ObjectId(obj['"Pants"'])],
+        type: productType.BOTTOM_WEAR,
+      },
+      {
+        name: "PUFFTECH Compact Jacket",
+        price: 69.9,
+        mainImage:
+          "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/469862/item/usgoods_12_469862_3x4.jpg",
+        colors: [
+          {
+            color_name: colors.white,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/469862/item/usgoods_01_469862_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.black,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/469862/item/usgoods_09_469862_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.beige,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/469862/item/usgoods_32_469862_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.olive,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/469862/item/usgoods_56_469862_3x4.jpg",
+            ],
+          },
+        ],
+        size: ["XS", "S", "M", "L", "XL", "XXL"],
+        categories: [new mongoose.Types.ObjectId(obj['"Jackets"'])],
+        type: productType.TOP_WEAR,
+      },
+      {
+        name: "Double Face Chester Long Coat",
+        price: 99.9,
+        mainImage:
+          "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/469906/item/usgoods_30_469906_3x4.jpg",
+        colors: [
+          {
+            color_name: colors.grey,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/469906/item/usgoods_06_469906_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.black,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/469906/item/usgoods_09_469906_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.natural,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/469906/item/usgoods_30_469906_3x4.jpg",
+            ],
+          },
+        ],
+        size: ["XS", "M", "L", "XL", "XXL"],
+        categories: [new mongoose.Types.ObjectId(obj['"Jackets"'])],
+        type: productType.TOP_WEAR,
+      },
+      {
+        name: "HEATTECH Knitted Gloves",
+        price: 14.9,
+        mainImage:
+          "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/459738/item/goods_16_459738_3x4.jpg",
+        colors: [
+          {
+            color_name: colors.darkGray,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/459738/item/goods_08_459738_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.black,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/459738/item/goods_09_459738_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.beige,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/459738/item/goods_31_459738_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.olive,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/459738/item/goods_57_459738_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.blue,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/459738/item/goods_65_459738_3x4.jpg",
+            ],
+          },
+        ],
+        size: ["M", "L"],
+        categories: [new mongoose.Types.ObjectId(obj['"Accessories"'])],
+        type: productType.ACCESSORIES,
+      },
+      {
+        name: "Coating Long Coat",
+        price: 49.9,
+        mainImage:
+          "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/471544/item/usgoods_31_471544_3x4.jpg",
+        colors: [
+          {
+            color_name: colors.beige,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/471544/item/usgoods_31_471544_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.brown,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/471544/item/usgoods_38_471544_3x4.jpg",
+            ],
+          },
+        ],
+        size: ["S", "M", "L", "XL"],
+        categories: [new mongoose.Types.ObjectId(obj['"Jackets"'])],
+        type: productType.TOP_WEAR,
+      },
+      {
+        name: "HEATTECH Scarf",
+        price: 19.9,
+        mainImage:
+          "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/470021/item/goods_32_470021_3x4.jpg",
+        colors: [
+          {
+            color_name: colors.white,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/470021/item/goods_01_470021_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.grey,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/470021/item/goods_07_470021_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.black,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/470021/item/goods_09_470021_3x4.jpg",
+            ],
+          },
+        ],
+        size: ["One Size"],
+        categories: [new mongoose.Types.ObjectId(obj['"Accessories"'])],
+        type: productType.ACCESSORIES,
+      },
+      {
+        name: "HEATTECH Easy Pants",
+        price: 49.9,
+        mainImage:
+          "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/469903/item/usgoods_57_469903_3x4.jpg",
+        colors: [
+          {
+            color_name: colors.grey,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/469903/item/usgoods_07_469903_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.black,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/469903/item/usgoods_09_469903_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.olive,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/469903/item/usgoods_57_469903_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.navyBlue,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/469903/item/usgoods_69_469903_3x4.jpg",
+            ],
+          },
+        ],
+        size: [
+          pantSizes[28],
+          pantSizes[30],
+          pantSizes[32],
+          pantSizes[34],
+          pantSizes[36],
+          pantSizes[38],
+          pantSizes[40],
+          pantSizes[42],
+          pantSizes[44],
+        ],
+        categories: [new mongoose.Types.ObjectId(obj['"Pants"'])],
+        type: productType.BOTTOM_WEAR,
+      },
+      {
+        name: "Fluffy Yarn Fleece Full-Zip Jacket",
+        price: 39.9,
+        mainImage:
+          "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/449753/item/goods_10_449753_3x4.jpg",
+        colors: [
+          {
+            color_name: colors.white,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/449753/item/usgoods_01_449753_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.lightGray,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/449753/item/usgoods_02_449753_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.black,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/449753/item/usgoods_09_449753_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.pink,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/449753/item/usgoods_11_449753_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.natural,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/449753/item/usgoods_30_449753_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.brown,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/449753/item/usgoods_34_449753_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.green,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/449753/item/usgoods_52_449753_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.skyBlue,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/449753/item/usgoods_60_449753_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.navyBlue,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/449753/item/usgoods_69_449753_3x4.jpg",
+            ],
+          },
+        ],
+        size: ["XXS", "XS", "S", "M", "L", "XL"],
+        categories: [new mongoose.Types.ObjectId(obj['"Jackets"'])],
+        type: productType.TOP_WEAR,
+      },
+      {
+        name: "HEATTECH Souffle Neck Gaiter",
+        price: 14.9,
+        mainImage:
+          "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/470018/item/goods_32_470018_3x4.jpg",
+        colors: [
+          {
+            color_name: colors.black,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/470018/item/goods_09_470018_3x4.jpg",
+            ],
+          },
+        ],
+        size: ["One Size"],
+        categories: [new mongoose.Types.ObjectId(obj['"Accessories"'])],
+        type: productType.ACCESSORIES,
+      },
+      {
+        name: "Ribbed High Neck T-Shirt | Long Sleeve",
+        price: 14.9,
+        mainImage:
+          "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/470126/item/usgoods_11_470126_3x4.jpg",
+        colors: [
+          {
+            color_name: colors.white,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/470126/item/usgoods_01_470126_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.lightGray,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/470126/item/usgoods_02_470126_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.black,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/470126/item/usgoods_09_470126_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.pink,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/470126/item/usgoods_11_470126_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.brown,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/470126/item/usgoods_37_470126_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.blue,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/470126/item/usgoods_68_470126_3x4.jpg",
+            ],
+          },
+        ],
+        size: ["XXS", "XS", "S", "M", "L", "XL", "XXL"],
+        categories: [new mongoose.Types.ObjectId(obj['"T-Shirts"'])],
+        type: productType.TOP_WEAR,
+      },
+      {
+        name: "HEATTECH Ribbed Beanie",
+        price: 14.9,
+        mainImage:
+          "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/470015/item/goods_25_470015_3x4.jpg",
+        colors: [
+          {
+            color_name: colors.white,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/470015/item/goods_01_470015_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.darkGray,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/470015/item/goods_08_470015_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.black,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/470015/item/goods_09_470015_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.orange,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/470015/item/goods_25_470015_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.blue,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/470015/item/goods_65_470015_3x4.jpg",
+            ],
+          },
+        ],
+        size: ["One Size"],
+        categories: [new mongoose.Types.ObjectId(obj['"Accessories"'])],
+        type: productType.ACCESSORIES,
+      },
+      {
+        name: "PUFFTECH Compact Vest",
+        price: 49.9,
+        mainImage:
+          "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/469863/item/usgoods_32_469863_3x4.jpg",
+        colors: [
+          {
+            color_name: colors.white,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/469863/item/usgoods_01_469863_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.black,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/469863/item/usgoods_09_469863_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.beige,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/469863/item/usgoods_32_469863_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.purple,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/469863/item/usgoods_70_469863_3x4.jpg",
+            ],
+          },
+        ],
+        size: ["S", "M", "L"],
+        categories: [new mongoose.Types.ObjectId(obj['"Suits"'])],
+        type: productType.TOP_WEAR,
+      },
+      {
+        name: "HEATTECH Leggings",
+        price: 19.9,
+        mainImage:
+          "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/453166/item/goods_08_453166_3x4.jpg",
+        colors: [
+          {
+            color_name: colors.darkGray,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/453166/item/goods_08_453166_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.black,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/453166/item/usgoods_09_453166_3x4.jpg",
+            ],
+          },
+        ],
+        size: [
+          pantSizes[28],
+          pantSizes[30],
+          pantSizes[32],
+          pantSizes[34],
+          pantSizes[36],
+          pantSizes[38],
+          pantSizes[40],
+          pantSizes[42],
+          pantSizes[44],
+        ],
+        categories: [new mongoose.Types.ObjectId(obj['"Pants"'])],
+        type: productType.BOTTOM_WEAR,
+      },
+      {
+        name: "HEATTECH Leggings",
+        price: 19.9,
+        mainImage:
+          "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/469836/item/goods_15_469836_3x4.jpg",
+        colors: [
+          {
+            color_name: colors.darkGray,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/469836/item/goods_08_469836_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.black,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/469836/item/usgoods_09_469836_3x4.jpg",
+            ],
+          },
+        ],
+        size: [
+          pantSizes[28],
+          pantSizes[30],
+          pantSizes[32],
+          pantSizes[34],
+          pantSizes[36],
+          pantSizes[38],
+          pantSizes[40],
+          pantSizes[42],
+          pantSizes[44],
+        ],
+        categories: [new mongoose.Types.ObjectId(obj['"Pants"'])],
+        type: productType.BOTTOM_WEAR,
+      },
+      {
+        name: "Oversized Short Jacket",
+        price: 29.9,
+        mainImage:
+          "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/469905/item/usgoods_55_469905_3x4.jpg",
+        colors: [
+          {
+            color_name: colors.grey,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/469905/item/usgoods_03_469905_3x4.jpg",
+            ],
+          },
+          {
+            color_name: colors.navyBlue,
+            images: [
+              "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/469905/item/usgoods_69_469905_3x4.jpg",
+            ],
+          },
+        ],
+        size: ["S", "M", "L", "XL"],
+        categories: [new mongoose.Types.ObjectId(obj['"Jackets"'])],
+        type: productType.TOP_WEAR,
+      },
+    ];
 
-  console.log("Product added successfully");
+    mockProduct.map(async (product) => {
+      const randomIndexManufacturer = Math.floor(
+        Math.random() * manufacturers.length
+      );
+      console.log(product.name);
+      await Product.create({
+        ...product,
+        _manufacturer: manufacturers[randomIndexManufacturer]._id,
+      });
+    });
+
+    console.log("Product added successfully");
+  } catch (err) {
+    console.error("Error adding products:", err);
+  }
 };
 
 const generateComment = async () => {

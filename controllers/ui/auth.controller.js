@@ -189,24 +189,18 @@ const sendOTP = async (req, res) => {
 const verifyOTP = async (req, res) => {
   try {
     const { otp } = req.body;
-    console.log(req.cookies);
-    console.log(req.body);
     const email = req.cookies?.registeredEmail || null;
-    console.log(email);
     const user = await userService.getUserFullInformation({ email });
-    console.log({ user });
     if (!user) {
       req.flash("error", "User not found");
       return res.redirect("/client/auth/register");
     }
-    console.log(otp, user.otp, user.otpExpiresAt, Date.now());
     if (otp == user.otp && user.otpExpiresAt > Date.now()) {
       const user = await userService.updateUserByEmail(email, {
         isVerified: true,
         otp: null,
         otpExpiresAt: null,
       });
-      console.log(user);
       req.flash("success", "Your account has been verified successfully.");
       const flashSuccess = req.flash("success");
       const bodyHtml = await new Promise((resolve, reject) => {

@@ -7,5 +7,10 @@ router.get("/", ensureAuthenticated, uiCartController.getCart);
 router.post("/add", ensureAuthenticated, uiCartController.addToCart);
 router.post("/remove", ensureAuthenticated, uiCartController.removeFromCart);
 router.post("/update", ensureAuthenticated, uiCartController.updateCart);
+router.post(
+  "/update-quantity",
+  ensureAuthenticated,
+  uiCartController.updateProductQuantity
+);
 
 module.exports = router;
