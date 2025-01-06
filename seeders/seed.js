@@ -25,6 +25,17 @@ mongoose
   });
 const mockUsers = [
   {
+    email: "pngbao20@clc.fitus.edu.vn",
+    password: 'admin123',
+    firstName: "Pham",
+    lastName: "Bao",
+    birthDate: "20/12/2002",
+    gender: "Male",
+    avatar: "https://web.facebook.com/photo/?fbid=1084508913058780&set=a.105473897628958",
+    isAdmin: true,
+    isVerified: true,
+  },
+  {
     email: "rbutters0@icq.com",
     password: 'eU5"+xp1$m7"u',
     firstName: "Rowena",
