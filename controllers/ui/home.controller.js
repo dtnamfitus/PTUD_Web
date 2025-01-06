@@ -12,7 +12,7 @@ const getHome = async (req, res) => {
         resolve(html);
       });
     });
-    await renderLayout(req, res, bodyHtml, "Home");
+    await renderLayout.renderLayout(req, res, bodyHtml, "Home");
   } catch (error) {
     console.error(error);
     res.status(500).send("Error fetching products");
