@@ -1,8 +1,8 @@
-const orderService = require("../../services/order.service");
-const cartService = require("../../services/cart.service");
-const productService = require("../../services/product.service");
+const orderService = require("../services/order.service");
+const cartService = require("../services/cart.service");
+const productService = require("../services/product.service");
 const renderLayout = require("./renderLayout");
-const nominatimService = require("../../third_party/nominatim.service");
+const nominatimService = require("../third_party/nominatim.service");
 
 const checkout = async (req, res) => {
   try {

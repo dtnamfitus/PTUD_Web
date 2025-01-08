@@ -1,6 +1,6 @@
-const cartService = require("../../services/cart.service");
-const productService = require("../../services/product.service");
-const productStockService = require("../../services/product-stock.service");
+const cartService = require("../services/cart.service");
+const productService = require("../services/product.service");
+const productStockService = require("../services/product-stock.service");
 
 const renderLayout = require("./renderLayout");
 

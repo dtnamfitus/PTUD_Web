@@ -1,6 +1,6 @@
-const userService = require("../../services/user.service");
+const userService = require("../services/user.service");
 const renderLayout = require("./renderLayout");
-const changePasswordSchema = require("../../dto/profile/change-password.dto");
+const changePasswordSchema = require("../dto/profile/change-password.dto");
 
 const getProfile = async (req, res) => {
   try {

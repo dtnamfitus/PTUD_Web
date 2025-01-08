@@ -69,9 +69,6 @@ app.use(flash());
 
 const port = process.env.PORT || 8080;
 
-app.use("/api/client", route.clientAPIRoute);
-app.use("/api/admin", route.adminAPIRoute);
-
 app.use("/client", route.clientUIRoute);
 app.use("/admin", route.adminUIRoute);
 
