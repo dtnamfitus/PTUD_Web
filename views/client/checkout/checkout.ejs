@@ -105,46 +105,64 @@
 						</tr>
 					</thead>
 					<tbody>
-						<% for (let i = 0; i < cart.length; i++) { %>
-						<tr>
-							<td class="cart_product text-center">
-								<a href="#"><img src="<%=cart[i]._product.mainImage %>" style="width: 80px; height: auto;"></a>
-							</td>
-							<td class="cart_description">
-								<h4><a href="/client/product/<%=cart[i]._product.id%>"><%=cart[i]._product.name%></a></h4>
-							</td>
-							<td class="cart_price text-center">
-								<p>$<%=cart[i]._product.price.toFixed(2)%></p>
-							</td>
-							<td class="cart_quantity text-center">
-								<div class="cart_quantity_button">
-									<p><%=cart[i].quantity%></p>
-								</div>
-							</td>
-							<td class="cart_total text-center">
-								<p class="cart_total_price">
-									$<%=(cart[i]._product.price * cart[i].quantity).toFixed(2)%>
-								</p>
-							</td>
-						</tr>
-						<% } %>
+						<% for (let i=0; i < cart.length; i++) { %>
+							<tr>
+								<td class="cart_product text-center">
+									<a href="#"><img src="<%=cart[i]._product.mainImage %>"
+											style="width: 80px; height: auto;"></a>
+								</td>
+								<td class="cart_description">
+									<h4><a href="/client/product/<%=cart[i]._product.id%>">
+											<%=cart[i]._product.name%>
+										</a></h4>
+								</td>
+								<td class="cart_price text-center">
+									<p>$<%=cart[i]._product.price.toFixed(2)%>
+									</p>
+								</td>
+								<td class="cart_quantity text-center">
+									<div class="cart_quantity_button">
+										<p>
+											<%=cart[i].quantity%>
+										</p>
+									</div>
+								</td>
+								<td class="cart_total text-center">
+									<p class="cart_total_price">
+										$<%=(cart[i]._product.price * cart[i].quantity).toFixed(2)%>
+									</p>
+								</td>
+							</tr>
+							<% } %>
 					</tbody>
 				</table>
 			</div>
 
 			<div class="shipping-info">
 				<h4>Shipping Information</h4>
-				<p><strong>City:</strong> <%= city %></p>
-				<p><strong>District:</strong> <%= district %></p>
-				<p><strong>Ward:</strong> <%= ward %></p>
-				<p><strong>Address:</strong> <%= address %></p>
+				<p><strong>City:</strong>
+					<%= city %>
+				</p>
+				<p><strong>District:</strong>
+					<%= district %>
+				</p>
+				<p><strong>Ward:</strong>
+					<%= ward %>
+				</p>
+				<p><strong>Address:</strong>
+					<%= address %>
+				</p>
 			</div>
 
 			<div class="payment-summary">
 				<h4>Payment Summary</h4>
-				<p><strong>Shipping Distance:</strong> <%= calculateHaversine.toFixed(2) %> km</p>
-				<p><strong>Shipping Fee:</strong> $<%= shippingCostFee.toFixed(2) %></p>
-				<p><strong>Total:</strong> $<%= total.toFixed(2) %></p>
+				<p><strong>Shipping Distance:</strong>
+					<%= calculateHaversine.toFixed(2) %> km
+				</p>
+				<p><strong>Shipping Fee:</strong> $<%= shippingCostFee.toFixed(2) %>
+				</p>
+				<p><strong>Total:</strong> $<%= total.toFixed(2) %>
+				</p>
 			</div>
 
 			<form id="orderForm" action="/client/order/place-order" method="POST">
@@ -164,9 +182,49 @@
 					<button type="submit" class="btn btn-primary">Proceed to Payment</button>
 				</div>
 			</form>
-			
+
 		</section>
 	</div>
+	<script>
+		document.getElementById('orderForm').addEventListener('submit', async (e) => {
+			const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
+
+			if (paymentMethod === 'creditCard') {
+				e.preventDefault();
+
+				const stripe = Stripe('pk_test_51Qf4BKCAokhk4hgyNaGkidTEIC3m1FofrTIOS7iJlgjy9AJFLHtDcooYzDVTMuTZ7H1t19caNKNg1zk6Ms7zzfYW00F413REZE');
+
+				try {
+					const response = await fetch('/client/order/create-checkout-session', {
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/json',
+						},
+						body: JSON.stringify({
+							calculateHaversine: document.querySelector('input[name="calculateHaversine"]').value,
+							shippingCostFee: document.querySelector('input[name="shippingCostFee"]').value,
+							total: document.querySelector('input[name="total"]').value,
+							city: document.querySelector('input[name="city"]').value,
+							address: document.querySelector('input[name="address"]').value,
+							district: document.querySelector('input[name="district"]').value,
+							ward: document.querySelector('input[name="ward"]').value,
+						}),
+					});
+
+					const { sessionId } = await response.json();
+					if (sessionId) {
+						await stripe.redirectToCheckout({ sessionId });
+					} else {
+						alert('Something went wrong while creating the payment session.');
+					}
+				} catch (error) {
+					console.error(error);
+					alert('Error processing payment.');
+				}
+			}
+		});
+
+	</script>
 </body>
 
 </html>

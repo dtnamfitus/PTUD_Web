@@ -32,6 +32,7 @@ const orderSchema = new mongoose.Schema(
     },
     total: { type: Number, required: true },
     shipping_fee: { type: Number, required: true },
+    payment_method: { type: String, required: true, default: "COD" },
   },
   { timestamps: true }
 );

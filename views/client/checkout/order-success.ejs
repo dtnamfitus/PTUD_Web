@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Success</title>
+  <!-- Bootstrap 3 -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <style>
+    .order-success-page {
+      background-color: #f8f9fa;
+      font-family: Arial, sans-serif;
+      color: #333;
+      padding: 20px;
+    }
+
+    .order-success-page .container {
+      margin-top: 50px;
+      max-width: 600px;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .order-success-page h1 {
+      color: #28a745;
+      font-size: 28px;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .order-success-page p {
+      font-size: 16px;
+      text-align: center;
+    }
+
+    .order-success-page ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .order-success-page ul li {
+      font-size: 16px;
+      padding: 5px 0;
+    }
+
+    .order-success-page ul li strong {
+      color: #000;
+    }
+
+    .order-success-page a {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+      padding: 10px 15px;
+      background-color: #007bff;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+
+    .order-success-page a:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="order-success-page">
+    <div class="container">
+      <h1>Thank you for your order!</h1>
+      <p>Your payment was successful. Below are the details of your order:</p>
+      <ul>
+        <li><strong>Order ID:</strong> <%= session.id %></li>
+        <li><strong>Amount Paid:</strong> $<%= (session.amount_total / 100).toFixed(2) %></li>
+        <li><strong>Payment Method:</strong> <%= session.payment_method_types.join(", ") %></li>
+      </ul>
+      <p>We will process your order shortly. You can check the status of your order in your account.</p>
+      <a href="/client/order" class="btn btn-primary">Go to My Orders</a>
+    </div>
+  </div>
+</body>
+</html>

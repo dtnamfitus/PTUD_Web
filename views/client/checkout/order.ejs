@@ -73,19 +73,20 @@
         <table class="table table-bordered table-hover">
             <thead>
                 <tr>
-                    <th>#</th>
-                    <th>User</th>
-                    <th>Status</th>
-                    <th>City</th>
-                    <th>District</th>
-                    <th>Ward</th>
-                    <th>Address</th>
-                    <th>Total</th>
-                    <th>Shipping Fee</th>
-                    <th>Created At</th>
-                    <th>Updated At</th>
+                    <th style="color: black;">#</th>
+                    <th style="color: black;">User</th>
+                    <th style="color: black;">Status</th>
+                    <th style="color: black;">City</th>
+                    <th style="color: black;">District</th>
+                    <th style="color: black;">Ward</th>
+                    <th style="color: black;">Address</th>
+                    <th style="color: black;">Total</th>
+                    <th style="color: black;">Shipping Fee</th>
+                    <th style="color: black;">Created At</th>
+                    <th style="color: black;">Updated At</th>
+                    <th style="color: black;">Payment Method</th>
                 </tr>
-            </thead>
+            </thead>            
             <tbody>
                 <% orders.forEach((order, index) => { %>
                     <tr onclick="redirectToOrder('<%= order._id %>')">
@@ -100,6 +101,7 @@
                         <td>$<%= order.shipping_fee.toFixed(2) %></td>
                         <td><%= new Date(order.createdAt).toLocaleString() %></td>
                         <td><%= new Date(order.updatedAt).toLocaleString() %></td>
+                        <td><%= order.payment_method %></td>
                     </tr>
                 <% }); %>
             </tbody>
@@ -110,7 +112,7 @@
     <script>
         // Redirect to the order detail page
         function redirectToOrder(orderId) {
-            window.location.href = `/client/order/${orderId}`;
+            window.location.href = `/client/order/detail/${orderId}`;
         }
     </script>
 </body>
