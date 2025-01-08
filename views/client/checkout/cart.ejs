@@ -90,7 +90,7 @@
           cost.</p>
       </div>
       <div class="row">
-        <form class="form-horizontal mb-5" method="post" action="/client/checkout">
+        <form class="form-horizontal mb-5" method="post" action="/client/order/checkout">
           <div class="col-sm-6">
             <div class="chose_area">
               <ul class="user_info">
@@ -143,7 +143,7 @@
                   </div>
                   <div class="col-xs-6 text-right">
                     <h6>
-                      <%=subtotal%>$
+                      <%=subtotal.toFixed(2)%>$
                     </h6>
                   </div>
                 </div>
@@ -164,7 +164,7 @@
                   </div>
                   <div class="col-xs-6 text-right">
                     <h5>
-                      <%=subtotal%>$
+                      <%=subtotal.toFixed(2)%>$
                     </h5>
                   </div>
                 </div>

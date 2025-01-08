@@ -73,10 +73,19 @@ const deleteOneCartByQuery = async (query) => {
   }
 };
 
+const deleteCartByUserId = async (userId) => {
+  try {
+    return await Cart.deleteMany({ _user: userId });
+  } catch (err) {
+    throw new Error("Error deleting cart: " + err.message);
+  }
+};
+
 module.exports = {
   getCartByUserId,
   addToCart,
   removeFromCart,
   updateProductByQuery,
   deleteOneCartByQuery,
+  deleteCartByUserId,
 };
