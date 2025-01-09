@@ -2,8 +2,10 @@ const express = require("express");
 
 const router = express.Router();
 
-router.get("/product", (req, res) => {
-  res.json("product");
+router.get("/", (req, res) => {
+  res.render("admin/index");
 });
+
+
 
 module.exports = router;

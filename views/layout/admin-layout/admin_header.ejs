@@ -65,7 +65,10 @@
                 <li>
                   <a href="/admin/profile">
                     Hi Admin
-                    <img src="<%= admin.avatar ? admin.avatar : '/images/default/default_avatar.png' %>" alt="Avatar"
+                    <img 
+                      src="<%= (admin && admin.avatar) ? admin.avatar : '/images/default/default_avatar.png' %>" 
+                      alt="Avatar"
+                      style="width: 30px; height: 30px; border-radius: 50%; object-fit: cover;"
                       class="avatar">
                   </a>
                 </li>

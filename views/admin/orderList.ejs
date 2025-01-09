@@ -1,0 +1,80 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Order Management | Admin Dashboard</title>
+  
+    <link rel="shortcut icon" href="/admin/images/favicon.ico" />
+    <link rel="stylesheet" href="/admin/css/backend-plugin.min.css" />
+    <link rel="stylesheet" href="/admin/css/backend.css?v=1.0.0" />
+    <link rel="stylesheet" href="/admin/vendor/line-awesome/dist/line-awesome/css/line-awesome.min.css" />
+    <link rel="stylesheet" href="/admin/vendor/remixicon/fonts/remixicon.css" />
+  
+    <link rel="stylesheet" href="/admin/vendor/tui-calendar/tui-calendar/dist/tui-calendar.css" />
+    <link rel="stylesheet" href="/admin/vendor/tui-calendar/tui-date-picker/dist/tui-date-picker.css" />
+    <link rel="stylesheet" href="/admin/vendor/tui-calendar/tui-time-picker/dist/tui-time-picker.css" />
+</head> -->
+
+
+<body class="sb-nav-fixed">
+  <div id="layoutSidenav">
+      <div id="layoutSidenav_content">
+          <main>
+              <div class="container-fluid px-4">
+                  <h1 class="mt-4">List orders</h1>
+                  <ol class="breadcrumb mb-4">
+                      <li class="breadcrumb-item"><a href="dashboard">Dashboard</a></li>
+                      <li class="breadcrumb-item active">Tables</li>
+                  </ol>
+                  <div class="card mb-4">
+                      <div class="card-header">
+                          <i class="fas fa-table me-1"></i>
+                          DataTable Order
+                      </div>
+                      <div class="card-body">
+                          <table id="datatablesSimple">
+                              <thead>
+                                  <tr>
+                                      <th>Name</th>
+                                      <th>Address</th>
+                                      <th>Phone</th>
+                                      <th>Total Price</th>
+                                      <th>Status</th>
+                                      <th>Create At</th>
+                                      <th>Check Details</th>
+                                  </tr>
+                              </thead>
+                              <!-- <tfoot>
+                                  <tr>
+                                      <th>Name</th>
+                                      <th>Address</th>
+                                      <th>Phone</th>
+                                      <th>Total Price</th>
+                                      <th>Status</th>
+                                      <th>Create At</th>
+                                      <th>Check Details</th>
+                                  </tr>
+                              </tfoot> -->
+                              <tbody>
+                                <% for (let i=0; i < orders.length; i++) { %>
+                                  <tr href="">
+                                      <td><%= orders[i].name %></td>
+                                      <td><%= orders[i].address %></td>
+                                      <td><%= orders[i].phone %></td>
+                                      <td><%= orders[i].totalPrice %></td>
+                                      <td><%= orders[i].statusName %></td>
+                                      <td><%= orders[i].createAt %></td>
+                                      <td><a href="/admin/orderdetails/{{id}}">Check Details</a></td>
+                                  </tr>
+                                  <% } %>
+                              </tbody>
+                          </table>
+                      </div>
+                  </div>
+              </div>
+          </main>
+      </div>
+  </div>
+</body>

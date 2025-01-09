@@ -10,6 +10,7 @@ const cookieParser = require("cookie-parser");
 
 const route = require("./routes");
 const passport = require("./config/passport");
+const renderAdminLayout = require("./controllers/ui/renderAdminLayout");
 
 const isTestEnv = process.env.NODE_ENV === "test";
 
@@ -87,6 +88,20 @@ app.use("/healthcheck", (req, res) => {
 
 app.get("/", function (req, res) {
   res.redirect("/client/home");
+});
+
+app.get("/test", async function (req, res) {
+  const bodyHtml = await new Promise((resolve, reject) => {
+    res.render(
+      "admin/orderList",
+      { orders: {}, admin: {} },
+      (err, html) => {
+        if (err) return reject(err);
+        resolve(html);
+      }
+    );
+  });
+  await renderAdminLayout(req, res, bodyHtml, "Cart")
 });
 
 app.use("*", async (req, res) => {
