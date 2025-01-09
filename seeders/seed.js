@@ -1343,13 +1343,18 @@ const generateProduct = async () => {
     productCategories.map((productCategory) => {
       obj[productCategory.name] = productCategory._id.toString();
     });
+
     const mockProduct = [
       {
         name: "Classic White Tee",
         description: "A versatile white t-shirt made from 100% cotton.",
         price: 19.9,
-        categories: [new mongoose.Types.ObjectId(obj['"T-Shirts"'])],
-category: new mongoose.Types.ObjectId(obj['"T-Shirts"']),
+        categories: [
+          productCategories[
+            Math.floor(Math.random() * (productCategories.length - 1 - 0 + 1)) +
+              0
+          ]._id,
+        ],
         mainImage:
           "https://image.uniqlo.com/UQ/ST3/vn/imagesgoods/465187/item/vngoods_00_465187_3x4.jpg?width=423",
         colors: [
@@ -1421,8 +1426,12 @@ category: new mongoose.Types.ObjectId(obj['"T-Shirts"']),
         name: "Ultra Light Down Jacket",
         description: "A lightweight and warm jacket for cold weather.",
         price: 69.9,
-        categories: [new mongoose.Types.ObjectId(obj['"Jackets"'])],
-category: new mongoose.Types.ObjectId(obj['"Jackets"']),
+        categories: [
+          productCategories[
+            Math.floor(Math.random() * (productCategories.length - 1 - 0 + 1)) +
+              0
+          ]._id,
+        ],
         mainImage:
           "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/470067/item/usgoods_69_470067_3x4.jpg?width=600",
         colors: [
@@ -1489,8 +1498,12 @@ category: new mongoose.Types.ObjectId(obj['"Jackets"']),
           shirtSizes.XXL,
           shirtSizes.XXXL,
         ],
-        categories: [new mongoose.Types.ObjectId(obj['"T-Shirts"'])],
-category: new mongoose.Types.ObjectId(obj['"T-Shirts"']),
+        categories: [
+          productCategories[
+            Math.floor(Math.random() * (productCategories.length - 1 - 0 + 1)) +
+              0
+          ]._id,
+        ],
         type: productType.TOP_WEAR,
       },
       {
@@ -1516,8 +1529,12 @@ category: new mongoose.Types.ObjectId(obj['"T-Shirts"']),
           shirtSizes.XXL,
           shirtSizes.XXXL,
         ],
-        categories: [new mongoose.Types.ObjectId(obj['"T-Shirts"'])],
-category: new mongoose.Types.ObjectId(obj['"T-Shirts"']),
+        categories: [
+          productCategories[
+            Math.floor(Math.random() * (productCategories.length - 1 - 0 + 1)) +
+              0
+          ]._id,
+        ],
         type: productType.TOP_WEAR,
       },
       {
@@ -1534,8 +1551,12 @@ category: new mongoose.Types.ObjectId(obj['"T-Shirts"']),
           },
         ],
         size: [shirtSizes.XXS, shirtSizes.XXL, shirtSizes.XXXL],
-        categories: [new mongoose.Types.ObjectId(obj['"T-Shirts"'])],
-category: new mongoose.Types.ObjectId(obj['"T-Shirts"']),
+        categories: [
+          productCategories[
+            Math.floor(Math.random() * (productCategories.length - 1 - 0 + 1)) +
+              0
+          ]._id,
+        ],
         type: productType.TOP_WEAR,
       },
       {
@@ -1557,9 +1578,13 @@ category: new mongoose.Types.ObjectId(obj['"T-Shirts"']),
             ],
           },
         ],
-        size: [],
-        categories: [new mongoose.Types.ObjectId(obj['"Accessories"'])],
-category: new mongoose.Types.ObjectId(obj['"Accessories"']),
+        size: [shirtSizes.XXS, shirtSizes.XXL, shirtSizes.XXXL],
+        categories: [
+          productCategories[
+            Math.floor(Math.random() * (productCategories.length - 1 - 0 + 1)) +
+              0
+          ]._id,
+        ],
         type: productType.ACCESSORIES,
       },
       {
@@ -1584,8 +1609,12 @@ category: new mongoose.Types.ObjectId(obj['"Accessories"']),
           shirtSizes.XL,
           shirtSizes.XXL,
         ],
-        categories: [new mongoose.Types.ObjectId(obj['"Shirts"'])],
-category: new mongoose.Types.ObjectId(obj['"Shirts"']),
+        categories: [
+          productCategories[
+            Math.floor(Math.random() * (productCategories.length - 1 - 0 + 1)) +
+              0
+          ]._id,
+        ],
         type: productType.TOP_WEAR,
       },
       {
@@ -1610,8 +1639,12 @@ category: new mongoose.Types.ObjectId(obj['"Shirts"']),
           shirtSizes.XL,
           shirtSizes.XXL,
         ],
-        categories: [new mongoose.Types.ObjectId(obj['"Shirts"'])],
-category: new mongoose.Types.ObjectId(obj['"Shirts"']),
+        categories: [
+          productCategories[
+            Math.floor(Math.random() * (productCategories.length - 1 - 0 + 1)) +
+              0
+          ]._id,
+        ],
         type: productType.TOP_WEAR,
       },
       {
@@ -1637,8 +1670,12 @@ category: new mongoose.Types.ObjectId(obj['"Shirts"']),
           shirtSizes.XXL,
           shirtSizes.XXXL,
         ],
-        categories: [new mongoose.Types.ObjectId(obj['"T-Shirts"'])],
-category: new mongoose.Types.ObjectId(obj['"T-Shirts"']),
+        categories: [
+          productCategories[
+            Math.floor(Math.random() * (productCategories.length - 1 - 0 + 1)) +
+              0
+          ]._id,
+        ],
         type: productType.TOP_WEAR,
       },
       {
@@ -1664,8 +1701,12 @@ category: new mongoose.Types.ObjectId(obj['"T-Shirts"']),
           shirtSizes.XXL,
           shirtSizes.XXXL,
         ],
-        categories: [new mongoose.Types.ObjectId(obj['"T-Shirts"'])],
-category: new mongoose.Types.ObjectId(obj['"T-Shirts"']),
+        categories: [
+          productCategories[
+            Math.floor(Math.random() * (productCategories.length - 1 - 0 + 1)) +
+              0
+          ]._id,
+        ],
         type: productType.TOP_WEAR,
       },
       {
@@ -1688,8 +1729,12 @@ category: new mongoose.Types.ObjectId(obj['"T-Shirts"']),
           },
         ],
         size: [shirtSizes.M, shirtSizes.L, shirtSizes.XL],
-        categories: [new mongoose.Types.ObjectId(obj['"Accessories"'])],
-category: new mongoose.Types.ObjectId(obj['"Accessories"']),
+        categories: [
+          productCategories[
+            Math.floor(Math.random() * (productCategories.length - 1 - 0 + 1)) +
+              0
+          ]._id,
+        ],
         type: productType.ACCESSORIES,
       },
       {
@@ -1712,8 +1757,12 @@ category: new mongoose.Types.ObjectId(obj['"Accessories"']),
           },
         ],
         size: [shirtSizes.M, shirtSizes.L, shirtSizes.XL],
-        categories: [new mongoose.Types.ObjectId(obj['"Accessories"'])],
-category: new mongoose.Types.ObjectId(obj['"Accessories"']),
+        categories: [
+          productCategories[
+            Math.floor(Math.random() * (productCategories.length - 1 - 0 + 1)) +
+              0
+          ]._id,
+        ],
         type: productType.ACCESSORIES,
       },
       {
@@ -1760,8 +1809,12 @@ category: new mongoose.Types.ObjectId(obj['"Accessories"']),
           },
         ],
         size: [shirtSizes.M, shirtSizes.L, shirtSizes.XL],
-        categories: [new mongoose.Types.ObjectId(obj['"Jackets"'])],
-category: new mongoose.Types.ObjectId(obj['"Jackets"']),
+        categories: [
+          productCategories[
+            Math.floor(Math.random() * (productCategories.length - 1 - 0 + 1)) +
+              0
+          ]._id,
+        ],
         type: productType.TOP_WEAR,
       },
       {
@@ -1796,8 +1849,12 @@ category: new mongoose.Types.ObjectId(obj['"Jackets"']),
           },
         ],
         size: ["XXS", "XS", "S", "M", "L", "XL", "XXL"],
-        categories: [new mongoose.Types.ObjectId(obj['"Jackets"'])],
-category: new mongoose.Types.ObjectId(obj['"Jackets"']),
+        categories: [
+          productCategories[
+            Math.floor(Math.random() * (productCategories.length - 1 - 0 + 1)) +
+              0
+          ]._id,
+        ],
         type: productType.TOP_WEAR,
       },
       {
@@ -1826,8 +1883,12 @@ category: new mongoose.Types.ObjectId(obj['"Jackets"']),
           },
         ],
         size: ["XXS", "XS", "S", "M", "L", "XL", "XXL"],
-        categories: [new mongoose.Types.ObjectId(obj['"Coats"'])],
-category: new mongoose.Types.ObjectId(obj['"Coats"']),
+        categories: [
+          productCategories[
+            Math.floor(Math.random() * (productCategories.length - 1 - 0 + 1)) +
+              0
+          ]._id,
+        ],
         type: productType.TOP_WEAR,
       },
       {
@@ -1856,8 +1917,12 @@ category: new mongoose.Types.ObjectId(obj['"Coats"']),
           },
         ],
         size: ["XXS", "XS", "S", "M", "L", "XL"],
-        categories: [new mongoose.Types.ObjectId(obj['"Jackets"'])],
-category: new mongoose.Types.ObjectId(obj['"Jackets"']),
+        categories: [
+          productCategories[
+            Math.floor(Math.random() * (productCategories.length - 1 - 0 + 1)) +
+              0
+          ]._id,
+        ],
         type: productType.TOP_WEAR,
       },
       {
@@ -1886,8 +1951,12 @@ category: new mongoose.Types.ObjectId(obj['"Jackets"']),
           },
         ],
         size: ["XXS", "XS", "S", "M", "L", "XL", "XXL"],
-        categories: [new mongoose.Types.ObjectId(obj['"Coats"'])],
-category: new mongoose.Types.ObjectId(obj['"Coats"']),
+        categories: [
+          productCategories[
+            Math.floor(Math.random() * (productCategories.length - 1 - 0 + 1)) +
+              0
+          ]._id,
+        ],
         type: productType.TOP_WEAR,
       },
       {
@@ -1910,8 +1979,12 @@ category: new mongoose.Types.ObjectId(obj['"Coats"']),
           },
         ],
         size: ["XXS", "XS", "S", "M", "L", "XL", "XXL"],
-        categories: [new mongoose.Types.ObjectId(obj['"Jackets"'])],
-category: new mongoose.Types.ObjectId(obj['"Jackets"']),
+        categories: [
+          productCategories[
+            Math.floor(Math.random() * (productCategories.length - 1 - 0 + 1)) +
+              0
+          ]._id,
+        ],
         type: productType.TOP_WEAR,
       },
       {
@@ -1946,8 +2019,12 @@ category: new mongoose.Types.ObjectId(obj['"Jackets"']),
           },
         ],
         size: ["XXS", "XS", "S", "M", "L", "XL", "XXL"],
-        categories: [new mongoose.Types.ObjectId(obj['"Jackets"'])],
-category: new mongoose.Types.ObjectId(obj['"Jackets"']),
+        categories: [
+          productCategories[
+            Math.floor(Math.random() * (productCategories.length - 1 - 0 + 1)) +
+              0
+          ]._id,
+        ],
         type: productType.TOP_WEAR,
       },
       {
@@ -1976,8 +2053,12 @@ category: new mongoose.Types.ObjectId(obj['"Jackets"']),
           },
         ],
         size: ["XXS", "XS", "S", "M", "L", "XL"],
-        categories: [new mongoose.Types.ObjectId(obj['"Coats"'])],
-category: new mongoose.Types.ObjectId(obj['"Coats"']),
+        categories: [
+          productCategories[
+            Math.floor(Math.random() * (productCategories.length - 1 - 0 + 1)) +
+              0
+          ]._id,
+        ],
         type: productType.TOP_WEAR,
       },
       {
@@ -2000,8 +2081,12 @@ category: new mongoose.Types.ObjectId(obj['"Coats"']),
           },
         ],
         size: ["XXS", "XS", "S", "M"],
-        categories: [new mongoose.Types.ObjectId(obj['"Coats"'])],
-category: new mongoose.Types.ObjectId(obj['"Coats"']),
+        categories: [
+          productCategories[
+            Math.floor(Math.random() * (productCategories.length - 1 - 0 + 1)) +
+              0
+          ]._id,
+        ],
         type: productType.TOP_WEAR,
       },
       {
@@ -2066,8 +2151,12 @@ category: new mongoose.Types.ObjectId(obj['"Coats"']),
           },
         ],
         size: ["XXS", "XS", "S", "M", "L", "XL", "XXL"],
-        categories: [new mongoose.Types.ObjectId(obj['"Jackets"'])],
-category: new mongoose.Types.ObjectId(obj['"Jackets"']),
+        categories: [
+          productCategories[
+            Math.floor(Math.random() * (productCategories.length - 1 - 0 + 1)) +
+              0
+          ]._id,
+        ],
         type: productType.TOP_WEAR,
       },
       {
@@ -2108,8 +2197,12 @@ category: new mongoose.Types.ObjectId(obj['"Jackets"']),
           },
         ],
         size: ["XXS", "XS", "S", "M", "L", "XL", "XXL"],
-        categories: [new mongoose.Types.ObjectId(obj['"Coats"'])],
-category: new mongoose.Types.ObjectId(obj['"Coats"']),
+        categories: [
+          productCategories[
+            Math.floor(Math.random() * (productCategories.length - 1 - 0 + 1)) +
+              0
+          ]._id,
+        ],
         type: productType.TOP_WEAR,
       },
       {
@@ -2144,8 +2237,12 @@ category: new mongoose.Types.ObjectId(obj['"Coats"']),
           },
         ],
         size: ["XS", "S", "M", "L", "XL"],
-        categories: [new mongoose.Types.ObjectId(obj['"Jackets"'])],
-category: new mongoose.Types.ObjectId(obj['"Jackets"']),
+        categories: [
+          productCategories[
+            Math.floor(Math.random() * (productCategories.length - 1 - 0 + 1)) +
+              0
+          ]._id,
+        ],
         type: productType.TOP_WEAR,
       },
       {
@@ -2192,8 +2289,12 @@ category: new mongoose.Types.ObjectId(obj['"Jackets"']),
           },
         ],
         size: ["XXS", "XS", "S", "M", "L", "XL", "XXL"],
-        categories: [new mongoose.Types.ObjectId(obj['"Blazers"'])],
-category: new mongoose.Types.ObjectId(obj['"Blazers"']),
+        categories: [
+          productCategories[
+            Math.floor(Math.random() * (productCategories.length - 1 - 0 + 1)) +
+              0
+          ]._id,
+        ],
         type: productType.TOP_WEAR,
       },
       {
@@ -2244,8 +2345,12 @@ category: new mongoose.Types.ObjectId(obj['"Blazers"']),
           pantSizes[42],
           pantSizes[44],
         ],
-        categories: [new mongoose.Types.ObjectId(obj['"Pants"'])],
-        category: new mongoose.Types.ObjectId(obj['"Pants"']),
+        categories: [
+          productCategories[
+            Math.floor(Math.random() * (productCategories.length - 1 - 0 + 1)) +
+              0
+          ]._id,
+        ],
         type: productType.BOTTOM_WEAR,
       },
       {
@@ -2278,8 +2383,12 @@ category: new mongoose.Types.ObjectId(obj['"Blazers"']),
           pantSizes[42],
           pantSizes[44],
         ],
-        categories: [new mongoose.Types.ObjectId(obj['"Pants"'])],
-category: new mongoose.Types.ObjectId(obj['"Pants"']),
+        categories: [
+          productCategories[
+            Math.floor(Math.random() * (productCategories.length - 1 - 0 + 1)) +
+              0
+          ]._id,
+        ],
         type: productType.BOTTOM_WEAR,
       },
       {
@@ -2314,8 +2423,12 @@ category: new mongoose.Types.ObjectId(obj['"Pants"']),
           },
         ],
         size: ["XS", "S", "M", "L", "XL", "XXL"],
-        categories: [new mongoose.Types.ObjectId(obj['"Jackets"'])],
-category: new mongoose.Types.ObjectId(obj['"Jackets"']),
+        categories: [
+          productCategories[
+            Math.floor(Math.random() * (productCategories.length - 1 - 0 + 1)) +
+              0
+          ]._id,
+        ],
         type: productType.TOP_WEAR,
       },
       {
@@ -2344,8 +2457,12 @@ category: new mongoose.Types.ObjectId(obj['"Jackets"']),
           },
         ],
         size: ["XS", "M", "L", "XL", "XXL"],
-        categories: [new mongoose.Types.ObjectId(obj['"Jackets"'])],
-category: new mongoose.Types.ObjectId(obj['"Jackets"']),
+        categories: [
+          productCategories[
+            Math.floor(Math.random() * (productCategories.length - 1 - 0 + 1)) +
+              0
+          ]._id,
+        ],
         type: productType.TOP_WEAR,
       },
       {
@@ -2386,8 +2503,12 @@ category: new mongoose.Types.ObjectId(obj['"Jackets"']),
           },
         ],
         size: ["M", "L"],
-        categories: [new mongoose.Types.ObjectId(obj['"Accessories"'])],
-category: new mongoose.Types.ObjectId(obj['"Accessories"']),
+        categories: [
+          productCategories[
+            Math.floor(Math.random() * (productCategories.length - 1 - 0 + 1)) +
+              0
+          ]._id,
+        ],
         type: productType.ACCESSORIES,
       },
       {
@@ -2410,8 +2531,12 @@ category: new mongoose.Types.ObjectId(obj['"Accessories"']),
           },
         ],
         size: ["S", "M", "L", "XL"],
-        categories: [new mongoose.Types.ObjectId(obj['"Jackets"'])],
-category: new mongoose.Types.ObjectId(obj['"Jackets"']),
+        categories: [
+          productCategories[
+            Math.floor(Math.random() * (productCategories.length - 1 - 0 + 1)) +
+              0
+          ]._id,
+        ],
         type: productType.TOP_WEAR,
       },
       {
@@ -2440,8 +2565,12 @@ category: new mongoose.Types.ObjectId(obj['"Jackets"']),
           },
         ],
         size: ["One Size"],
-        categories: [new mongoose.Types.ObjectId(obj['"Accessories"'])],
-category: new mongoose.Types.ObjectId(obj['"Accessories"']),
+        categories: [
+          productCategories[
+            Math.floor(Math.random() * (productCategories.length - 1 - 0 + 1)) +
+              0
+          ]._id,
+        ],
         type: productType.ACCESSORIES,
       },
       {
@@ -2486,8 +2615,12 @@ category: new mongoose.Types.ObjectId(obj['"Accessories"']),
           pantSizes[42],
           pantSizes[44],
         ],
-        categories: [new mongoose.Types.ObjectId(obj['"Pants"'])],
-category: new mongoose.Types.ObjectId(obj['"Pants"']),
+        categories: [
+          productCategories[
+            Math.floor(Math.random() * (productCategories.length - 1 - 0 + 1)) +
+              0
+          ]._id,
+        ],
         type: productType.BOTTOM_WEAR,
       },
       {
@@ -2552,8 +2685,12 @@ category: new mongoose.Types.ObjectId(obj['"Pants"']),
           },
         ],
         size: ["XXS", "XS", "S", "M", "L", "XL"],
-        categories: [new mongoose.Types.ObjectId(obj['"Jackets"'])],
-category: new mongoose.Types.ObjectId(obj['"Jackets"']),
+        categories: [
+          productCategories[
+            Math.floor(Math.random() * (productCategories.length - 1 - 0 + 1)) +
+              0
+          ]._id,
+        ],
         type: productType.TOP_WEAR,
       },
       {
@@ -2570,8 +2707,12 @@ category: new mongoose.Types.ObjectId(obj['"Jackets"']),
           },
         ],
         size: ["One Size"],
-        categories: [new mongoose.Types.ObjectId(obj['"Accessories"'])],
-category: new mongoose.Types.ObjectId(obj['"Accessories"']),
+        categories: [
+          productCategories[
+            Math.floor(Math.random() * (productCategories.length - 1 - 0 + 1)) +
+              0
+          ]._id,
+        ],
         type: productType.ACCESSORIES,
       },
       {
@@ -2618,8 +2759,12 @@ category: new mongoose.Types.ObjectId(obj['"Accessories"']),
           },
         ],
         size: ["XXS", "XS", "S", "M", "L", "XL", "XXL"],
-        categories: [new mongoose.Types.ObjectId(obj['"T-Shirts"'])],
-category: new mongoose.Types.ObjectId(obj['"T-Shirts"']),
+        categories: [
+          productCategories[
+            Math.floor(Math.random() * (productCategories.length - 1 - 0 + 1)) +
+              0
+          ]._id,
+        ],
         type: productType.TOP_WEAR,
       },
       {
@@ -2660,8 +2805,12 @@ category: new mongoose.Types.ObjectId(obj['"T-Shirts"']),
           },
         ],
         size: ["One Size"],
-        categories: [new mongoose.Types.ObjectId(obj['"Accessories"'])],
-category: new mongoose.Types.ObjectId(obj['"Accessories"']),
+        categories: [
+          productCategories[
+            Math.floor(Math.random() * (productCategories.length - 1 - 0 + 1)) +
+              0
+          ]._id,
+        ],
         type: productType.ACCESSORIES,
       },
       {
@@ -2696,8 +2845,12 @@ category: new mongoose.Types.ObjectId(obj['"Accessories"']),
           },
         ],
         size: ["S", "M", "L"],
-        categories: [new mongoose.Types.ObjectId(obj['"Suits"'])],
-category: new mongoose.Types.ObjectId(obj['"Suits"']),
+        categories: [
+          productCategories[
+            Math.floor(Math.random() * (productCategories.length - 1 - 0 + 1)) +
+              0
+          ]._id,
+        ],
         type: productType.TOP_WEAR,
       },
       {
@@ -2730,8 +2883,12 @@ category: new mongoose.Types.ObjectId(obj['"Suits"']),
           pantSizes[42],
           pantSizes[44],
         ],
-        categories: [new mongoose.Types.ObjectId(obj['"Pants"'])],
-category: new mongoose.Types.ObjectId(obj['"Pants"']),
+        categories: [
+          productCategories[
+            Math.floor(Math.random() * (productCategories.length - 1 - 0 + 1)) +
+              0
+          ]._id,
+        ],
         type: productType.BOTTOM_WEAR,
       },
       {
@@ -2764,8 +2921,12 @@ category: new mongoose.Types.ObjectId(obj['"Pants"']),
           pantSizes[42],
           pantSizes[44],
         ],
-        categories: [new mongoose.Types.ObjectId(obj['"Pants"'])],
-category: new mongoose.Types.ObjectId(obj['"Pants"']),
+        categories: [
+          productCategories[
+            Math.floor(Math.random() * (productCategories.length - 1 - 0 + 1)) +
+              0
+          ]._id,
+        ],
         type: productType.BOTTOM_WEAR,
       },
       {
@@ -2788,8 +2949,12 @@ category: new mongoose.Types.ObjectId(obj['"Pants"']),
           },
         ],
         size: ["S", "M", "L", "XL"],
-        categories: [new mongoose.Types.ObjectId(obj['"Jackets"'])],
-category: new mongoose.Types.ObjectId(obj['"Jackets"']),
+        categories: [
+          productCategories[
+            Math.floor(Math.random() * (productCategories.length - 1 - 0 + 1)) +
+              0
+          ]._id,
+        ],
         type: productType.TOP_WEAR,
       },
     ];
@@ -2798,7 +2963,6 @@ category: new mongoose.Types.ObjectId(obj['"Jackets"']),
       const randomIndexManufacturer = Math.floor(
         Math.random() * manufacturers.length
       );
-      console.log(product.name);
       await Product.create({
         ...product,
         _manufacturer: manufacturers[randomIndexManufacturer]._id,
@@ -2911,6 +3075,82 @@ const generateComment = async () => {
   console.log("Comments added successfully");
 };
 
+const generateOrder = async () => {
+  const users = await User.find({}, { _id: 1 });
+  const products = await Product.find({}).lean();
+  const vietnamData = require("./vietnamData");
+
+  for (const user of users) {
+    const numberOfOrders = Math.floor(Math.random() * 2) + 5;
+    for (let j = 0; j < numberOfOrders; j++) {
+      const randomProductList = [];
+      for (let i = 0; i < 5; i++) {
+        const randomProduct =
+          products[Math.floor(Math.random() * products.length)];
+        randomProductList.push({
+          ...randomProduct,
+          _product: randomProduct._id,
+          quantity: Math.floor(Math.random() * 5) + 1,
+        });
+      }
+
+      const ORDER_STATUS = {
+        PENDING: "PENDING",
+        PAID: "PAID",
+        SHIPPED: "SHIPPED",
+        DELIVERED: "DELIVERED",
+        RETURNED: "RETURNED",
+        CANCELLED: "CANCELLED",
+      };
+
+      const randomOrderStatus =
+        Object.values(ORDER_STATUS)[
+          Math.floor(Math.random() * Object.values(ORDER_STATUS).length)
+        ];
+      const randomShippingFee = Math.floor(Math.random() * 10) + 1;
+      const totalPrice = randomProductList.reduce(
+        (acc, product) => acc + product.quantity * product.price,
+        randomShippingFee
+      );
+      const randomPaymentMethod = Math.random() > 0.5 ? "COD" : "card";
+
+      const city = vietnamData[Math.floor(Math.random() * vietnamData.length)];
+      const district =
+        city.Districts[Math.floor(Math.random() * city.Districts.length)];
+      const ward =
+        district.Wards[Math.floor(Math.random() * district.Wards.length)];
+
+      const address = "123 ABC Street";
+      const order = await Order.create({
+        _user: user._id,
+        total: totalPrice,
+        shipping_fee: randomShippingFee,
+        payment_method: randomPaymentMethod,
+        status: randomOrderStatus,
+        city: city.Name,
+        district: district.Name,
+        ward: ward.Name || "N/A",
+        address,
+      });
+
+      const orderItems = randomProductList.map((product) => {
+        return {
+          _order: order._id,
+          _product: product._id,
+          quantity: product.quantity,
+          color_name: product.colors[0].color_name,
+          size: product.size[0],
+          price: product.price,
+        };
+      });
+
+      await OrderItem.insertMany(orderItems);
+    }
+  }
+
+  console.log("Orders added successfully");
+};
+
 const main = async () => {
   try {
     await clearDatabase();
@@ -2919,6 +3159,7 @@ const main = async () => {
     await generateProductCategories(mockProductCategories);
     await generateProduct();
     await generateComment();
+    await generateOrder();
     console.log("All tasks completed successfully.");
   } catch (err) {
     console.error("An error occurred:", err);

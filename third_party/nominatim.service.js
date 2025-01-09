@@ -38,9 +38,25 @@ const calculateShippingCost = (distanceKm, weightKg) => {
   return shippingCostInDollar;
 };
 
-const search = (address) => {
+const search = (address, timeout = 5000) => {
   const url = `${baseURL}&q=${address}`;
-  return fetch(url).then((res) => res.json());
+  const controller = new AbortController();
+  const signal = controller.signal;
+  const timeoutId = setTimeout(() => {
+    controller.abort();
+  }, timeout);
+
+  return fetch(url, { signal })
+    .then((res) => {
+      clearTimeout(timeoutId);
+      return res.json();
+    })
+    .catch((err) => {
+      if (err.name === "AbortError") {
+        throw new Error("Request timed out");
+      }
+      throw err;
+    });
 };
 
 module.exports = {

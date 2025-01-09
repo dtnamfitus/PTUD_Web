@@ -15,12 +15,13 @@ const getCommentByProductId = async (productId) => {
   }
 };
 
-const addComment = async (userId, productId, content) => {
+const addComment = async (userId, productId, content, rate) => {
   try {
     const comment = new Comment({
       _user: userId,
       _product: productId,
       content,
+      rate: rate || 0,
     });
 
     return await comment.save();

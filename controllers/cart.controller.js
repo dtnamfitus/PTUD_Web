@@ -24,17 +24,17 @@ const getCart = async (req, res) => {
       (acc, item) => acc + item._product.price * item.quantity,
       0
     );
-    const bodyHtml = await new Promise((resolve, reject) => {
-      res.render(
-        "client/checkout/cart",
-        { cart: formattedCart, subtotal },
-        (err, html) => {
-          if (err) return reject(err);
-          resolve(html);
-        }
-      );
-    });
-    await renderLayout(req, res, bodyHtml, "Cart");
+        const bodyHtml = await new Promise((resolve, reject) => {
+          res.render(
+            "client/checkout/cart",
+            { cart: formattedCart, subtotal },
+            (err, html) => {
+              if (err) return reject(err);
+              resolve(html);
+            }
+          );
+        });
+        await renderLayout(req, res, bodyHtml, "Cart");
   } catch (error) {
     console.error(error);
     res.status(500).send("Error fetching cart");

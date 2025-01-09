@@ -27,7 +27,7 @@ const checkout = async (req, res) => {
       (acc, item) => acc + item._product.price * item.quantity,
       0
     );
-    console.log(cart);
+
     const locationData = await nominatimService.search(`${district}, ${city}`);
     const weightKg = cart.reduce((acc, item) => acc + 0.5 * item.quantity, 0);
 
