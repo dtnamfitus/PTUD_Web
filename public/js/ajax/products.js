@@ -17,8 +17,6 @@ window.addEventListener("popstate", function () {
   handlePagination(query);
 });
 
-
-
 $(document).ready(function () {
   // Lấy dữ liệu từ các bộ lọc
   function getQueryData() {
@@ -29,7 +27,7 @@ $(document).ready(function () {
     const priceRange = $("#sl2").val().split(",");
     const priceFrom = priceRange[0];
     const priceTo = priceRange[1];
-    const key = $("#search-key").val() || "";
+    const key = $("#search-bar").val() || "";
     const categories = $(".category-filter.active")
       .map(function () {
         return $(this).data("id");
@@ -79,8 +77,22 @@ $(document).ready(function () {
     query.page = page;
     handlePagination(query);
   });
-});
 
+  let searchTimeout;
+
+  $("#search-bar").on("keyup", function (e) {
+    e.preventDefault();
+    const key = $(this).val().toLowerCase();
+
+    clearTimeout(searchTimeout);
+
+    searchTimeout = setTimeout(() => {
+      const query = getQueryData();
+      query.key = key;
+      handlePagination(query);
+    }, 300);
+  });
+});
 
 function handlePagination(query) {
   const {
@@ -112,4 +124,3 @@ function handlePagination(query) {
     },
   });
 }
-

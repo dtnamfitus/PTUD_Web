@@ -79,7 +79,7 @@
         </div>
 
         <div class="col-sm-9 padding-right">
-          <div class="col-md-12 mb-3">
+          <div id="search-container">
             <div class="form-group">
               <label for="search-bar" class="form-label">Search:</label>
               <input type="text" id="search-bar" class="form-control" placeholder="Search for products...">
@@ -178,9 +178,7 @@
       </div>
     </div>
   </section>
-  <script>$('#search-bar').on('keyup', function () {
-      const query = $(this).val().toLowerCase();
-    });</script>
+
   <script src="/js/jquery.js"></script>
   <script src="/js/price-range.js"></script>
   <script src="/js/jquery.scrollUp.min.js"></script>

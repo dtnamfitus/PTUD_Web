@@ -43,18 +43,19 @@ const getProductDetails = async (req, res) => {
     const cacheKey = `productDetails:${id}`;
 
     const cachedData = await getCache(cacheKey);
-    if (cachedData) {
-      return await renderLayout(req, res, cachedData.bodyHtml, "Home");
-    }
 
-    const [product, productCategories, comments] = await Promise.all([
-      productService.getProductById(id),
+    let product;
+    if (cachedData && cachedData.product) {
+      product = cachedData.product;
+    } else {
+      product = await productService.getProductById(id);
+    }
+    const [productCategories, comments] = await Promise.all([
       productCategoryService.getProductCategories(),
       commentService.getCommentByProductId(id),
     ]);
-
     const randomProducts = await productService.getRandomProducts(product);
-
+    console.log(comments);
     const bodyHtml = await new Promise((resolve, reject) => {
       res.render(
         "client/products/product_detail",
@@ -68,7 +69,13 @@ const getProductDetails = async (req, res) => {
       );
     });
 
-    await setCache(cacheKey, { bodyHtml }, 3600);
+    await setCache(
+      cacheKey,
+      {
+        product,
+      },
+      3600
+    );
 
     await renderLayout(req, res, bodyHtml, "Home");
   } catch (error) {

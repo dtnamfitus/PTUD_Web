@@ -368,6 +368,29 @@
     }
   </style>
 
+  <style>
+    .rating {
+      direction: rtl;
+      unicode-bidi: bidi-override;
+      font-size: 24px;
+    }
+
+    .rating input {
+      display: none;
+    }
+
+    .rating label {
+      color: #ddd;
+      cursor: pointer;
+    }
+
+    .rating input:checked~label,
+    .rating label:hover,
+    .rating label:hover~label {
+      color: #f5c518;
+    }
+  </style>
+
 </head>
 
 <body>
@@ -468,8 +491,7 @@
                 <%= comments[j].content %>
               </div>
               <div class="ClientReview_Name">
-                —
-                <%= comments[j]._user.firstName %>
+                — <%= comments[j]._user.firstName %>
                   <%= comments[j]._user.lastName %>
               </div>
               <div class="ClientReview_Img">
@@ -477,7 +499,27 @@
               </div>
             </div>
             <% } %>
+
+              <h2 class="text-center">Submit Your Review</h2>
+              <div class="form-group">
+                <label for="rating">Rating:</label>
+                <div class="rating">
+                  <input type="radio" name="rating" id="star5" value="5"><label for="star5">★</label>
+                  <input type="radio" name="rating" id="star4" value="4"><label for="star4">★</label>
+                  <input type="radio" name="rating" id="star3" value="3"><label for="star3">★</label>
+                  <input type="radio" name="rating" id="star2" value="2"><label for="star2">★</label>
+                  <input type="radio" name="rating" id="star1" value="1"><label for="star1">★</label>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="comment">Comment:</label>
+                <textarea class="form-control" name="comment" id="comment" rows="5"
+                  placeholder="Write your comment here..." required></textarea>
+              </div>
+              <a class="btn btn-primary" onclick="addComment('<%=product._id%>')">Submit Review</a>
+
         </div>
+
 
         <div class="recommended_items">
           <h2 class="title text-center">random items</h2>
@@ -510,7 +552,6 @@
     <div class="modal fade" id="myModal" role="dialog">
       <div class="modal-dialog">
 
-        <!-- Modal content-->
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -647,6 +688,80 @@
     }
 
   </script>
+
+<script>
+  function addComment(productId) {
+    const rating = document.querySelector('.rating input:checked')?.value || 0;
+    const comment = document.getElementById('comment').value.trim();
+
+    const messageContainer = document.getElementById('message-container');
+    if (messageContainer) {
+      messageContainer.style.display = 'none';
+      messageContainer.textContent = '';
+      messageContainer.className = '';
+    }
+
+    if (!rating || !comment) {
+      alert('Please select a rating and write a comment.');
+      return;
+    }
+
+    $.ajax({
+      url: '/client/comment',
+      method: 'POST',
+      data: { productId, rate: rating, content: comment },
+      dataType: 'json',
+      success: function (data) {
+        const commentsContainer = document.querySelector('.product-comments');
+        console.log('Server response:', data);
+        console.log('Comments container:', commentsContainer);
+        alert('Comment added successfully.');
+        if (commentsContainer) {
+          const newComment = `
+            <div class="comment">
+              <div class="ClientReview_Top">
+                <div class="ClientReview_Pfp">
+                  <img src="${data.user.avatar}" alt="User Avatar" />
+                </div>
+                <div class="ClientReview_Stars">
+                  ${'★'.repeat(data.comment.rate)}${'☆'.repeat(5 - data.comment.rate)}
+                </div>
+              </div>
+              <div class="ClientReview_Body">
+                ${data.comment.content}
+              </div>
+              <div class="ClientReview_Name">
+                — ${data.user.firstName} ${data.user.lastName}
+              </div>
+            </div>
+          `;
+          commentsContainer.insertAdjacentHTML('afterbegin', newComment);
+        }
+
+        if (messageContainer) {
+          messageContainer.style.display = 'block';
+          messageContainer.textContent = 'Comment added successfully.';
+          messageContainer.className = 'alert alert-success';
+        }
+
+        document.querySelectorAll('.rating input').forEach(input => {
+          input.checked = false;
+        });
+        document.getElementById('comment').value = '';
+      },
+      error: function (error) {
+        console.error('AJAX error:', error);
+        alert('Error adding comment.');
+        if (messageContainer) {
+          messageContainer.style.display = 'block';
+          messageContainer.textContent = 'Error adding comment.';
+          messageContainer.className = 'alert alert-danger';
+        }
+      }
+    });
+  }
+</script>
+
 
 </body>
 

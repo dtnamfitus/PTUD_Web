@@ -12,11 +12,21 @@ const getCommentByProductId = async (req, res) => {
 
 const addComment = async (req, res) => {
   try {
-    const { userId, productId, content } = req.body;
-    const comment = await commentService.addComment(userId, productId, content);
+    const user = req.user;
+    const { productId, content, rate } = req.body;
+    const comment = await commentService.addComment(
+      user._id,
+      productId,
+      content,
+      rate
+    );
     // TODO: render UI
-    res.status(201).json(comment);
+    return res.json({
+      comment,
+      user,
+    });
   } catch (err) {
+    console.log(err);
     res.status(500).json({ message: err.message });
   }
 };

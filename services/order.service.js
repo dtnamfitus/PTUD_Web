@@ -21,7 +21,7 @@ const createOrderItemMany = async (orderItems) => {
 
 const getOrderByUserId = async (userId) => {
   try {
-    const orders = await Order.find({ _user: userId });
+    const orders = await Order.find({ _user: userId }).sort({ createdAt: -1 });
     return orders;
   } catch (err) {
     throw new Error("Error getting orders: " + err.message);

@@ -74,7 +74,6 @@
             <thead>
                 <tr>
                     <th style="color: black;">#</th>
-                    <th style="color: black;">User</th>
                     <th style="color: black;">Status</th>
                     <th style="color: black;">City</th>
                     <th style="color: black;">District</th>
@@ -91,7 +90,6 @@
                 <% orders.forEach((order, index) => { %>
                     <tr onclick="redirectToOrder('<%= order._id %>')">
                         <td><%= index + 1 %></td>
-                        <td><%= order._user %></td>
                         <td><%= order.status %></td>
                         <td><%= order.city %></td>
                         <td><%= order.district %></td>
