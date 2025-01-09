@@ -8,12 +8,12 @@ const { getCache, setCache } = require("../config/redis/cacheHelper");
 const getProducts = async (req, res) => {
   try {
     const parsedQuery = qs.parse(req.query);
-    const cacheKey = `products:${JSON.stringify(parsedQuery)}`;
+    // const cacheKey = `products:${JSON.stringify(parsedQuery)}`;
 
-    const cachedData = await getCache(cacheKey);
-    if (cachedData) {
-      return await renderLayout(req, res, cachedData.bodyHtml, "Home");
-    }
+    // const cachedData = await getCache(cacheKey);
+    // if (cachedData) {
+    //   return await renderLayout(req, res, cachedData.bodyHtml, "Home");
+    // }
 
     const [products, productCategories] = await Promise.all([
       productService.getAllProducts(parsedQuery),
@@ -28,7 +28,7 @@ const getProducts = async (req, res) => {
       );
     });
 
-    await setCache(cacheKey, { bodyHtml }, 3600); // 1 hour
+    // await setCache(cacheKey, { bodyHtml }, 3600); // 1 hour
 
     await renderLayout(req, res, bodyHtml, "Home");
   } catch (error) {
