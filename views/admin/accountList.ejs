@@ -99,6 +99,14 @@
                     <td>${account.isAdmin}</td>
                     <td>${account.status}</td>
                     <td>${account.createdAt}</td>
+                    <td>
+                        <a href="/admin/accounts/${account._id}" >Detail</a>
+                    </td>
+                    <td>
+                        <a href="/admin/ban-account/${account._id}" >
+                            ${account.status === 'banned' ? 'Unban' : 'Ban'}
+                        </a>
+                    </td>
                 </tr>`;
             tableBody.innerHTML += row;
         });
