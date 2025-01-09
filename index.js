@@ -10,7 +10,7 @@ const cookieParser = require("cookie-parser");
 
 const route = require("./routes");
 const passport = require("./config/passport");
-const renderAdminLayout = require("./controllers/ui/renderAdminLayout");
+const renderAdminLayout = require("./controllers/renderAdminLayout");
 
 const isTestEnv = process.env.NODE_ENV === "test";
 

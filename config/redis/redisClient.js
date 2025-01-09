@@ -7,10 +7,10 @@ const client = redis.createClient({
   password: process.env.REDIS_PASSWORD,
 });
 
-// client.on("error", (err) => {
-//   console.error("Redis error:", err);
-// });
+client.on("error", (err) => {
+  console.error("Redis error:", err);
+});
 
-// client.connect();
+client.connect();
 
 module.exports = client;

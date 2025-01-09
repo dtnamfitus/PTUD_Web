@@ -6,6 +6,8 @@ const pantSizes = require("./../constant/pant-size.constant");
 const shoeSizes = require("./../constant/shoe-size.constant");
 const ProductStock = require("./product-stock.model");
 const mongoosePaginate = require("mongoose-paginate-v2");
+const autopopulate = require('mongoose-autopopulate');
+const ProductCategory = require("./product-category.model");
 
 const productSchema = new mongoose.Schema(
   {
@@ -17,11 +19,26 @@ const productSchema = new mongoose.Schema(
         {
           type: mongoose.Schema.Types.ObjectId,
           ref: "ProductCategory",
+          // autopopulate: true,
         },
       ],
       required: [true, "At least one category is required."],
+      autopopulate: true,
     },
-    mainImage: { type: String, required: true },
+    category: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "ProductCategory",
+      required: false,
+      // autopopulate: true,
+    },
+    mainImage: { type: String, required: false },
+    images: { type: [String] },
+    //On stock, Out of stock, suspend
+    status: {
+      type: String,
+      enum: ["on_stock", "out_of_stock", "suspend"],
+      default: "on_stock",
+    },
     colors: [
       {
         color_name: {
@@ -35,7 +52,7 @@ const productSchema = new mongoose.Schema(
     type: {
       type: String,
       enum: Object.values(productType),
-      required: true,
+      // required: true,
     },
     size: {
       type: [String],
@@ -70,6 +87,7 @@ const productSchema = new mongoose.Schema(
 
 productSchema.index({ name: "text", type: 1 });
 productSchema.plugin(mongoosePaginate);
+productSchema.plugin(autopopulate);
 
 productSchema.post("save", async function (doc, next) {
   try {

@@ -11,6 +11,16 @@
     <link href="/css/animate.css" rel="stylesheet">
     <link href="/css/main.css" rel="stylesheet">
     <link href="/css/responsive.css" rel="stylesheet">
+  
+    <link rel="shortcut icon" href="/admin/images/favicon.ico" />
+    <link rel="stylesheet" href="/admin/css/backend-plugin.min.css" />
+    <link rel="stylesheet" href="/admin/css/backend.css?v=1.0.0" />
+    <link rel="stylesheet" href="/admin/vendor/line-awesome/dist/line-awesome/css/line-awesome.min.css" />
+    <link rel="stylesheet" href="/admin/vendor/remixicon/fonts/remixicon.css" />
+  
+    <!-- <link rel="stylesheet" href="/admin/vendor/tui-calendar/tui-calendar/dist/tui-calendar.css" /> -->
+    <!-- <link rel="stylesheet" href="/admin/vendor/tui-calendar/tui-date-picker/dist/tui-date-picker.css" /> -->
+    <!-- <link rel="stylesheet" href="/admin/vendor/tui-calendar/tui-time-picker/dist/tui-time-picker.css" /> -->
     <!--[if lt IE 9]>
     <script src="/js/html5shiv.js"></script>
     <script src="/js/respond.min.js"></script>
@@ -38,10 +48,10 @@
           <div class="col-sm-6">
             <div class="social-icons pull-right">
               <ul class="nav navbar-nav">
-                <li><a href=""><i class="fa fa-facebook"></i></a></li>
+                <!-- <li><a href=""><i class="fa fa-facebook"></i></a></li>
                 <li><a href=""><i class="fa fa-twitter"></i></a></li>
                 <li><a href=""><i class="fa fa-linkedin"></i></a></li>
-                <li><a href=""><i class="fa fa-google-plus"></i></a></li>
+                <li><a href=""><i class="fa fa-google-plus"></i></a></li> -->
               </ul>
             </div>
           </div>
@@ -61,10 +71,10 @@
           </div>
           <div class="col-md-8 clearfix">
             <div class="admin-menu clearfix pull-right">
-              <ul class="nav navbar-nav">
+              <ul class="nav navbar-nav" style="display: flex; align-items: center; flex-direction: row;">
                 <li>
-                  <a href="/admin/profile">
-                    Hi Admin
+                  <a href="">
+                    Hi <%= admin && admin.name ? admin.name : '' %>
                     <img 
                       src="<%= (admin && admin.avatar) ? admin.avatar : '/images/default/default_avatar.png' %>" 
                       alt="Avatar"
@@ -72,7 +82,7 @@
                       class="avatar">
                   </a>
                 </li>
-                <li><a href="/admin/logout"><i class="fa fa-sign-out"></i> Logout</a></li>
+                <li><a href="/client/auth/logout"><i class="fa fa-sign-out"></i> Logout</a></li>
               </ul>
             </div>
           </div>
@@ -88,12 +98,13 @@
           <div class="col-sm-12">
             <div class="mainmenu pull-left">
               <ul class="nav navbar-nav collapse navbar-collapse">
-                <li><a href="/admin">Dashboard</a></li>
+                <!-- <li><a href="/admin">Dashboard</a></li> -->
                 <li><a href="/admin/accounts">Account Management</a></li>
                 <li><a href="/admin/categories">Category Management</a></li>
+                <li><a href="/admin/manufacturers">Manufacturer Management</a></li>
                 <li><a href="/admin/products">Product Management</a></li>
                 <li><a href="/admin/orders">Order Management</a></li>
-                <li><a href="/admin/reports">Reports</a></li>
+                <li><a href="">Reports</a></li>
               </ul>
             </div>
           </div>

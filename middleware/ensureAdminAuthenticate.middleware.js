@@ -1,13 +1,17 @@
 function ensureAdminAuthenticated(req, res, next) {
+  console.log("auth:" , req.session.user)
   if (
-    req.isAuthenticated() &&
-    req.user?.isVerified === true &&
-    req.user?.isAdmin === true
+    // req.isAuthenticated() &&
+    // req.session.user?.isVerified === true &&
+    req.session.user?.isAdmin === true
   ) {
+    const user = req.session.user;
+    // console.log("middleware: " , user)
+    req.user = user
     return next();
   }
   req.flash("error", "You must be logged in");
-  return res.redirect("/admin/auth/login");
+  return res.redirect("/admin/login");
 }
 
 module.exports = ensureAdminAuthenticated;

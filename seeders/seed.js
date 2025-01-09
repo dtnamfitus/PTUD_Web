@@ -1349,6 +1349,7 @@ const generateProduct = async () => {
         description: "A versatile white t-shirt made from 100% cotton.",
         price: 19.9,
         categories: [new mongoose.Types.ObjectId(obj['"T-Shirts"'])],
+category: new mongoose.Types.ObjectId(obj['"T-Shirts"']),
         mainImage:
           "https://image.uniqlo.com/UQ/ST3/vn/imagesgoods/465187/item/vngoods_00_465187_3x4.jpg?width=423",
         colors: [
@@ -1421,6 +1422,7 @@ const generateProduct = async () => {
         description: "A lightweight and warm jacket for cold weather.",
         price: 69.9,
         categories: [new mongoose.Types.ObjectId(obj['"Jackets"'])],
+category: new mongoose.Types.ObjectId(obj['"Jackets"']),
         mainImage:
           "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/470067/item/usgoods_69_470067_3x4.jpg?width=600",
         colors: [
@@ -1488,6 +1490,7 @@ const generateProduct = async () => {
           shirtSizes.XXXL,
         ],
         categories: [new mongoose.Types.ObjectId(obj['"T-Shirts"'])],
+category: new mongoose.Types.ObjectId(obj['"T-Shirts"']),
         type: productType.TOP_WEAR,
       },
       {
@@ -1514,6 +1517,7 @@ const generateProduct = async () => {
           shirtSizes.XXXL,
         ],
         categories: [new mongoose.Types.ObjectId(obj['"T-Shirts"'])],
+category: new mongoose.Types.ObjectId(obj['"T-Shirts"']),
         type: productType.TOP_WEAR,
       },
       {
@@ -1531,6 +1535,7 @@ const generateProduct = async () => {
         ],
         size: [shirtSizes.XXS, shirtSizes.XXL, shirtSizes.XXXL],
         categories: [new mongoose.Types.ObjectId(obj['"T-Shirts"'])],
+category: new mongoose.Types.ObjectId(obj['"T-Shirts"']),
         type: productType.TOP_WEAR,
       },
       {
@@ -1554,6 +1559,7 @@ const generateProduct = async () => {
         ],
         size: [],
         categories: [new mongoose.Types.ObjectId(obj['"Accessories"'])],
+category: new mongoose.Types.ObjectId(obj['"Accessories"']),
         type: productType.ACCESSORIES,
       },
       {
@@ -1579,6 +1585,7 @@ const generateProduct = async () => {
           shirtSizes.XXL,
         ],
         categories: [new mongoose.Types.ObjectId(obj['"Shirts"'])],
+category: new mongoose.Types.ObjectId(obj['"Shirts"']),
         type: productType.TOP_WEAR,
       },
       {
@@ -1604,6 +1611,7 @@ const generateProduct = async () => {
           shirtSizes.XXL,
         ],
         categories: [new mongoose.Types.ObjectId(obj['"Shirts"'])],
+category: new mongoose.Types.ObjectId(obj['"Shirts"']),
         type: productType.TOP_WEAR,
       },
       {
@@ -1630,6 +1638,7 @@ const generateProduct = async () => {
           shirtSizes.XXXL,
         ],
         categories: [new mongoose.Types.ObjectId(obj['"T-Shirts"'])],
+category: new mongoose.Types.ObjectId(obj['"T-Shirts"']),
         type: productType.TOP_WEAR,
       },
       {
@@ -1656,6 +1665,7 @@ const generateProduct = async () => {
           shirtSizes.XXXL,
         ],
         categories: [new mongoose.Types.ObjectId(obj['"T-Shirts"'])],
+category: new mongoose.Types.ObjectId(obj['"T-Shirts"']),
         type: productType.TOP_WEAR,
       },
       {
@@ -1679,6 +1689,7 @@ const generateProduct = async () => {
         ],
         size: [shirtSizes.M, shirtSizes.L, shirtSizes.XL],
         categories: [new mongoose.Types.ObjectId(obj['"Accessories"'])],
+category: new mongoose.Types.ObjectId(obj['"Accessories"']),
         type: productType.ACCESSORIES,
       },
       {
@@ -1702,6 +1713,7 @@ const generateProduct = async () => {
         ],
         size: [shirtSizes.M, shirtSizes.L, shirtSizes.XL],
         categories: [new mongoose.Types.ObjectId(obj['"Accessories"'])],
+category: new mongoose.Types.ObjectId(obj['"Accessories"']),
         type: productType.ACCESSORIES,
       },
       {
@@ -1749,6 +1761,7 @@ const generateProduct = async () => {
         ],
         size: [shirtSizes.M, shirtSizes.L, shirtSizes.XL],
         categories: [new mongoose.Types.ObjectId(obj['"Jackets"'])],
+category: new mongoose.Types.ObjectId(obj['"Jackets"']),
         type: productType.TOP_WEAR,
       },
       {
@@ -1784,6 +1797,7 @@ const generateProduct = async () => {
         ],
         size: ["XXS", "XS", "S", "M", "L", "XL", "XXL"],
         categories: [new mongoose.Types.ObjectId(obj['"Jackets"'])],
+category: new mongoose.Types.ObjectId(obj['"Jackets"']),
         type: productType.TOP_WEAR,
       },
       {
@@ -1813,6 +1827,7 @@ const generateProduct = async () => {
         ],
         size: ["XXS", "XS", "S", "M", "L", "XL", "XXL"],
         categories: [new mongoose.Types.ObjectId(obj['"Coats"'])],
+category: new mongoose.Types.ObjectId(obj['"Coats"']),
         type: productType.TOP_WEAR,
       },
       {
@@ -1842,6 +1857,7 @@ const generateProduct = async () => {
         ],
         size: ["XXS", "XS", "S", "M", "L", "XL"],
         categories: [new mongoose.Types.ObjectId(obj['"Jackets"'])],
+category: new mongoose.Types.ObjectId(obj['"Jackets"']),
         type: productType.TOP_WEAR,
       },
       {
@@ -1871,6 +1887,7 @@ const generateProduct = async () => {
         ],
         size: ["XXS", "XS", "S", "M", "L", "XL", "XXL"],
         categories: [new mongoose.Types.ObjectId(obj['"Coats"'])],
+category: new mongoose.Types.ObjectId(obj['"Coats"']),
         type: productType.TOP_WEAR,
       },
       {
@@ -1894,6 +1911,7 @@ const generateProduct = async () => {
         ],
         size: ["XXS", "XS", "S", "M", "L", "XL", "XXL"],
         categories: [new mongoose.Types.ObjectId(obj['"Jackets"'])],
+category: new mongoose.Types.ObjectId(obj['"Jackets"']),
         type: productType.TOP_WEAR,
       },
       {
@@ -1929,6 +1947,7 @@ const generateProduct = async () => {
         ],
         size: ["XXS", "XS", "S", "M", "L", "XL", "XXL"],
         categories: [new mongoose.Types.ObjectId(obj['"Jackets"'])],
+category: new mongoose.Types.ObjectId(obj['"Jackets"']),
         type: productType.TOP_WEAR,
       },
       {
@@ -1958,6 +1977,7 @@ const generateProduct = async () => {
         ],
         size: ["XXS", "XS", "S", "M", "L", "XL"],
         categories: [new mongoose.Types.ObjectId(obj['"Coats"'])],
+category: new mongoose.Types.ObjectId(obj['"Coats"']),
         type: productType.TOP_WEAR,
       },
       {
@@ -1981,6 +2001,7 @@ const generateProduct = async () => {
         ],
         size: ["XXS", "XS", "S", "M"],
         categories: [new mongoose.Types.ObjectId(obj['"Coats"'])],
+category: new mongoose.Types.ObjectId(obj['"Coats"']),
         type: productType.TOP_WEAR,
       },
       {
@@ -2046,6 +2067,7 @@ const generateProduct = async () => {
         ],
         size: ["XXS", "XS", "S", "M", "L", "XL", "XXL"],
         categories: [new mongoose.Types.ObjectId(obj['"Jackets"'])],
+category: new mongoose.Types.ObjectId(obj['"Jackets"']),
         type: productType.TOP_WEAR,
       },
       {
@@ -2087,6 +2109,7 @@ const generateProduct = async () => {
         ],
         size: ["XXS", "XS", "S", "M", "L", "XL", "XXL"],
         categories: [new mongoose.Types.ObjectId(obj['"Coats"'])],
+category: new mongoose.Types.ObjectId(obj['"Coats"']),
         type: productType.TOP_WEAR,
       },
       {
@@ -2122,6 +2145,7 @@ const generateProduct = async () => {
         ],
         size: ["XS", "S", "M", "L", "XL"],
         categories: [new mongoose.Types.ObjectId(obj['"Jackets"'])],
+category: new mongoose.Types.ObjectId(obj['"Jackets"']),
         type: productType.TOP_WEAR,
       },
       {
@@ -2169,6 +2193,7 @@ const generateProduct = async () => {
         ],
         size: ["XXS", "XS", "S", "M", "L", "XL", "XXL"],
         categories: [new mongoose.Types.ObjectId(obj['"Blazers"'])],
+category: new mongoose.Types.ObjectId(obj['"Blazers"']),
         type: productType.TOP_WEAR,
       },
       {
@@ -2220,6 +2245,7 @@ const generateProduct = async () => {
           pantSizes[44],
         ],
         categories: [new mongoose.Types.ObjectId(obj['"Pants"'])],
+        category: new mongoose.Types.ObjectId(obj['"Pants"']),
         type: productType.BOTTOM_WEAR,
       },
       {
@@ -2253,6 +2279,7 @@ const generateProduct = async () => {
           pantSizes[44],
         ],
         categories: [new mongoose.Types.ObjectId(obj['"Pants"'])],
+category: new mongoose.Types.ObjectId(obj['"Pants"']),
         type: productType.BOTTOM_WEAR,
       },
       {
@@ -2288,6 +2315,7 @@ const generateProduct = async () => {
         ],
         size: ["XS", "S", "M", "L", "XL", "XXL"],
         categories: [new mongoose.Types.ObjectId(obj['"Jackets"'])],
+category: new mongoose.Types.ObjectId(obj['"Jackets"']),
         type: productType.TOP_WEAR,
       },
       {
@@ -2317,6 +2345,7 @@ const generateProduct = async () => {
         ],
         size: ["XS", "M", "L", "XL", "XXL"],
         categories: [new mongoose.Types.ObjectId(obj['"Jackets"'])],
+category: new mongoose.Types.ObjectId(obj['"Jackets"']),
         type: productType.TOP_WEAR,
       },
       {
@@ -2358,6 +2387,7 @@ const generateProduct = async () => {
         ],
         size: ["M", "L"],
         categories: [new mongoose.Types.ObjectId(obj['"Accessories"'])],
+category: new mongoose.Types.ObjectId(obj['"Accessories"']),
         type: productType.ACCESSORIES,
       },
       {
@@ -2381,6 +2411,7 @@ const generateProduct = async () => {
         ],
         size: ["S", "M", "L", "XL"],
         categories: [new mongoose.Types.ObjectId(obj['"Jackets"'])],
+category: new mongoose.Types.ObjectId(obj['"Jackets"']),
         type: productType.TOP_WEAR,
       },
       {
@@ -2410,6 +2441,7 @@ const generateProduct = async () => {
         ],
         size: ["One Size"],
         categories: [new mongoose.Types.ObjectId(obj['"Accessories"'])],
+category: new mongoose.Types.ObjectId(obj['"Accessories"']),
         type: productType.ACCESSORIES,
       },
       {
@@ -2455,6 +2487,7 @@ const generateProduct = async () => {
           pantSizes[44],
         ],
         categories: [new mongoose.Types.ObjectId(obj['"Pants"'])],
+category: new mongoose.Types.ObjectId(obj['"Pants"']),
         type: productType.BOTTOM_WEAR,
       },
       {
@@ -2520,6 +2553,7 @@ const generateProduct = async () => {
         ],
         size: ["XXS", "XS", "S", "M", "L", "XL"],
         categories: [new mongoose.Types.ObjectId(obj['"Jackets"'])],
+category: new mongoose.Types.ObjectId(obj['"Jackets"']),
         type: productType.TOP_WEAR,
       },
       {
@@ -2537,6 +2571,7 @@ const generateProduct = async () => {
         ],
         size: ["One Size"],
         categories: [new mongoose.Types.ObjectId(obj['"Accessories"'])],
+category: new mongoose.Types.ObjectId(obj['"Accessories"']),
         type: productType.ACCESSORIES,
       },
       {
@@ -2584,6 +2619,7 @@ const generateProduct = async () => {
         ],
         size: ["XXS", "XS", "S", "M", "L", "XL", "XXL"],
         categories: [new mongoose.Types.ObjectId(obj['"T-Shirts"'])],
+category: new mongoose.Types.ObjectId(obj['"T-Shirts"']),
         type: productType.TOP_WEAR,
       },
       {
@@ -2625,6 +2661,7 @@ const generateProduct = async () => {
         ],
         size: ["One Size"],
         categories: [new mongoose.Types.ObjectId(obj['"Accessories"'])],
+category: new mongoose.Types.ObjectId(obj['"Accessories"']),
         type: productType.ACCESSORIES,
       },
       {
@@ -2660,6 +2697,7 @@ const generateProduct = async () => {
         ],
         size: ["S", "M", "L"],
         categories: [new mongoose.Types.ObjectId(obj['"Suits"'])],
+category: new mongoose.Types.ObjectId(obj['"Suits"']),
         type: productType.TOP_WEAR,
       },
       {
@@ -2693,6 +2731,7 @@ const generateProduct = async () => {
           pantSizes[44],
         ],
         categories: [new mongoose.Types.ObjectId(obj['"Pants"'])],
+category: new mongoose.Types.ObjectId(obj['"Pants"']),
         type: productType.BOTTOM_WEAR,
       },
       {
@@ -2726,6 +2765,7 @@ const generateProduct = async () => {
           pantSizes[44],
         ],
         categories: [new mongoose.Types.ObjectId(obj['"Pants"'])],
+category: new mongoose.Types.ObjectId(obj['"Pants"']),
         type: productType.BOTTOM_WEAR,
       },
       {
@@ -2749,6 +2789,7 @@ const generateProduct = async () => {
         ],
         size: ["S", "M", "L", "XL"],
         categories: [new mongoose.Types.ObjectId(obj['"Jackets"'])],
+category: new mongoose.Types.ObjectId(obj['"Jackets"']),
         type: productType.TOP_WEAR,
       },
     ];

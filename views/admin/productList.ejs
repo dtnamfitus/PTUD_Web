@@ -1,0 +1,276 @@
+<body class="sb-nav-fixed">
+  <div id="layoutSidenav">
+    <div id="layoutSidenav_content">
+      <main>
+        <div class="container-fluid px-4">
+          <h1 class="mt-4 m-3">Products</h1>
+          <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item"><a href="dashboard">Admin</a></li>
+            <li class="breadcrumb-item active">Products</li>
+          </ol>
+          <div class="card mb-4">
+            <div class="card-header">
+              <i class="fas fa-table me-1"></i>
+              Products List
+            </div>
+            <div class="card-body">
+              <!-- Search bar and Sort options -->
+              <div class="mb-3">
+                <input type="text" id="searchInput" class="form-control mb-2" placeholder="Search by Name" />
+                <div class="d-flex mb-2 align-items-center" style="gap: 10px;">
+                  <label for="sortBy" class="fw-bold" style="min-width: 70px;">Sort By:</label>
+                  <select id="sortBy" class="form-select" style="max-width: 200px;">
+                    <option value="name">Name</option>
+                    <option value="price">Price</option>
+                    <option value="createdAt">Created At</option>
+                  </select>
+                  <label for="sortOrder" class="fw-bold" style="min-width: 70px;">Order:</label>
+                  <select id="sortOrder" class="form-select" style="max-width: 200px;">
+                    <option value="asc">Ascending</option>
+                    <option value="desc" selected>Descending</option>
+                  </select>
+                  <label for="manufacturerFilter" class="fw-bold" style="min-width: 70px;">Manufacturer:</label>
+                  <select id="manufacturerFilter" class="form-select" style="max-width: 200px;">
+                    <option value="">All</option>
+                    <% manufacturers.forEach(manufacturer => { %>
+                      <option value="<%= manufacturer.id %>"><%= manufacturer.name %></option>
+                    <% }) %>
+                  </select>
+                </div>
+                <button type="button" class="btn btn-primary" onclick="performSearch()">Search</button>
+                <br />
+                <!-- Button to trigger the popup form -->
+                <button type="button" class="btn btn-success" onclick="openProductPopup()">Add Product</button>
+              </div>
+
+              <!-- Table -->
+              <table id="datatablesSimple" class="table table-bordered">
+                <thead>
+                  <tr style="font-size: large; font-weight: bold;">
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Main Image</th>
+                    <th>Manufacturer</th>
+                    <th>CreateAt</th>
+                    <!-- <th>Actions</th> -->
+                  </tr>
+                </thead>
+                <tbody id="productList">
+                  <!-- Rows will be populated dynamically via JavaScript -->
+                </tbody>
+              </table>
+
+              <!-- Pagination -->
+              <div class="d-flex justify-content-center mt-4" id="paginationControls">
+                <!-- Pagination buttons will be generated dynamically -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Popup form for adding new product -->
+  <div id="productPopupForm" style="width: 500px; display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); background-color:white; padding:20px; box-shadow: 0 0 10px rgba(0,0,0,0.5); z-index:1000;">
+    <h3>Add New Product</h3>
+    <form id="addProductForm" method="POST" action="/admin/products">
+      <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input type="text" id="name" name="name" class="form-control" required />
+      </div>
+      <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <textarea id="description" name="description" class="form-control" rows="3"></textarea>
+      </div>
+      <div class="mb-3">
+        <label for="price" class="form-label">Price</label>
+        <input type="text" id="price" name="price" class="form-control" required/>
+      </div>
+      <div class="mb-3">
+        <label for="manufacturerId" class="form-label">Manufacturer</label>
+        <select id="manufacturerId" name="manufacturerId" class="form-select" required>
+          <option value="">Select Manufacturer</option>
+          <% manufacturers.forEach(manufacturer => { %>
+            <option value="<%= manufacturer.id %>"><%= manufacturer.name %></option>
+          <% }) %>
+        </select>
+      </div>
+      <!-- status -->
+      <div class="mb-3">
+        <label for="status" class="form-label">Status</label>
+        <select id="status" name="status" class="form-select" required>
+          <option value="on_stock">On stock</option>
+          <option value="out_of_stock">Out of stock</option>
+          <option value="suspend">Suspend</option>
+        </select>
+      </div>
+      <div id="error-message" class="text-danger" style="display:none; margin-top:10px;"></div>
+
+      <div class="text-end">
+        <button type="submit" class="btn btn-success">Add Category</button>
+        <button type="button" class="btn btn-secondary" onclick="closeProductPopup()">Cancel</button>
+      </div>
+    </form>
+  </div>
+
+  <style>
+    #datatablesSimple th, #datatablesSimple td {
+      text-align: center !important;  /* Bắt buộc căn giữa các cột */
+      padding-left: 36px;
+      padding-right: 36px;
+      border: 1px solid #ddd;
+    }
+  </style>
+
+  <script>
+
+function openProductPopup() {
+    document.getElementById('productPopupForm').style.display = 'block';
+  }
+
+  function closeProductPopup() {
+    document.getElementById('productPopupForm').style.display = 'none';
+
+  }
+
+//   document.getElementById('editBtn').addEventListener('click', function() {
+//     document.getElementById('status').removeAttribute('disabled'); // Cho phép chỉnh sửa status khi bấm edit
+// });
+
+
+// function openAddProductPopup() {
+//   document.getElementById('addProductPopupForm').style.display = 'block';
+// }
+// function enableEdit() {
+//     document.querySelectorAll("#productForm input, #productForm textarea, #productForm select").forEach(field => {
+//       field.removeAttribute("readonly");
+//       field.removeAttribute("disabled");
+//     });
+//     document.getElementById("editBtn").classList.add("d-none");
+//     document.getElementById("saveBtn").classList.remove("d-none");
+// }
+
+document.getElementById('addProductForm').addEventListener('submit', function (e) {
+    e.preventDefault();  // Ngăn submit mặc định
+
+    const priceInput = document.getElementById('price');
+    const errorMessage = document.getElementById('error-message');
+    errorMessage.style.display = 'none'; // Ẩn lỗi khi bắt đầu kiểm tra mới
+
+    const priceValue = priceInput.value.trim();
+
+    // Kiểm tra giá có phải là số hay không
+    if (isNaN(priceValue)) {
+        errorMessage.textContent = 'Price must be a number.';
+        errorMessage.style.display = 'block';
+        priceInput.focus();
+        return false; // Prevent form submission
+    }
+
+    // Kiểm tra giá có lớn hơn 0 hay không
+    if (priceValue <= 0) {
+        errorMessage.textContent = 'Price must be greater than 0.';
+        errorMessage.style.display = 'block';
+        priceInput.focus();
+        return false; // Prevent form submission
+    }
+
+    // Nếu không có lỗi, mới submit form
+    this.submit();
+});
+
+
+// function closeEditProductPopup() {
+//   document.getElementById('editProductPopupForm').style.display = 'none';
+// }
+
+    const products = <%- JSON.stringify(products) %>; // Server trả về danh sách sản phẩm
+    const rowsPerPage = 10; // Số bản ghi mỗi trang
+    let currentPage = 1;
+
+    function performSearch() {
+      const keyword = document.getElementById("searchInput").value.trim();
+      const sortBy = document.getElementById("sortBy").value;
+      const sortOrder = document.getElementById("sortOrder").value;
+      const manufacturerId = document.getElementById("manufacturerFilter").value;
+      // const status = document.getElementById("status").value;
+
+      // Gửi request lên server (Bạn cần điều chỉnh đây cho hợp lý)
+      const queryString = `?search=${encodeURIComponent(keyword)}&sortBy=${sortBy}&sortOrder=${sortOrder}&manufacturer=${manufacturerId}`;
+      window.location.href = `/admin/products${queryString}`;
+    }
+
+    function renderTable(page) {
+      const startIndex = (page - 1) * rowsPerPage;
+      const endIndex = startIndex + rowsPerPage;
+
+      const tableBody = document.getElementById("productList");
+      tableBody.innerHTML = "";
+
+      // Render rows cho trang hiện tại
+      products.slice(startIndex, endIndex).forEach(product => {
+        const row = `
+          <tr>
+            <td>${product.name}</td>
+            <td>${product.description}</td>
+            <td>${product.price}</td>
+            <td>
+              <img src="${product.mainImage}" alt="Product Image" width="50" height="50" />
+            </td>
+            <td>${product._manufacturer?.name}</td>
+            <td>
+              <a href="/admin/products/${product._id}">Detail</a> |
+              <a href="/admin/products/${product._id}/delete" onclick="return confirm('Are you sure?')">Delete</a>
+            </td>
+          </tr>`;
+        tableBody.innerHTML += row;
+      });
+
+      // Render pagination controls
+      renderPagination();
+    }
+
+    function renderPagination() {
+      const totalPages = Math.ceil(products.length / rowsPerPage);
+      const paginationControls = document.getElementById("paginationControls");
+      paginationControls.innerHTML = "";
+
+      for (let i = 1; i <= totalPages; i++) {
+        paginationControls.innerHTML += `
+          <li class="page-item ${currentPage === i ? 'active' : ''}">
+            <a class="page-link" href="javascript:void(0)" onclick="changePage(${i})">${i}</a>
+          </li>`;
+      }
+    }
+
+    function changePage(page) {
+      currentPage = page;
+      renderTable(page);
+    }
+
+    // Initial render
+    renderTable(currentPage);
+
+    // Handle add product form submission
+    // document.getElementById("addProductForm").addEventListener("submit", function(e) {
+    //   e.preventDefault(); // Prevent form from submitting normally
+
+    //   const name = document.getElementById("productName").value.trim();
+    //   const description = document.getElementById("productDescription").value.trim();
+    //   const price = document.getElementById("productPrice").value.trim();
+    //   const manufacturerId = document.getElementById("manufacturerSelect").value;
+
+    //   // You should replace this with a real API call to submit the new product
+    //   console.log('Submitting new product:', { name, description, price, manufacturerId });
+
+    //   // Close the modal
+    //   var modal = bootstrap.Modal.getInstance(document.getElementById('addProductModal'));
+    //   modal.hide();
+
+    //   // Optionally, you might want to reset the form fields
+    //   document.getElementById("addProductForm").reset();
+    // });
+  </script>
+</body>

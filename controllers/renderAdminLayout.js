@@ -7,7 +7,10 @@
  * @param {Object} admin - The user object.
  */
 const renderAdminLayout = async (req, res, bodyHtml, title) => {
-  const admin = req.admin;
+  const admin = req.user;
+  console.log("admin: ", req.user)
+  console.log("admin: ", req.session.user)
+
 
   res.render("layout/admin-layout/layout", {
     title,

@@ -1,0 +1,78 @@
+<body class="sb-nav-fixed">
+  <div id="layoutSidenav">
+      <div id="layoutSidenav_content">
+          <main>
+              <div class="container-fluid px-4">
+                  <h1 class="mt-4 m-3">Account Detail</h1>
+                  <ol class="breadcrumb mb-4">
+                      <li class="breadcrumb-item"><a href="dashboard">Admin</a></li>
+                      <li class="breadcrumb-item"><a href="accounts">Accounts</a></li>
+                      <li class="breadcrumb-item active">Account Detail</li>
+                  </ol>
+                  <div class="card mb-4">
+                      <div class="card-header">
+                          <i class="fas fa-user me-1"></i>
+                          Account Information
+                      </div>
+                      <div class="card-body">
+                          <table class="table">
+                            <tbody>
+                              <tr>
+                                <th>Email</th>
+                                <td><%= account.email %></td>
+                              </tr>
+                              <tr>
+                                <th>First Name</th>
+                                <td><%= account.firstName %></td>
+                              </tr>
+                              <tr>
+                                <th>Last Name</th>
+                                <td><%= account.lastName %></td>
+                              </tr>
+                              <tr>
+                                <th>Gender</th>
+                                <td><%= account.gender %></td>
+                              </tr>
+                              <tr>
+                                <th>Birthdate</th>
+                                <td><%= account.birthDate %></td>
+                              </tr>
+                              <tr>
+                                <th>isAdmin</th>
+                                <td><%= account.isAdmin ? 'Yes' : 'No' %></td>
+                              </tr>
+                              <tr>
+                                <th>Status</th>
+                                <td><%= account.status %></td>
+                              </tr>
+                            </tbody>
+                          </table>
+                          <a href="/admin/accounts" class="btn btn-primary mt-3">Back to Accounts</a>
+                      </div>
+                  </div>
+              </div>
+          </main>
+      </div>
+  </div>
+</body>
+
+
+<style>
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.table th,
+.table td {
+  padding: 12px;
+  border: 1px solid #ddd;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.table th {
+  background-color: #f2f2f2;
+}
+</style>

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Login Page">
+  <meta name="author" content="">
+  <title>Login | E-Shopper</title>
+
+  <!-- Google Font -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,600&display=swap">
+
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/css/font-awesome.min.css" rel="stylesheet">
+  <link href="/css/prettyPhoto.css" rel="stylesheet">
+  <link href="/css/price-range.css" rel="stylesheet">
+  <link href="/css/animate.css" rel="stylesheet">
+  <link href="/css/main.css" rel="stylesheet">
+  <link href="/css/responsive.css" rel="stylesheet">
+
+  <style>
+    #form {
+      position: relative;
+      z-index: 2;
+      height: 100%;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-block: 10px !important;
+    }
+
+    .login-container {
+      display: flex;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(137, 137, 137, 0.2);
+      max-width: 900px;
+      width: 90%;
+    }
+
+    .login-image {
+      flex: 1;
+      background: url('/images/login/side_image.jpg') no-repeat center center;
+      background-size: cover;
+      min-height: 400px;
+    }
+
+    .login-form {
+      flex: 1;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .login-form img.logo {
+      max-width: 100px;
+      margin: 0 auto 20px auto;
+      display: block;
+    }
+
+    .login-form h2 {
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 25px;
+      text-align: center;
+    }
+
+    .login-form input[type="email"],
+    .login-form input[type="password"] {
+      width: 100%;
+      margin-bottom: 15px;
+      padding: 10px 15px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+      font-weight: 400;
+      color: #555;
+      transition: border-color 0.3s;
+    }
+
+    .login-form input[type="email"]:focus,
+    .login-form input[type="password"]:focus {
+      border-color: #FE980F;
+      outline: none;
+    }
+
+    .login-form span {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+      color: #666;
+      font-size: 14px;
+    }
+
+    .login-form span .checkbox {
+      margin-right: 5px;
+      transform: scale(1.2);
+    }
+
+    .login-form button[type="submit"] {
+      width: 100%;
+      padding: 10px;
+      background: #FE980F;
+      border: none;
+      border-radius: 4px;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background 0.3s, transform 0.1s;
+    }
+
+    .login-form button[type="submit"]:hover {
+      background: #e98708;
+    }
+
+    .login-form button[type="submit"]:active {
+      transform: scale(0.98);
+    }
+
+    /* Các nút OAuth */
+    .oauth-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .oauth-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background 0.3s, transform 0.1s;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .oauth-button .fa {
+      margin-right: 8px;
+      font-size: 18px;
+    }
+
+    .oauth-google {
+      background: #db4437;
+    }
+
+    .oauth-google:hover {
+      background: #c33d2e;
+    }
+
+    .oauth-facebook {
+      background: #3b5998;
+    }
+
+    .oauth-facebook:hover {
+      background: #334d84;
+    }
+
+    .oauth-button:active {
+      transform: scale(0.98);
+    }
+
+    /* Liên kết đăng ký và quên mật khẩu */
+    .additional-links {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .additional-links a {
+      color: #333;
+      text-decoration: none;
+      font-size: 14px;
+      transition: color 0.3s;
+      margin: 0 5px;
+    }
+
+    .additional-links a:hover {
+      color: #FE980F;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .login-container {
+        flex-direction: column;
+      }
+
+      .login-image {
+        display: none;
+      }
+
+      .login-form {
+        padding: 20px;
+      }
+    }
+  </style>
+
+  <link rel="shortcut icon" href="/images/ico/favicon.ico">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/images/ico/apple-touch-icon-144-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/images/ico/apple-touch-icon-114-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/images/ico/apple-touch-icon-72-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" href="/images/ico/apple-touch-icon-57-precomposed.png">
+</head>
+
+<body>
+  <section id="form">
+    <div class="login-container">
+      <div class="login-image"></div>
+
+      <div class="login-form">
+        <img src="/images/home/logo.png" alt="Brand Logo" class="logo">
+        <h2>Login to your admin account</h2>
+        <form action="/admin/login" method="post">
+          <input type="email" id="email" name="email" placeholder="Email Address" style="border-color: #e5e5e5; background-color: #fff;" required />
+          <input type="password" id="password" name="password" placeholder="Password" style="border-color: #e5e5e5; background-color: #fff;" required />
+          <span>
+            <input type="checkbox" class="checkbox" name="remember">
+            Keep me signed in
+          </span>
+          <button type="submit" class="btn btn-default">Login</button>
+        </form>
+
+        <div class="additional-links">
+          <p>Don't have an account? <a href="/client/auth/register" style="color: #e98708;">Register here</a></p>
+          <p><a href="/forgot-password">Forgot Your Password?</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--/form-->
+
+  <script src="/js/jquery.js"></script>
+  <script src="/js/price-range.js"></script>
+  <script src="/js/jquery.scrollUp.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+  <script src="/js/jquery.prettyPhoto.js"></script>
+  <script src="/js/main.js"></script>
+</body>
+
+</html>

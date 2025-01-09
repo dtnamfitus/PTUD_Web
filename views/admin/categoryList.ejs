@@ -1,0 +1,134 @@
+<body class="sb-nav-fixed">
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_content">
+            <main>
+                <div class="container-fluid px-4">
+                    <h1 class="mt-4 m-3">Categories</h1>
+                    <ol class="breadcrumb mb-4">
+                        <li class="breadcrumb-item"><a href="dashboard">Admin</a></li>
+                        <li class="breadcrumb-item active">Categories</li>
+                    </ol>
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <i class="fas fa-table me-1"></i>
+                            Categories List
+                        </div>
+                        <div class="card-body">
+                            <button type="button" class="btn btn-primary mb-3" onclick="openCategoryPopup()">Add New Category</button>
+                            <table id="datatablesSimple">
+                              <thead>
+                                <tr style="font-size: large; font-weight: bold;">
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                    <!-- <th>Status</th> -->
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                                <tbody>
+                                  <% for (let i=0; i < categories.length; i++) { %>
+                                    <tr href="" style=" border: 1px solid #ddd;">
+                                        <td><%= categories[i].name %></td>
+                                        <td><%= categories[i].description %></td>
+                                        <!-- <td><%= categories[i].status %></td> -->
+                                        <td>
+                                          <a href="#" onclick="openEditCategoryPopup('<%= categories[i]._id %>', '<%= categories[i].name %>', '<%= categories[i].description %>')">Edit</a> |
+                                          <a href="/admin/categories/<%= categories[i]._id %>/delete" onclick="return confirm('Are you sure?')">Delete</a>
+                                        </td>
+                                    </tr>
+                                    <% } %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+  
+    <!-- Popup form for adding new category -->
+    <div id="categoryPopupForm" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); background-color:white; padding:20px; box-shadow: 0 0 10px rgba(0,0,0,0.5); z-index:1000;">
+      <h3>Add New Category</h3>
+      <form id="addCategoryForm" method="POST" action="/admin/categories">
+        <div class="mb-3">
+          <label for="name" class="form-label">Name</label>
+          <input type="text" id="name" name="name" class="form-control" required />
+        </div>
+        <div class="mb-3">
+          <label for="description" class="form-label">Description</label>
+          <textarea id="description" name="description" class="form-control" rows="3"></textarea>
+        </div>
+        <!-- <div class="mb-3">
+          <label for="status" class="form-label">Status</label>
+          <select id="status" name="status" class="form-select" required>
+            <option value="active">Active</option>
+            <option value="inactive">Inactive</option>
+          </select>
+        </div> -->
+        <div class="text-end">
+          <button type="submit" class="btn btn-success">Add Category</button>
+          <button type="button" class="btn btn-secondary" onclick="closeCategoryPopup()">Cancel</button>
+        </div>
+      </form>
+    </div>
+  
+    <!-- Popup form for editing category -->
+    <div id="editCategoryPopupForm" style="display:none; height: auto; width: 500px; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); background-color:white; padding:20px; box-shadow: 0 0 10px rgba(0,0,0,0.5); z-index:1000;">
+      <h3>Edit Category</h3>
+      <form id="editCategoryForm" method="POST" action="/admin/categories/update">
+        <input id="editCategoryId" name="id" type="hidden" />
+        <!-- <div class="mb-3">
+            <label for="editCategoryId" class="form-label">Id</label>
+            <input id="editCategoryId" name="id" type="hidden" class="form-control" />
+        </div> -->
+        <div class="mb-3">
+          <label for="editName" class="form-label">Name</label>
+          <input type="text" id="editName" name="name" class="form-control" required />
+        </div>
+        <div class="mb-3">
+          <label for="editDescription" class="form-label">Description</label>
+          <textarea id="editDescription" name="description" class="form-control" rows="3"></textarea>
+        </div>
+        <!-- <div class="mb-3">
+          <label for="editStatus" class="form-label">Status</label>
+          <select id="editStatus" name="status" class="form-select">
+            <option value="active">Active</option>
+            <option value="inactive">Inactive</option>
+          </select>
+        </div> -->
+        <div class="text-end">
+          <button type="submit" class="btn btn-success">Save Changes</button>
+          <button type="button" class="btn btn-secondary" onclick="closeEditCategoryPopup()">Cancel</button>
+        </div>
+      </form>
+    </div>
+</body>
+
+<style>
+  #datatablesSimple th, #datatablesSimple td {
+    text-align: center !important;  /* Bắt buộc căn giữa các cột */
+    padding-left: 36px;
+    padding-right: 36px;
+    border: 1px solid #ddd;
+  }
+</style>
+
+<script>
+  function openCategoryPopup() {
+    document.getElementById('categoryPopupForm').style.display = 'block';
+  }
+
+  function closeCategoryPopup() {
+    document.getElementById('categoryPopupForm').style.display = 'none';
+  }
+
+  function openEditCategoryPopup(id, name, description) {
+    document.getElementById('editCategoryPopupForm').style.display = 'block';
+    document.getElementById('editCategoryId').value = id;
+    document.getElementById('editName').value = name;
+    document.getElementById('editDescription').value = description;
+  }
+
+  function closeEditCategoryPopup() {
+    document.getElementById('editCategoryPopupForm').style.display = 'none';
+  }
+</script>

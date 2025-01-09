@@ -1,6 +1,32 @@
 const User = require("../models/user.model");
 const bcrypt = require("bcrypt");
 
+// get all users
+const getAllUsers = async (filter) => {
+  try {
+    const { keyword, sortBy, sortOrder } = filter;
+    console.log(filter);
+    if (keyword) {
+      const users = await User.find({
+        $or: [
+          { email: { $regex: keyword, $options: "i" } },
+          { firstName: { $regex: keyword, $options: "i" } },
+          { lastName: { $regex: keyword, $options: "i" } },
+        ],
+      }).sort({ [sortBy]: sortOrder });
+      return users;
+    } else {
+      const users = await User.find().sort({ [sortBy]: sortOrder });
+      return users;
+    }
+    
+    console.log("length:", users.length);
+    return users;
+  } catch (err) {
+    throw new Error("Error fetching users: " + err.message);
+  }
+}
+
 const createUser = async (userData) => {
   try {
     const hashedPassword = await bcrypt.hash(userData.password, 10);
@@ -36,7 +62,7 @@ const getUser = async (query) => {
 
 const getUserFullInformation = async (query) => {
   try {
-    const user = await User.findOne(query).select("+otp +otpExpiresAt");
+    const user = await User.findOne(query).select("+otp +otpExpiresAt +password");
     return user;
   } catch (err) {
     throw new Error("Error fetching user: " + err.message);
@@ -105,6 +131,7 @@ const changePassword = async (id, password) => {
 };
 
 module.exports = {
+  getAllUsers,
   createUser,
   getUser,
   updateUser,

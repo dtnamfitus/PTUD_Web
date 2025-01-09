@@ -1,0 +1,130 @@
+<body class="sb-nav-fixed">
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_content">
+            <main>
+                <div class="container-fluid px-4">
+                    <h1 class="mt-4 m-3">Accounts</h1>
+                    <ol class="breadcrumb mb-4">
+                        <li class="breadcrumb-item"><a href="dashboard">Admin</a></li>
+                        <li class="breadcrumb-item active">Accounts</li>
+                    </ol>
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <i class="fas fa-table me-1"></i>
+                            Accounts
+                        </div>
+                        <div class="card-body">
+                            <!-- Search bar and Sort options -->
+                            <div class="mb-3">
+                                <input type="text" id="searchInput" class="form-control mb-2" placeholder="Search by Name or Email" />
+                                <div class="d-flex mb-2 align-items-center" style="gap: 10px;">
+                                    <label for="sortBy" class="fw-bold" style="min-width: 70px;">Sort By:</label>
+                                    <select id="sortBy" class="form-select" style="max-width: 200px;">
+                                        <option value="firstName">First Name</option>
+                                        <option value="lastName">Last Name</option>
+                                        <option value="createdAt">Created At</option>
+                                    </select>
+                                    <label for="sortOrder" class="fw-bold" style="min-width: 70px;">Order:</label>
+                                    <select id="sortOrder" class="form-select" style="max-width: 200px;">
+                                        <option value="asc">Ascending</option>
+                                        <option value="desc">Descending</option>
+                                    </select>
+                                </div>
+                                
+                                <button type="button" class="btn btn-primary" onclick="performSearch()">Search</button>
+                            </div>
+
+                            <!-- Table -->
+                            <table id="datatablesSimple" class="table table-bordered">
+                                <thead>
+                                    <tr style="font-size: large; font-weight: bold;">
+                                        <th>Email</th>
+                                        <th>First Name</th>
+                                        <th>Last Name</th>
+                                        <th>Gender</th>
+                                        <th>Birthdate</th>
+                                        <th>isAdmin</th>
+                                        <th>Status</th>
+                                        <th>CreateAt</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="accountList">
+                                    <!-- Rows will be populated dynamically via JavaScript -->
+                                </tbody>
+                            </table>
+
+                            <!-- Pagination -->
+                            <div class="d-flex justify-content-center mt-4" id="paginationControls">
+                                <!-- Pagination buttons will be generated dynamically -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+
+<script>
+    const accounts = <%- JSON.stringify(accounts) %>; // Server trả về danh sách accounts
+    const rowsPerPage = 10; // Số bản ghi mỗi trang
+    let currentPage = 1;
+
+    function performSearch() {
+        const keyword = document.getElementById("searchInput").value.trim();
+        const sortBy = document.getElementById("sortBy").value;
+        const sortOrder = document.getElementById("sortOrder").value;
+
+        // Gửi request lên server
+        const queryString = `?search=${encodeURIComponent(keyword)}&sortBy=${sortBy}&sortOrder=${sortOrder}`;
+        window.location.href = `/admin/accounts${queryString}`;
+    }
+
+    function renderTable(page) {
+        const startIndex = (page - 1) * rowsPerPage;
+        const endIndex = startIndex + rowsPerPage;
+
+        const tableBody = document.getElementById("accountList");
+        tableBody.innerHTML = "";
+
+        // Render rows cho trang hiện tại
+        accounts.slice(startIndex, endIndex).forEach(account => {
+            const row = `
+                <tr>
+                    <td>${account.email}</td>
+                    <td>${account.firstName}</td>
+                    <td>${account.lastName}</td>
+                    <td>${account.gender}</td>
+                    <td>${account.birthDate}</td>
+                    <td>${account.isAdmin}</td>
+                    <td>${account.status}</td>
+                    <td>${account.createdAt}</td>
+                </tr>`;
+            tableBody.innerHTML += row;
+        });
+
+        // Render pagination controls
+        renderPagination();
+    }
+
+    function renderPagination() {
+        const totalPages = Math.ceil(accounts.length / rowsPerPage);
+        const paginationControls = document.getElementById("paginationControls");
+        paginationControls.innerHTML = "";
+
+        for (let i = 1; i <= totalPages; i++) {
+            paginationControls.innerHTML += `
+                <li class="page-item ${currentPage === i ? 'active' : ''}">
+                    <a class="page-link" href="javascript:void(0)" onclick="changePage(${i})">${i}</a>
+                </li>`;
+        }
+    }
+
+    function changePage(page) {
+        currentPage = page;
+        renderTable(page);
+    }
+
+    // Initial render
+    renderTable(currentPage);
+</script>
