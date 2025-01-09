@@ -9,12 +9,30 @@ const orderSchema = new mongoose.Schema(
       ref: "User",
       required: true,
     },
-    total: { type: Number, required: true },
     status: {
       type: String,
       enum: Object.values(ORDER_STATUS),
-      default: "pending",
+      default: ORDER_STATUS.PENDING,
     },
+    city: {
+      type: String,
+      required: true,
+    },
+    district: {
+      type: String,
+      required: true,
+    },
+    ward: {
+      type: String,
+      required: true,
+    },
+    address: {
+      type: String,
+      required: true,
+    },
+    total: { type: Number, required: true },
+    shipping_fee: { type: Number, required: true },
+    payment_method: { type: String, required: true, default: "COD" },
   },
   { timestamps: true }
 );

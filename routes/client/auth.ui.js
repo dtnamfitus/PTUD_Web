@@ -1,7 +1,7 @@
 const express = require("express");
-const passport = require("../../../config/passport");
+const passport = require("../../config/passport");
 const router = express.Router();
-const uiAuthController = require("../../../controllers/ui/auth.controller");
+const uiAuthController = require("../../controllers/auth.controller");
 
 router.get("/login", uiAuthController.login);
 
@@ -49,4 +49,3 @@ router.get("/send-otp", uiAuthController.sendOTP);
 router.post("/verify-otp", uiAuthController.verifyOTP);
 
 module.exports = router;
-  

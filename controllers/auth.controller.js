@@ -1,7 +1,7 @@
-const userService = require("../../services/user.service");
-const mailerService = require("../../third_party/mailer.service");
-const loginSchema = require("../../dto/auth/login.dto");
-const registerSchema = require("../../dto/auth/register.dto");
+const userService = require("../services/user.service");
+const mailerService = require("../third_party/mailer.service");
+const loginSchema = require("../dto/auth/login.dto");
+const registerSchema = require("../dto/auth/register.dto");
 const renderLayout = require("./renderLayout");
 require("dotenv").config();
 

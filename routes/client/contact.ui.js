@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const uicontactController = require("../../../controllers/ui/contact.controller");
+const uicontactController = require("../../controllers/contact.controller");
 
 // Route to display the contact form page
 router.get("/", uicontactController.getContact);

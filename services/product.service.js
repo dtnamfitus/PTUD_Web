@@ -87,8 +87,21 @@ const getRandomProducts = async (product) => {
   }
 };
 
+const getProductByQuery = async (query) => {
+  try {
+    const product = await Product.find(query)
+      .populate("categories")
+      .populate("_manufacturer")
+      .lean();
+    return product;
+  } catch (err) {
+    throw new Error("Error fetching product by query: " + err.message);
+  }
+};
+
 module.exports = {
   getAllProducts,
   getProductById,
   getRandomProducts,
+  getProductByQuery,
 };

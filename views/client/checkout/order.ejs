@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order List</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <style>
+        .order-list-container {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            color: #343a40;
+            margin-top: 40px;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .order-list-container h2 {
+            margin: 20px 0;
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        .order-list-container table {
+            background: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .order-list-container thead {
+            color: #ffffff;
+        }
+
+        .order-list-container thead th {
+            text-align: center;
+            padding: 10px;
+        }
+
+        .order-list-container tbody tr {
+            text-align: center;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .order-list-container tbody tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .order-list-container tbody td {
+            vertical-align: middle;
+        }
+
+        .order-list-container .table > thead > tr > th,
+        .order-list-container .table > tbody > tr > td {
+            vertical-align: middle;
+        }
+
+        @media (max-width: 768px) {
+            .order-list-container h2 {
+                font-size: 1.5em;
+            }
+
+            .order-list-container table {
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container order-list-container">
+        <h2 class="text-center">Order List</h2>
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th style="color: black;">#</th>
+                    <th style="color: black;">User</th>
+                    <th style="color: black;">Status</th>
+                    <th style="color: black;">City</th>
+                    <th style="color: black;">District</th>
+                    <th style="color: black;">Ward</th>
+                    <th style="color: black;">Address</th>
+                    <th style="color: black;">Total</th>
+                    <th style="color: black;">Shipping Fee</th>
+                    <th style="color: black;">Created At</th>
+                    <th style="color: black;">Updated At</th>
+                    <th style="color: black;">Payment Method</th>
+                </tr>
+            </thead>            
+            <tbody>
+                <% orders.forEach((order, index) => { %>
+                    <tr onclick="redirectToOrder('<%= order._id %>')">
+                        <td><%= index + 1 %></td>
+                        <td><%= order._user %></td>
+                        <td><%= order.status %></td>
+                        <td><%= order.city %></td>
+                        <td><%= order.district %></td>
+                        <td><%= order.ward %></td>
+                        <td><%= order.address %></td>
+                        <td>$<%= order.total.toFixed(2) %></td>
+                        <td>$<%= order.shipping_fee.toFixed(2) %></td>
+                        <td><%= new Date(order.createdAt).toLocaleString() %></td>
+                        <td><%= new Date(order.updatedAt).toLocaleString() %></td>
+                        <td><%= order.payment_method %></td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script>
+        // Redirect to the order detail page
+        function redirectToOrder(orderId) {
+            window.location.href = `/client/order/detail/${orderId}`;
+        }
+    </script>
+</body>
+</html>

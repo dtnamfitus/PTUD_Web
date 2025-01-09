@@ -1,242 +1,230 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Cart UI</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			background-color: #f8f9fa;
+			color: #333;
+			margin-top: 20px;
+		}
+
+		#cart_items {
+			background: #fff;
+			padding: 20px;
+			box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+			border-radius: 8px;
+		}
+
+		.cart_menu {
+			background: #343a40;
+			color: #fff;
+		}
+
+		.cart_menu td {
+			padding: 10px;
+			text-align: center;
+			font-weight: bold;
+		}
+
+		.cart_product img {
+			border: 1px solid #ddd;
+			border-radius: 4px;
+			padding: 5px;
+			background: #f8f9fa;
+		}
+
+		.cart_description h4 {
+			font-size: 18px;
+			color: #007bff;
+		}
+
+		.cart_price p,
+		.cart_total_price {
+			font-size: 16px;
+			font-weight: bold;
+		}
+
+		.shipping-info,
+		.payment-summary {
+			margin-top: 20px;
+			padding: 15px;
+			background: #f7f7f7;
+			border: 1px solid #ddd;
+			border-radius: 6px;
+		}
+
+		.shipping-info h4,
+		.payment-summary h4 {
+			margin-bottom: 15px;
+			font-size: 20px;
+			color: #495057;
+		}
+
+		.payment-options {
+			margin-top: 20px;
+			padding: 15px;
+			text-align: center;
+		}
+
+		.payment-options h4 {
+			font-size: 20px;
+			color: #495057;
+		}
+
+		.payment-options label {
+			margin-right: 15px;
+		}
+
+		.btn-primary {
+			margin-top: 20px;
+			padding: 10px 20px;
+			font-size: 16px;
+			border-radius: 5px;
+		}
+	</style>
+</head>
+
 <body>
-	<section id="cart_items">
-		<div class="container">
-			<div class="breadcrumbs">
-				<ol class="breadcrumb">
-				  <li><a href="#">Home</a></li>
-				  <li class="active">Check out</li>
-				</ol>
-			</div><!--/breadcrums-->
-
-			<div class="step-one">
-				<h2 class="heading">Step1</h2>
-			</div>
-			<div class="checkout-options">
-				<h3>New User</h3>
-				<p>Checkout options</p>
-				<ul class="nav">
-					<li>
-						<label><input type="checkbox"> Register Account</label>
-					</li>
-					<li>
-						<label><input type="checkbox"> Guest Checkout</label>
-					</li>
-					<li>
-						<a href=""><i class="fa fa-times"></i>Cancel</a>
-					</li>
-				</ul>
-			</div><!--/checkout-options-->
-
-			<div class="register-req">
-				<p>Please use Register And Checkout to easily get access to your order history, or use Checkout as Guest</p>
-			</div><!--/register-req-->
-
-			<div class="shopper-informations">
-				<div class="row">
-					<div class="col-sm-3">
-						<div class="shopper-info">
-							<p>Shopper Information</p>
-							<form>
-								<input type="text" placeholder="Display Name">
-								<input type="text" placeholder="User Name">
-								<input type="password" placeholder="Password">
-								<input type="password" placeholder="Confirm password">
-							</form>
-							<a class="btn btn-primary" href="">Get Quotes</a>
-							<a class="btn btn-primary" href="">Continue</a>
-						</div>
-					</div>
-					<div class="col-sm-5 clearfix">
-						<div class="bill-to">
-							<p>Bill To</p>
-							<div class="form-one">
-								<form>
-									<input type="text" placeholder="Company Name">
-									<input type="text" placeholder="Email*">
-									<input type="text" placeholder="Title">
-									<input type="text" placeholder="First Name *">
-									<input type="text" placeholder="Middle Name">
-									<input type="text" placeholder="Last Name *">
-									<input type="text" placeholder="Address 1 *">
-									<input type="text" placeholder="Address 2">
-								</form>
-							</div>
-							<div class="form-two">
-								<form>
-									<input type="text" placeholder="Zip / Postal Code *">
-									<select>
-										<option>-- Country --</option>
-										<option>United States</option>
-										<option>Bangladesh</option>
-										<option>UK</option>
-										<option>India</option>
-										<option>Pakistan</option>
-										<option>Ucrane</option>
-										<option>Canada</option>
-										<option>Dubai</option>
-									</select>
-									<select>
-										<option>-- State / Province / Region --</option>
-										<option>United States</option>
-										<option>Bangladesh</option>
-										<option>UK</option>
-										<option>India</option>
-										<option>Pakistan</option>
-										<option>Ucrane</option>
-										<option>Canada</option>
-										<option>Dubai</option>
-									</select>
-									<input type="password" placeholder="Confirm password">
-									<input type="text" placeholder="Phone *">
-									<input type="text" placeholder="Mobile Phone">
-									<input type="text" placeholder="Fax">
-								</form>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-4">
-						<div class="order-message">
-							<p>Shipping Order</p>
-							<textarea name="message"  placeholder="Notes about your order, Special Notes for Delivery" rows="16"></textarea>
-							<label><input type="checkbox"> Shipping to bill address</label>
-						</div>	
-					</div>					
-				</div>
-			</div>
-			<div class="review-payment">
-				<h2>Review & Payment</h2>
-			</div>
-
+	<div class="container">
+		<section id="cart_items">
 			<div class="table-responsive cart_info">
 				<table class="table table-condensed">
 					<thead>
 						<tr class="cart_menu">
 							<td class="image">Item</td>
-							<td class="description"></td>
+							<td class="name">Name</td>
 							<td class="price">Price</td>
 							<td class="quantity">Quantity</td>
 							<td class="total">Total</td>
-							<td></td>
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td class="cart_product">
-								<a href=""><img src="/images/cart/one.png" alt=""></a>
-							</td>
-							<td class="cart_description">
-								<h4><a href="">Colorblock Scuba</a></h4>
-								<p>Web ID: 1089772</p>
-							</td>
-							<td class="cart_price">
-								<p>$59</p>
-							</td>
-							<td class="cart_quantity">
-								<div class="cart_quantity_button">
-									<a class="cart_quantity_up" href=""> + </a>
-									<input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
-									<a class="cart_quantity_down" href=""> - </a>
-								</div>
-							</td>
-							<td class="cart_total">
-								<p class="cart_total_price">$59</p>
-							</td>
-							<td class="cart_delete">
-								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
-							</td>
-						</tr>
-
-						<tr>
-							<td class="cart_product">
-								<a href=""><img src="/images/cart/two.png" alt=""></a>
-							</td>
-							<td class="cart_description">
-								<h4><a href="">Colorblock Scuba</a></h4>
-								<p>Web ID: 1089772</p>
-							</td>
-							<td class="cart_price">
-								<p>$59</p>
-							</td>
-							<td class="cart_quantity">
-								<div class="cart_quantity_button">
-									<a class="cart_quantity_up" href=""> + </a>
-									<input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
-									<a class="cart_quantity_down" href=""> - </a>
-								</div>
-							</td>
-							<td class="cart_total">
-								<p class="cart_total_price">$59</p>
-							</td>
-							<td class="cart_delete">
-								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
-							</td>
-						</tr>
-						<tr>
-							<td class="cart_product">
-								<a href=""><img src="/images/cart/three.png" alt=""></a>
-							</td>
-							<td class="cart_description">
-								<h4><a href="">Colorblock Scuba</a></h4>
-								<p>Web ID: 1089772</p>
-							</td>
-							<td class="cart_price">
-								<p>$59</p>
-							</td>
-							<td class="cart_quantity">
-								<div class="cart_quantity_button">
-									<a class="cart_quantity_up" href=""> + </a>
-									<input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
-									<a class="cart_quantity_down" href=""> - </a>
-								</div>
-							</td>
-							<td class="cart_total">
-								<p class="cart_total_price">$59</p>
-							</td>
-							<td class="cart_delete">
-								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
-							</td>
-						</tr>
-						<tr>
-							<td colspan="4">&nbsp;</td>
-							<td colspan="2">
-								<table class="table table-condensed total-result">
-									<tr>
-										<td>Cart Sub Total</td>
-										<td>$59</td>
-									</tr>
-									<tr>
-										<td>Exo Tax</td>
-										<td>$2</td>
-									</tr>
-									<tr class="shipping-cost">
-										<td>Shipping Cost</td>
-										<td>Free</td>										
-									</tr>
-									<tr>
-										<td>Total</td>
-										<td><span>$61</span></td>
-									</tr>
-								</table>
-							</td>
-						</tr>
+						<% for (let i=0; i < cart.length; i++) { %>
+							<tr>
+								<td class="cart_product text-center">
+									<a href="#"><img src="<%=cart[i]._product.mainImage %>"
+											style="width: 80px; height: auto;"></a>
+								</td>
+								<td class="cart_description">
+									<h4><a href="/client/product/<%=cart[i]._product.id%>">
+											<%=cart[i]._product.name%>
+										</a></h4>
+								</td>
+								<td class="cart_price text-center">
+									<p>$<%=cart[i]._product.price.toFixed(2)%>
+									</p>
+								</td>
+								<td class="cart_quantity text-center">
+									<div class="cart_quantity_button">
+										<p>
+											<%=cart[i].quantity%>
+										</p>
+									</div>
+								</td>
+								<td class="cart_total text-center">
+									<p class="cart_total_price">
+										$<%=(cart[i]._product.price * cart[i].quantity).toFixed(2)%>
+									</p>
+								</td>
+							</tr>
+							<% } %>
 					</tbody>
 				</table>
 			</div>
-			<div class="payment-options">
-					<span>
-						<label><input type="checkbox"> Direct Bank Transfer</label>
-					</span>
-					<span>
-						<label><input type="checkbox"> Check Payment</label>
-					</span>
-					<span>
-						<label><input type="checkbox"> Paypal</label>
-					</span>
+
+			<div class="shipping-info">
+				<h4>Shipping Information</h4>
+				<p><strong>City:</strong>
+					<%= city %>
+				</p>
+				<p><strong>District:</strong>
+					<%= district %>
+				</p>
+				<p><strong>Ward:</strong>
+					<%= ward %>
+				</p>
+				<p><strong>Address:</strong>
+					<%= address %>
+				</p>
+			</div>
+
+			<div class="payment-summary">
+				<h4>Payment Summary</h4>
+				<p><strong>Shipping Distance:</strong>
+					<%= calculateHaversine.toFixed(2) %> km
+				</p>
+				<p><strong>Shipping Fee:</strong> $<%= shippingCostFee.toFixed(2) %>
+				</p>
+				<p><strong>Total:</strong> $<%= total.toFixed(2) %>
+				</p>
+			</div>
+
+			<form id="orderForm" action="/client/order/place-order" method="POST">
+				<input type="hidden" name="calculateHaversine" value="<%= calculateHaversine %>">
+				<input type="hidden" name="shippingCostFee" value="<%= shippingCostFee %>">
+				<input type="hidden" name="total" value="<%= total %>">
+				<input type="hidden" name="city" value="<%= city %>">
+				<input type="hidden" name="address" value="<%= address %>">
+				<input type="hidden" name="district" value="<%= district %>">
+				<input type="hidden" name="ward" value="<%= ward %>">
+
+				<div class="payment-options">
+					<h4>Payment Options</h4>
+					<label><input type="radio" name="paymentMethod" value="creditCard" required> Credit Card</label>
+					<label><input type="radio" name="paymentMethod" value="shipCOD" required> Ship COD</label>
+					<br>
+					<button type="submit" class="btn btn-primary">Proceed to Payment</button>
 				</div>
-		</div>
-	</section>
+			</form>
+
+		</section>
+	</div>
+	<script>
+		document.getElementById('orderForm').addEventListener('submit', async (e) => {
+			const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
+
+			if (paymentMethod === 'creditCard') {
+				e.preventDefault();
+
+				const stripe = Stripe('pk_test_51Qf4BKCAokhk4hgyNaGkidTEIC3m1FofrTIOS7iJlgjy9AJFLHtDcooYzDVTMuTZ7H1t19caNKNg1zk6Ms7zzfYW00F413REZE');
+
+				try {
+					const response = await fetch('/client/order/create-checkout-session', {
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/json',
+						},
+						body: JSON.stringify({
+							calculateHaversine: document.querySelector('input[name="calculateHaversine"]').value,
+							shippingCostFee: document.querySelector('input[name="shippingCostFee"]').value,
+							total: document.querySelector('input[name="total"]').value,
+							city: document.querySelector('input[name="city"]').value,
+							address: document.querySelector('input[name="address"]').value,
+							district: document.querySelector('input[name="district"]').value,
+							ward: document.querySelector('input[name="ward"]').value,
+						}),
+					});
+
+					const { sessionId } = await response.json();
+					if (sessionId) {
+						await stripe.redirectToCheckout({ sessionId });
+					} else {
+						alert('Something went wrong while creating the payment session.');
+					}
+				} catch (error) {
+					console.error(error);
+					alert('Error processing payment.');
+				}
+			}
+		});
+
+	</script>
 </body>
+
 </html>
